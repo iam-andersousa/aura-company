@@ -500,10 +500,19 @@ function Home() {
               return (
                 <div
                   key={a.name}
-                  className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-1"
+                  className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border transition hover:-translate-y-1"
                 >
-                  <Icon className="h-5 w-5 text-muted-foreground transition group-hover:text-foreground" />
-                  <p className="mt-8 text-sm font-medium text-card-foreground">{a.name}</p>
+                  <img
+                    src={a.image}
+                    alt={a.name}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+                  <div className="relative flex h-full flex-col justify-between p-5">
+                    <Icon className="h-5 w-5 text-white/90" />
+                    <p className="text-sm font-medium text-white">{a.name}</p>
+                  </div>
                 </div>
               );
             })}
