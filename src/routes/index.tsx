@@ -368,7 +368,7 @@ function Home() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-7">
-                  <h3 className="text-2xl">{p.title}</h3>
+                  <h3 className="text-lg">{p.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
                 </div>
               </article>
@@ -423,7 +423,7 @@ function Home() {
                 <div className="font-display text-7xl font-light leading-none text-muted-foreground/40">
                   {r.letter}
                 </div>
-                <h3 className="mt-6 text-2xl">{r.title}</h3>
+                <h3 className="mt-6 text-xl">{r.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{r.text}</p>
               </div>
             ))}
@@ -459,7 +459,7 @@ function Home() {
                 </div>
               </div>
               <div className="flex flex-1 flex-col p-8">
-                <h3 className="font-display text-3xl">{prod.name}</h3>
+                <h3 className="font-display text-2xl">{prod.name}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{prod.text}</p>
               </div>
             </article>
