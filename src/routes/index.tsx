@@ -257,7 +257,7 @@ function Home() {
             <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
             Aura
           </div>
-          <h1 className="text-balance text-5xl leading-[1.05] sm:text-7xl md:text-[88px]">
+          <h1 className="text-balance text-4xl leading-[1.05] sm:text-5xl md:text-6xl">
             Inteligência para o<br />
             <span className="italic font-light text-muted-foreground">Desenvolvimento Humano</span>
           </h1>
