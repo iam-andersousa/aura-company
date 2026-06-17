@@ -416,28 +416,25 @@ function Home() {
           </div>
           <div className="relative">
             {rigs.map((r, i) => (
-              <div
-                key={r.title}
-                className="sticky top-24 mb-6"
-                style={{ zIndex: i + 1 }}
-              >
-                <div className="overflow-hidden rounded-3xl border border-border bg-card p-10 text-card-foreground shadow-xl sm:p-14">
-                  <div className="grid items-center gap-8 sm:grid-cols-[auto_1fr]">
-                    <div className="font-display text-[120px] font-light leading-none text-muted-foreground/30 sm:text-[160px]">
-                      {r.letter}
-                    </div>
-                    <div>
-                      <span className="text-xs uppercase tracking-widest text-muted-foreground">
-                        0{i + 1} — {r.title}
-                      </span>
-                      <h3 className="mt-3 text-2xl sm:text-3xl">{r.title}</h3>
-                      <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                        {r.text}
-                      </p>
+              <div key={r.title} className="h-screen" style={{ zIndex: i + 1, position: "relative" }}>
+                <div className="sticky top-28">
+                  <div className="overflow-hidden rounded-3xl border border-border bg-card p-10 text-card-foreground shadow-2xl sm:p-14">
+                    <div className="grid items-center gap-8 sm:grid-cols-[auto_1fr]">
+                      <div className="font-display text-[120px] font-light leading-none text-muted-foreground/30 sm:text-[180px]">
+                        {r.letter}
+                      </div>
+                      <div>
+                        <span className="text-xs uppercase tracking-widest text-muted-foreground">
+                          0{i + 1} — {r.title}
+                        </span>
+                        <h3 className="mt-3 text-2xl sm:text-3xl">{r.title}</h3>
+                        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                          {r.text}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="h-[60vh]" />
               </div>
             ))}
           </div>
