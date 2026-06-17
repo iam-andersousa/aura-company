@@ -287,7 +287,7 @@ function Home() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">01 — Sobre</span>
-            <h2 className="mt-3 text-4xl sm:text-5xl">Tecnologia centrada nas pessoas.</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Tecnologia centrada nas pessoas.</h2>
           </div>
           <div className="space-y-5 text-lg leading-relaxed text-muted-foreground md:col-span-8">
             <p>
@@ -319,7 +319,7 @@ function Home() {
             <div className="absolute inset-0 bg-background/10" />
             <div className="relative">
               <span className="text-xs uppercase tracking-widest text-neutral-900/70">Nossa Missão</span>
-              <p className="mt-4 font-display text-2xl leading-snug text-neutral-900 sm:text-3xl">
+              <p className="mt-4 font-display text-xl leading-snug text-neutral-900 sm:text-2xl">
                 Desenvolver tecnologias e sistemas inteligentes que ampliem as capacidades humanas e
                 promovam prosperidade sustentável para indivíduos, organizações e sociedades.
               </p>
@@ -332,7 +332,7 @@ function Home() {
             <div className="absolute inset-0 bg-background/10" />
             <div className="relative">
               <span className="text-xs uppercase tracking-widest text-neutral-900/70">Nossa Visão</span>
-              <p className="mt-4 font-display text-2xl leading-snug text-neutral-900 sm:text-3xl">
+              <p className="mt-4 font-display text-xl leading-snug text-neutral-900 sm:text-2xl">
                 Construir um futuro em que conhecimento, tecnologia e instituições atuem em harmonia
                 para promover o florescimento humano, o desenvolvimento sustentável e o progresso
                 coletivo.
@@ -348,7 +348,7 @@ function Home() {
           <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
             <div>
               <span className="text-xs uppercase tracking-widest text-muted-foreground">02 — Princípios</span>
-              <h2 className="mt-3 max-w-2xl text-4xl sm:text-5xl">
+              <h2 className="mt-3 max-w-2xl text-3xl sm:text-4xl">
                 Cinco princípios que orientam tudo o que construímos.
               </h2>
             </div>
@@ -382,7 +382,7 @@ function Home() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">03 — Filosofia</span>
-            <h2 className="mt-3 text-4xl sm:text-5xl">Conhecimento é infraestrutura.</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Conhecimento é infraestrutura.</h2>
           </div>
           <div className="space-y-5 text-lg leading-relaxed text-muted-foreground md:col-span-8">
             <p>
@@ -407,7 +407,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-12 max-w-3xl">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">04 — Framework</span>
-            <h2 className="mt-3 text-4xl sm:text-5xl">O Framework RIGS</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">O Framework RIGS</h2>
             <p className="mt-5 text-lg text-muted-foreground">
               Uma visão sistêmica do desenvolvimento baseada em quatro domínios fundamentais que
               sustentam sociedades inovadoras e resilientes. A Aura opera precisamente na interseção
@@ -435,7 +435,7 @@ function Home() {
       <section id="produtos" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mb-12 max-w-3xl">
           <span className="text-xs uppercase tracking-widest text-muted-foreground">05 — Produtos</span>
-          <h2 className="mt-3 text-4xl sm:text-5xl">Modelos especializados para o pensamento.</h2>
+          <h2 className="mt-3 text-3xl sm:text-4xl">Modelos especializados para o pensamento.</h2>
           <p className="mt-5 text-lg text-muted-foreground">
             Inteligência não é uma capacidade única, mas um conjunto de competências complementares
             que se fortalecem mutuamente. Conheça nossa família de modelos.
@@ -472,7 +472,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-12 max-w-3xl">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">06 — Atuação</span>
-            <h2 className="mt-3 text-4xl sm:text-5xl">Áreas de Atuação</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Áreas de Atuação</h2>
             <p className="mt-5 text-lg text-muted-foreground">
               A Aura atua no desenvolvimento e aplicação de tecnologias avançadas em múltiplos
               setores e domínios estratégicos.
@@ -500,7 +500,7 @@ function Home() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">07 — Propósito</span>
-            <h2 className="mt-3 text-4xl sm:text-5xl">Por que existimos.</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Por que existimos.</h2>
           </div>
           <div className="md:col-span-8">
             <p className="text-lg leading-relaxed text-muted-foreground">
@@ -539,7 +539,7 @@ function Home() {
         <div className="absolute inset-0 -z-10 bg-background/40 dark:bg-background/60" />
         <div className="mx-auto max-w-4xl px-6 py-32 text-center">
           <span className="text-xs uppercase tracking-widest text-muted-foreground">Manifesto</span>
-          <div className="mt-8 space-y-5 font-display text-2xl leading-snug text-foreground sm:text-3xl">
+          <div className="mt-8 space-y-5 font-display text-xl leading-snug text-foreground sm:text-2xl">
             <p>Máquinas processam informações.</p>
             <p>Pessoas atribuem significado.</p>
             <p className="text-muted-foreground">
