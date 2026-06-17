@@ -414,17 +414,30 @@ function Home() {
               entre eles.
             </p>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {rigs.map((r) => (
+          <div className="relative">
+            {rigs.map((r, i) => (
               <div
                 key={r.title}
-                className="rounded-3xl border border-border bg-card p-8 text-card-foreground transition hover:-translate-y-1 hover:border-foreground/30"
+                className="sticky top-24 mb-6"
+                style={{ zIndex: i + 1 }}
               >
-                <div className="font-display text-7xl font-light leading-none text-muted-foreground/40">
-                  {r.letter}
+                <div className="overflow-hidden rounded-3xl border border-border bg-card p-10 text-card-foreground shadow-xl sm:p-14">
+                  <div className="grid items-center gap-8 sm:grid-cols-[auto_1fr]">
+                    <div className="font-display text-[120px] font-light leading-none text-muted-foreground/30 sm:text-[160px]">
+                      {r.letter}
+                    </div>
+                    <div>
+                      <span className="text-xs uppercase tracking-widest text-muted-foreground">
+                        0{i + 1} — {r.title}
+                      </span>
+                      <h3 className="mt-3 text-2xl sm:text-3xl">{r.title}</h3>
+                      <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                        {r.text}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="mt-6 text-xl">{r.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{r.text}</p>
+                <div className="h-[60vh]" />
               </div>
             ))}
           </div>
