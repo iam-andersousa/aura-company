@@ -205,9 +205,9 @@ function Logo() {
     <img
       src={dark ? logoLight.url : logoDark.url}
       alt="Aura"
-      className="h-7 w-auto"
-      width={120}
-      height={28}
+      className="h-10 w-auto sm:h-12"
+      width={180}
+      height={48}
     />
   );
 }
@@ -217,7 +217,7 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Nav */}
       <header className="fixed inset-x-0 top-0 z-50 glass-nav">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <a href="#top" className="flex items-center gap-2">
             <Logo />
           </a>
@@ -257,7 +257,7 @@ function Home() {
             <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
             Aura
           </div>
-          <h1 className="text-balance text-5xl leading-[1.05] sm:text-7xl md:text-[88px]">
+          <h1 className="text-balance text-4xl leading-[1.05] sm:text-5xl md:text-6xl">
             Inteligência para o<br />
             <span className="italic font-light text-muted-foreground">Desenvolvimento Humano</span>
           </h1>
@@ -287,7 +287,7 @@ function Home() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">01 — Sobre</span>
-            <h2 className="mt-3 text-4xl sm:text-5xl">Tecnologia centrada nas pessoas.</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Tecnologia centrada nas pessoas.</h2>
           </div>
           <div className="space-y-5 text-lg leading-relaxed text-muted-foreground md:col-span-8">
             <p>
@@ -319,7 +319,7 @@ function Home() {
             <div className="absolute inset-0 bg-background/10" />
             <div className="relative">
               <span className="text-xs uppercase tracking-widest text-neutral-900/70">Nossa Missão</span>
-              <p className="mt-4 font-display text-2xl leading-snug text-neutral-900 sm:text-3xl">
+              <p className="mt-4 font-display text-xl leading-snug text-neutral-900 sm:text-2xl">
                 Desenvolver tecnologias e sistemas inteligentes que ampliem as capacidades humanas e
                 promovam prosperidade sustentável para indivíduos, organizações e sociedades.
               </p>
@@ -332,7 +332,7 @@ function Home() {
             <div className="absolute inset-0 bg-background/10" />
             <div className="relative">
               <span className="text-xs uppercase tracking-widest text-neutral-900/70">Nossa Visão</span>
-              <p className="mt-4 font-display text-2xl leading-snug text-neutral-900 sm:text-3xl">
+              <p className="mt-4 font-display text-xl leading-snug text-neutral-900 sm:text-2xl">
                 Construir um futuro em que conhecimento, tecnologia e instituições atuem em harmonia
                 para promover o florescimento humano, o desenvolvimento sustentável e o progresso
                 coletivo.
@@ -348,7 +348,7 @@ function Home() {
           <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
             <div>
               <span className="text-xs uppercase tracking-widest text-muted-foreground">02 — Princípios</span>
-              <h2 className="mt-3 max-w-2xl text-4xl sm:text-5xl">
+              <h2 className="mt-3 max-w-2xl text-3xl sm:text-4xl">
                 Cinco princípios que orientam tudo o que construímos.
               </h2>
             </div>
@@ -368,7 +368,7 @@ function Home() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-7">
-                  <h3 className="text-2xl">{p.title}</h3>
+                  <h3 className="text-lg">{p.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
                 </div>
               </article>
@@ -382,7 +382,7 @@ function Home() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">03 — Filosofia</span>
-            <h2 className="mt-3 text-4xl sm:text-5xl">Conhecimento é infraestrutura.</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Conhecimento é infraestrutura.</h2>
           </div>
           <div className="space-y-5 text-lg leading-relaxed text-muted-foreground md:col-span-8">
             <p>
@@ -407,24 +407,34 @@ function Home() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-12 max-w-3xl">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">04 — Framework</span>
-            <h2 className="mt-3 text-4xl sm:text-5xl">O Framework RIGS</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">O Framework RIGS</h2>
             <p className="mt-5 text-lg text-muted-foreground">
               Uma visão sistêmica do desenvolvimento baseada em quatro domínios fundamentais que
               sustentam sociedades inovadoras e resilientes. A Aura opera precisamente na interseção
               entre eles.
             </p>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {rigs.map((r) => (
-              <div
-                key={r.title}
-                className="rounded-3xl border border-border bg-card p-8 text-card-foreground transition hover:-translate-y-1 hover:border-foreground/30"
-              >
-                <div className="font-display text-7xl font-light leading-none text-muted-foreground/40">
-                  {r.letter}
+          <div className="relative">
+            {rigs.map((r, i) => (
+              <div key={r.title} className="h-screen" style={{ zIndex: i + 1, position: "relative" }}>
+                <div className="sticky top-28">
+                  <div className="overflow-hidden rounded-3xl border border-border bg-card p-10 text-card-foreground shadow-2xl sm:p-14">
+                    <div className="grid items-center gap-8 sm:grid-cols-[auto_1fr]">
+                      <div className="font-display text-[120px] font-light leading-none text-muted-foreground/30 sm:text-[180px]">
+                        {r.letter}
+                      </div>
+                      <div>
+                        <span className="text-xs uppercase tracking-widest text-muted-foreground">
+                          0{i + 1} — {r.title}
+                        </span>
+                        <h3 className="mt-3 text-2xl sm:text-3xl">{r.title}</h3>
+                        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                          {r.text}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="mt-6 text-2xl">{r.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{r.text}</p>
               </div>
             ))}
           </div>
@@ -435,17 +445,17 @@ function Home() {
       <section id="produtos" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mb-12 max-w-3xl">
           <span className="text-xs uppercase tracking-widest text-muted-foreground">05 — Produtos</span>
-          <h2 className="mt-3 text-4xl sm:text-5xl">Modelos especializados para o pensamento.</h2>
+          <h2 className="mt-3 text-3xl sm:text-4xl">Modelos especializados para o pensamento.</h2>
           <p className="mt-5 text-lg text-muted-foreground">
             Inteligência não é uma capacidade única, mas um conjunto de competências complementares
             que se fortalecem mutuamente. Conheça nossa família de modelos.
           </p>
         </div>
-        <Carousel>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((prod) => (
             <article
               key={prod.name}
-              className="group flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-border bg-card text-card-foreground sm:w-[60%] lg:w-[42%]"
+              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card text-card-foreground"
             >
               <div className="relative aspect-square overflow-hidden">
                 <img
@@ -454,17 +464,23 @@ function Home() {
                   loading="lazy"
                   className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                 />
-                <div className="absolute left-5 top-5 rounded-full bg-background/80 px-3 py-1 text-xs uppercase tracking-widest text-foreground backdrop-blur">
+                <div className="absolute left-4 top-4 rounded-full bg-background/80 px-3 py-1 text-[10px] uppercase tracking-widest text-foreground backdrop-blur">
                   {prod.tag}
                 </div>
               </div>
-              <div className="flex flex-1 flex-col p-8">
-                <h3 className="font-display text-3xl">{prod.name}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{prod.text}</p>
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="font-display text-xl">{prod.name}</h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{prod.text}</p>
+                <a
+                  href="#manifesto"
+                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+                >
+                  Teste agora <ArrowRight className="h-4 w-4" />
+                </a>
               </div>
             </article>
           ))}
-        </Carousel>
+        </div>
       </section>
 
       {/* Áreas */}
@@ -472,7 +488,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-12 max-w-3xl">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">06 — Atuação</span>
-            <h2 className="mt-3 text-4xl sm:text-5xl">Áreas de Atuação</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Áreas de Atuação</h2>
             <p className="mt-5 text-lg text-muted-foreground">
               A Aura atua no desenvolvimento e aplicação de tecnologias avançadas em múltiplos
               setores e domínios estratégicos.
@@ -484,10 +500,19 @@ function Home() {
               return (
                 <div
                   key={a.name}
-                  className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-1"
+                  className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border transition hover:-translate-y-1"
                 >
-                  <Icon className="h-5 w-5 text-muted-foreground transition group-hover:text-foreground" />
-                  <p className="mt-8 text-sm font-medium text-card-foreground">{a.name}</p>
+                  <img
+                    src={a.image}
+                    alt={a.name}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+                  <div className="relative flex h-full flex-col justify-between p-5">
+                    <Icon className="h-5 w-5 text-white/90" />
+                    <p className="text-sm font-medium text-white">{a.name}</p>
+                  </div>
                 </div>
               );
             })}
@@ -500,7 +525,7 @@ function Home() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">07 — Propósito</span>
-            <h2 className="mt-3 text-4xl sm:text-5xl">Por que existimos.</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Por que existimos.</h2>
           </div>
           <div className="md:col-span-8">
             <p className="text-lg leading-relaxed text-muted-foreground">
@@ -539,7 +564,7 @@ function Home() {
         <div className="absolute inset-0 -z-10 bg-background/40 dark:bg-background/60" />
         <div className="mx-auto max-w-4xl px-6 py-32 text-center">
           <span className="text-xs uppercase tracking-widest text-muted-foreground">Manifesto</span>
-          <div className="mt-8 space-y-5 font-display text-2xl leading-snug text-foreground sm:text-3xl">
+          <div className="mt-8 space-y-5 font-display text-xl leading-snug text-foreground sm:text-2xl">
             <p>Máquinas processam informações.</p>
             <p>Pessoas atribuem significado.</p>
             <p className="text-muted-foreground">

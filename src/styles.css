@@ -35,7 +35,7 @@
   --color-surface: var(--surface);
   --color-surface-foreground: var(--surface-foreground);
 
-  --font-display: "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
 }
 
