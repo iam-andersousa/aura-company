@@ -441,11 +441,11 @@ function Home() {
             que se fortalecem mutuamente. Conheça nossa família de modelos.
           </p>
         </div>
-        <Carousel>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((prod) => (
             <article
               key={prod.name}
-              className="group flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-border bg-card text-card-foreground sm:w-[60%] lg:w-[42%]"
+              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card text-card-foreground"
             >
               <div className="relative aspect-square overflow-hidden">
                 <img
@@ -454,17 +454,23 @@ function Home() {
                   loading="lazy"
                   className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                 />
-                <div className="absolute left-5 top-5 rounded-full bg-background/80 px-3 py-1 text-xs uppercase tracking-widest text-foreground backdrop-blur">
+                <div className="absolute left-4 top-4 rounded-full bg-background/80 px-3 py-1 text-[10px] uppercase tracking-widest text-foreground backdrop-blur">
                   {prod.tag}
                 </div>
               </div>
-              <div className="flex flex-1 flex-col p-8">
-                <h3 className="font-display text-2xl">{prod.name}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{prod.text}</p>
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="font-display text-xl">{prod.name}</h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{prod.text}</p>
+                <a
+                  href="#manifesto"
+                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+                >
+                  Teste agora <ArrowRight className="h-4 w-4" />
+                </a>
               </div>
             </article>
           ))}
-        </Carousel>
+        </div>
       </section>
 
       {/* Áreas */}
