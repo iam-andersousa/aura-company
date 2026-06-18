@@ -156,7 +156,7 @@ export const Route = createFileRoute("/modelos/$slug")({
   component: ModelDetail,
 });
 
-const COMPETITORS = [
+const COMPETITORS: { key: keyof Model["benchmarks"][number]; label: string; accent?: boolean }[] = [
   { key: "aura", label: "Aura", accent: true },
   { key: "opus", label: "Claude Opus" },
   { key: "sonnet", label: "Claude Sonnet" },
@@ -165,7 +165,7 @@ const COMPETITORS = [
   { key: "gemini", label: "Gemini" },
   { key: "fable", label: "Claude Fable" },
   { key: "mythos", label: "Mythos" },
-] as const;
+];
 
 function ModelDetail() {
   const { model } = Route.useLoaderData();
@@ -208,7 +208,7 @@ function ModelDetail() {
         <section className="mt-20 text-left">
           <h2 className="font-heading text-center text-2xl font-medium sm:text-3xl">Características gerais</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {model.specs.map((s, i) => {
+            {model.specs.map((s: Model["specs"][number], i: number) => {
               const icons = [Cpu, Gauge, Zap, BookOpen];
               const Icon = icons[i % icons.length];
               return (
@@ -226,7 +226,7 @@ function ModelDetail() {
         <section className="mt-20 text-left">
           <h2 className="font-heading text-center text-2xl font-medium sm:text-3xl">Capacidades</h2>
           <ul className="mx-auto mt-8 max-w-3xl divide-y divide-border border-y border-border">
-            {model.capabilities.map((c, i) => (
+            {model.capabilities.map((c: string, i: number) => (
               <li key={c} className="flex items-baseline gap-5 py-5">
                 <span className="font-heading text-sm text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
                 <span className="text-base text-foreground">{c}</span>
@@ -243,8 +243,8 @@ function ModelDetail() {
           </p>
 
           <div className="mt-10 space-y-10">
-            {model.benchmarks.map((b) => {
-              const max = Math.max(...COMPETITORS.map((c) => b[c.key as keyof typeof b] as number));
+            {model.benchmarks.map((b: Model["benchmarks"][number]) => {
+              const max = Math.max(...COMPETITORS.map((c) => b[c.key] as number));
               return (
                 <div key={b.name} className="rounded-3xl border border-border bg-card p-6 text-left sm:p-8">
                   <div className="flex items-baseline justify-between">
@@ -253,7 +253,7 @@ function ModelDetail() {
                   </div>
                   <div className="mt-6 space-y-3">
                     {COMPETITORS.map((c) => {
-                      const v = b[c.key as keyof typeof b] as number;
+                      const v = b[c.key] as number;
                       const pct = (v / 100) * 100;
                       return (
                         <div key={c.key} className="grid grid-cols-[120px_1fr_42px] items-center gap-3">
