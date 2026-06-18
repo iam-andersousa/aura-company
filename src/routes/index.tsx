@@ -1,28 +1,24 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   Brain,
-  Cpu,
   Database,
   Workflow,
   FlaskConical,
-  Compass,
   GraduationCap,
   HeartPulse,
   Zap,
   Shield,
-  Network,
-  Radio,
   Landmark,
-  Sparkles,
-  ChevronLeft,
-  ChevronRight,
+  ChevronDown,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 import logoDark from "@/assets/aura-logo-dark.png.asset.json";
 import logoLight from "@/assets/aura-logo-light.png.asset.json";
+import sloganDark from "@/assets/slogan-dark.png.asset.json";
+import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
 
@@ -36,10 +32,16 @@ import pAristoteles from "@/assets/product-aristoteles.jpg";
 import pHerodotus from "@/assets/product-herodotus.jpg";
 import pPythagoras from "@/assets/product-pythagoras.jpg";
 import pArchimedes from "@/assets/product-archimedes.jpg";
-import area1 from "@/assets/area-1.jpg";
-import area2 from "@/assets/area-2.jpg";
-import area3 from "@/assets/area-3.jpg";
-import area4 from "@/assets/area-4.jpg";
+
+import areaIa from "@/assets/area-ia.jpg";
+import areaData from "@/assets/area-data.jpg";
+import areaAuto from "@/assets/area-auto.jpg";
+import areaResearch from "@/assets/area-research.jpg";
+import areaEdu from "@/assets/area-edu.jpg";
+import areaHealth from "@/assets/area-health.jpg";
+import areaEnergy from "@/assets/area-energy.jpg";
+import areaDefense from "@/assets/area-defense.jpg";
+import areaInfra from "@/assets/area-infra.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,8 +55,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Aura — Inteligência para o Desenvolvimento Humano" },
       {
         property: "og:description",
-        content:
-          "Tecnologias responsáveis, acessíveis e centradas na experiência humana.",
+        content: "Tecnologias responsáveis, acessíveis e centradas na experiência humana.",
       },
     ],
   }),
@@ -64,74 +65,117 @@ export const Route = createFileRoute("/")({
 const principles = [
   {
     title: "Desenvolvimento Humano em Primeiro Lugar",
-    text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas, fortalecer comunidades, ampliar oportunidades e promover bem-estar individual e coletivo.",
-    image: p3,
+    text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas, fortalecer comunidades e ampliar oportunidades.",
+    image: p1,
   },
   {
     title: "Excelência como Compromisso",
-    text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade. Excelência não é um objetivo final, mas um processo contínuo de aprendizado, aprimoramento e evolução.",
+    text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade. Excelência é um processo contínuo de aprendizado e evolução.",
     image: p2,
   },
   {
     title: "Inovação Responsável",
-    text: "Tecnologias transformadoras devem ser desenvolvidas com responsabilidade. Consideramos os impactos sociais, econômicos, ambientais e éticos de longo prazo em todas as nossas iniciativas.",
-    image: p1,
+    text: "Tecnologias transformadoras devem ser desenvolvidas com responsabilidade — considerando impactos sociais, econômicos, ambientais e éticos de longo prazo.",
+    image: p3,
   },
   {
     title: "Transparência e Integridade",
-    text: "Construímos relações baseadas em confiança, clareza e responsabilidade. Instituições fortes dependem de transparência, prestação de contas e compromisso com a verdade.",
+    text: "Construímos relações baseadas em confiança, clareza e responsabilidade. Instituições fortes dependem de transparência e prestação de contas.",
     image: p4,
   },
   {
     title: "Sustentabilidade",
-    text: "O desenvolvimento sustentável exige equilíbrio entre crescimento econômico, preservação ambiental, estabilidade institucional e prosperidade social. Progresso genuíno beneficia gerações presentes sem comprometer as futuras.",
+    text: "Equilíbrio entre crescimento econômico, preservação ambiental, estabilidade institucional e prosperidade social. Progresso que beneficia gerações futuras.",
     image: p5,
   },
 ];
 
 const products = [
   {
+    slug: "aristoteles",
     name: "Aristoteles",
     tag: "Raciocínio & Decisão",
-    text: "Modelo especializado em raciocínio lógico, análise crítica, tomada de decisão e resolução estruturada de problemas. Projetado para apoiar atividades que exigem coerência, argumentação e pensamento estratégico.",
+    text: "Raciocínio lógico, análise crítica e pensamento estratégico.",
     image: pAristoteles,
   },
   {
+    slug: "herodotus",
     name: "Herodotus",
     tag: "História & Geopolítica",
-    text: "Modelo especializado em história, geopolítica, relações internacionais, cultura e ciências humanas. Desenvolvido para compreender processos históricos, fenômenos sociais e contextos institucionais complexos.",
+    text: "História, geopolítica, relações internacionais e ciências humanas.",
     image: pHerodotus,
   },
   {
+    slug: "pythagoras",
     name: "Pythagoras",
     tag: "Matemática & Análise",
-    text: "Modelo especializado em matemática, estatística, lógica aplicada, modelagem quantitativa e análise formal. Projetado para tarefas que exigem precisão analítica e raciocínio matemático avançado.",
+    text: "Matemática, estatística e modelagem quantitativa avançada.",
     image: pPythagoras,
   },
   {
+    slug: "archimedes",
     name: "Archimedes",
     tag: "Engenharia & Sistemas",
-    text: "Modelo especializado em engenharia, tecnologia, sistemas físicos e resolução de desafios técnicos complexos. Desenvolvido para apoiar atividades de projeto, inovação e desenvolvimento tecnológico.",
+    text: "Engenharia, sistemas físicos e desafios técnicos complexos.",
     image: pArchimedes,
   },
 ];
 
 const areas = [
-  { name: "Inteligência Artificial", icon: Brain, image: area1 },
-  { name: "Sistemas Inteligentes", icon: Cpu, image: area1 },
-  { name: "Ciência de Dados", icon: Database, image: area1 },
-  { name: "Engenharia de Conhecimento", icon: Network, image: area1 },
-  { name: "Automação", icon: Workflow, image: area1 },
-  { name: "Pesquisa Aplicada", icon: FlaskConical, image: area2 },
-  { name: "Inteligência Estratégica", icon: Compass, image: area2 },
-  { name: "Educação e Capacitação", icon: GraduationCap, image: area4 },
-  { name: "Saúde", icon: HeartPulse, image: area2 },
-  { name: "Energia", icon: Zap, image: area3 },
-  { name: "Defesa", icon: Shield, image: area3 },
-  { name: "Infraestrutura", icon: Landmark, image: area3 },
-  { name: "Comunicações", icon: Radio, image: area1 },
-  { name: "Governança Digital", icon: Sparkles, image: area4 },
-  { name: "Transformação Institucional", icon: Network, image: area4 },
+  {
+    name: "Inteligência Artificial",
+    icon: Brain,
+    image: areaIa,
+    desc: "Modelos fundacionais e agentes que ampliam capacidades humanas em escala.",
+  },
+  {
+    name: "Ciência de Dados",
+    icon: Database,
+    image: areaData,
+    desc: "Transformamos dados em decisões com rigor estatístico e inteligência aplicada.",
+  },
+  {
+    name: "Automações",
+    icon: Workflow,
+    image: areaAuto,
+    desc: "Sistemas autônomos que orquestram processos críticos com precisão e segurança.",
+  },
+  {
+    name: "Pesquisa Aplicada",
+    icon: FlaskConical,
+    image: areaResearch,
+    desc: "Conectamos descoberta científica à resolução de problemas reais do mundo.",
+  },
+  {
+    name: "Educação",
+    icon: GraduationCap,
+    image: areaEdu,
+    desc: "Plataformas inteligentes que personalizam o aprendizado em todos os níveis.",
+  },
+  {
+    name: "Saúde",
+    icon: HeartPulse,
+    image: areaHealth,
+    desc: "Diagnóstico assistido e medicina de precisão para ampliar o cuidado humano.",
+  },
+  {
+    name: "Energia",
+    icon: Zap,
+    image: areaEnergy,
+    desc: "Otimização de redes e modelagem para uma matriz energética sustentável.",
+  },
+  {
+    name: "Defesa",
+    icon: Shield,
+    image: areaDefense,
+    desc: "Inteligência estratégica e sistemas críticos para soberania tecnológica.",
+  },
+  {
+    name: "Infraestrutura",
+    icon: Landmark,
+    image: areaInfra,
+    desc: "Modelagem e operação inteligente da infraestrutura física do século XXI.",
+  },
 ];
 
 const rigs = [
@@ -157,42 +201,20 @@ const rigs = [
   },
 ];
 
-function Carousel({ children }: { children: React.ReactNode[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const scroll = (dir: 1 | -1) => {
-    const el = ref.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * el.clientWidth * 0.85, behavior: "smooth" });
-  };
-  return (
-    <div className="relative">
-      <div
-        ref={ref}
-        className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {children}
-      </div>
-      <div className="mt-6 flex justify-end gap-2">
-        <button
-          onClick={() => scroll(-1)}
-          aria-label="Anterior"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:bg-accent"
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </button>
-        <button
-          onClick={() => scroll(1)}
-          aria-label="Próximo"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:bg-accent"
-        >
-          <ChevronRight className="h-4 w-4" />
-        </button>
-      </div>
-    </div>
-  );
-}
+const missionVision = [
+  {
+    label: "Nossa Missão",
+    text: "Desenvolver tecnologias e sistemas inteligentes que ampliem as capacidades humanas e promovam prosperidade sustentável para indivíduos, organizações e sociedades.",
+    bg: gradient1.url,
+  },
+  {
+    label: "Nossa Visão",
+    text: "Construir um futuro em que conhecimento, tecnologia e instituições atuem em harmonia para promover o florescimento humano, o desenvolvimento sustentável e o progresso coletivo.",
+    bg: gradient2.url,
+  },
+];
 
-function Logo() {
+function useDark() {
   const [dark, setDark] = useState(false);
   useEffect(() => {
     const update = () => setDark(document.documentElement.classList.contains("dark"));
@@ -201,18 +223,115 @@ function Logo() {
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     return () => obs.disconnect();
   }, []);
+  return dark;
+}
+
+function Logo({ size = "default" }: { size?: "default" | "lg" }) {
+  const dark = useDark();
+  const cls = size === "lg" ? "h-14 w-auto sm:h-16" : "h-10 w-auto sm:h-12";
   return (
     <img
       src={dark ? logoLight.url : logoDark.url}
       alt="Aura"
-      className="h-10 w-auto sm:h-12"
-      width={180}
-      height={48}
+      className={cls}
+      width={size === "lg" ? 240 : 180}
+      height={size === "lg" ? 64 : 48}
     />
   );
 }
 
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="text-xs uppercase tracking-widest text-muted-foreground">{children}</span>
+  );
+}
+
+function MissionVisionRotator() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIdx((i) => (i + 1) % missionVision.length), 10000);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <div className="relative mx-auto mt-16 max-w-3xl">
+      <div className="relative h-[300px] sm:h-[260px]">
+        {missionVision.map((item, i) => (
+          <div
+            key={item.label}
+            className={`absolute inset-0 overflow-hidden rounded-3xl p-10 text-center transition-opacity duration-1000 sm:p-14 ${
+              i === idx ? "opacity-100" : "pointer-events-none opacity-0"
+            }`}
+            style={{ backgroundImage: `url(${item.bg})`, backgroundSize: "cover", backgroundPosition: "center" }}
+          >
+            <div className="absolute inset-0 bg-background/10" />
+            <div className="relative flex h-full flex-col items-center justify-center">
+              <span className="text-xs uppercase tracking-widest text-neutral-900/70">{item.label}</span>
+              <p className="mx-auto mt-4 max-w-2xl font-display text-lg leading-snug text-neutral-900 sm:text-xl">
+                {item.text}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-6 flex justify-center gap-2">
+        {missionVision.map((m, i) => (
+          <button
+            key={m.label}
+            onClick={() => setIdx(i)}
+            aria-label={m.label}
+            className={`h-1.5 rounded-full transition-all ${
+              i === idx ? "w-8 bg-foreground" : "w-3 bg-muted-foreground/40"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProductsDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="inline-flex items-center gap-1 transition hover:text-foreground"
+      >
+        Produtos <ChevronDown className={`h-3.5 w-3.5 transition ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute left-1/2 top-full z-50 mt-3 w-64 -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-popover p-2 shadow-2xl">
+          <p className="px-3 pt-2 pb-1 text-[10px] uppercase tracking-widest text-muted-foreground">
+            Modelos
+          </p>
+          {products.map((p) => (
+            <Link
+              key={p.slug}
+              to="/modelos/$slug"
+              params={{ slug: p.slug }}
+              onClick={() => setOpen(false)}
+              className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-accent"
+            >
+              <span className="font-heading text-sm font-medium text-foreground">{p.name}</span>
+              <span className="text-xs text-muted-foreground">{p.tag}</span>
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Home() {
+  const dark = useDark();
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Nav */}
@@ -225,7 +344,7 @@ function Home() {
             <a href="#sobre" className="transition hover:text-foreground">Sobre</a>
             <a href="#principios" className="transition hover:text-foreground">Princípios</a>
             <a href="#rigs" className="transition hover:text-foreground">RIGS</a>
-            <a href="#produtos" className="transition hover:text-foreground">Produtos</a>
+            <ProductsDropdown />
             <a href="#atuacao" className="transition hover:text-foreground">Atuação</a>
           </nav>
           <div className="flex items-center gap-3">
@@ -253,13 +372,8 @@ function Home() {
           }}
         />
         <div className="mx-auto max-w-5xl px-6 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs uppercase tracking-widest text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-            Aura
-          </div>
-          <h1 className="text-balance text-4xl leading-[1.05] sm:text-5xl md:text-6xl">
-            Inteligência para o<br />
-            <span className="italic font-light text-muted-foreground">Desenvolvimento Humano</span>
+          <h1 className="font-heading text-balance text-4xl font-medium leading-[1.1] sm:text-5xl md:text-6xl">
+            Inteligência para o Desenvolvimento Humano
           </h1>
           <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-muted-foreground">
             A Aura é uma organização dedicada ao desenvolvimento de tecnologias avançadas, sistemas
@@ -283,151 +397,120 @@ function Home() {
       </section>
 
       {/* Sobre */}
-      <section id="sobre" className="mx-auto max-w-6xl px-6 py-24">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <span className="text-xs uppercase tracking-widest text-muted-foreground">01 — Sobre</span>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Tecnologia centrada nas pessoas.</h2>
-          </div>
-          <div className="space-y-5 text-lg leading-relaxed text-muted-foreground md:col-span-8">
-            <p>
-              Nossa atuação está fundamentada na criação de tecnologias responsáveis, acessíveis,
-              sustentáveis e centradas na experiência humana. Acreditamos que o verdadeiro valor da
-              inovação não está apenas em sua sofisticação técnica, mas em sua capacidade de ampliar
-              as possibilidades das pessoas, fortalecer instituições e contribuir para uma sociedade
-              mais próspera, justa e resiliente.
-            </p>
-            <p>
-              Vivemos um período de transformação sem precedentes. Defendemos uma visão em que
-              inovação e responsabilidade caminham juntas, e em que o desenvolvimento tecnológico é
-              avaliado não apenas pelo que é capaz de produzir, mas pelos benefícios que gera para
-              indivíduos, organizações e comunidades.
-            </p>
-            <p className="text-foreground">
-              Mais do que acompanhar o futuro, buscamos ajudar a construí-lo de forma consciente,
-              responsável e orientada ao desenvolvimento humano.
-            </p>
-          </div>
+      <section id="sobre" className="mx-auto max-w-4xl px-6 py-24 text-center">
+        <SectionLabel>01 — Sobre</SectionLabel>
+        <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
+          Tecnologia centrada nas pessoas.
+        </h2>
+        <div className="mx-auto mt-10 space-y-5 text-lg leading-relaxed text-muted-foreground">
+          <p>
+            Nossa atuação está fundamentada na criação de tecnologias responsáveis, acessíveis,
+            sustentáveis e centradas na experiência humana. O verdadeiro valor da inovação está em
+            sua capacidade de ampliar as possibilidades das pessoas e fortalecer instituições.
+          </p>
+          <p>
+            Defendemos uma visão em que inovação e responsabilidade caminham juntas, em que o
+            desenvolvimento tecnológico é avaliado pelos benefícios que gera para indivíduos,
+            organizações e comunidades.
+          </p>
+          <p className="text-foreground">
+            Mais do que acompanhar o futuro, buscamos ajudar a construí-lo de forma consciente,
+            responsável e orientada ao desenvolvimento humano.
+          </p>
         </div>
 
-        {/* Mission / Vision */}
-        <div className="mt-16 grid gap-5 md:grid-cols-2">
-          <div
-            className="relative overflow-hidden rounded-3xl p-10 text-foreground"
-            style={{ backgroundImage: `url(${gradient1.url})`, backgroundSize: "cover" }}
-          >
-            <div className="absolute inset-0 bg-background/10" />
-            <div className="relative">
-              <span className="text-xs uppercase tracking-widest text-neutral-900/70">Nossa Missão</span>
-              <p className="mt-4 font-display text-xl leading-snug text-neutral-900 sm:text-2xl">
-                Desenvolver tecnologias e sistemas inteligentes que ampliem as capacidades humanas e
-                promovam prosperidade sustentável para indivíduos, organizações e sociedades.
-              </p>
-            </div>
-          </div>
-          <div
-            className="relative overflow-hidden rounded-3xl p-10"
-            style={{ backgroundImage: `url(${gradient2.url})`, backgroundSize: "cover" }}
-          >
-            <div className="absolute inset-0 bg-background/10" />
-            <div className="relative">
-              <span className="text-xs uppercase tracking-widest text-neutral-900/70">Nossa Visão</span>
-              <p className="mt-4 font-display text-xl leading-snug text-neutral-900 sm:text-2xl">
-                Construir um futuro em que conhecimento, tecnologia e instituições atuem em harmonia
-                para promover o florescimento humano, o desenvolvimento sustentável e o progresso
-                coletivo.
-              </p>
-            </div>
-          </div>
-        </div>
+        {/* Mission / Vision rotator */}
+        <MissionVisionRotator />
       </section>
 
       {/* Princípios */}
       <section id="principios" className="border-t border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <span className="text-xs uppercase tracking-widest text-muted-foreground">02 — Princípios</span>
-              <h2 className="mt-3 max-w-2xl text-3xl sm:text-4xl">
-                Cinco princípios que orientam tudo o que construímos.
-              </h2>
-            </div>
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <SectionLabel>02 — Princípios</SectionLabel>
+            <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
+              Cinco princípios que orientam tudo o que construímos.
+            </h2>
           </div>
-          <Carousel>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {principles.map((p) => (
               <article
                 key={p.title}
-                className="group flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-border bg-card text-card-foreground sm:w-[55%] lg:w-[36%]"
+                className="group relative aspect-[4/5] overflow-hidden rounded-3xl border border-border"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-7">
-                  <h3 className="text-lg">{p.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" />
+                <div className="relative flex h-full flex-col justify-end p-7 text-center">
+                  <h3 className="font-heading text-lg font-medium text-white">{p.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-white/85">{p.text}</p>
                 </div>
               </article>
             ))}
-          </Carousel>
+          </div>
         </div>
       </section>
 
       {/* Filosofia */}
-      <section className="mx-auto max-w-6xl px-6 py-24">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <span className="text-xs uppercase tracking-widest text-muted-foreground">03 — Filosofia</span>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Conhecimento é infraestrutura.</h2>
-          </div>
-          <div className="space-y-5 text-lg leading-relaxed text-muted-foreground md:col-span-8">
-            <p>
-              Ao longo da história, os maiores avanços da humanidade ocorreram quando ciência,
-              tecnologia, instituições e pessoas foram capazes de atuar de forma coordenada em torno
-              de objetivos comuns. A Aura nasce dessa convicção.
-            </p>
-            <p>
-              Os desafios mais importantes do século XXI não serão resolvidos apenas por avanços
-              tecnológicos isolados, mas pela capacidade de integrar conhecimento, inovação,
-              governança e participação social.
-            </p>
-            <p className="text-foreground">
-              Não buscamos automatizar a humanidade. Buscamos potencializá-la.
-            </p>
-          </div>
+      <section className="mx-auto max-w-4xl px-6 py-24 text-center">
+        <SectionLabel>03 — Filosofia</SectionLabel>
+        <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
+          Conhecimento é infraestrutura.
+        </h2>
+        <div className="mx-auto mt-10 space-y-5 text-lg leading-relaxed text-muted-foreground">
+          <p>
+            Ao longo da história, os maiores avanços ocorreram quando ciência, tecnologia,
+            instituições e pessoas atuaram de forma coordenada em torno de objetivos comuns. A Aura
+            nasce dessa convicção.
+          </p>
+          <p>
+            Os desafios mais importantes do século XXI não serão resolvidos apenas por avanços
+            tecnológicos isolados, mas pela capacidade de integrar conhecimento, inovação,
+            governança e participação social.
+          </p>
+          <p className="text-foreground">Não buscamos automatizar a humanidade. Buscamos potencializá-la.</p>
         </div>
       </section>
 
       {/* RIGS */}
       <section id="rigs" className="border-y border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-12 max-w-3xl">
-            <span className="text-xs uppercase tracking-widest text-muted-foreground">04 — Framework</span>
-            <h2 className="mt-3 text-3xl sm:text-4xl">O Framework RIGS</h2>
-            <p className="mt-5 text-lg text-muted-foreground">
-              Uma visão sistêmica do desenvolvimento baseada em quatro domínios fundamentais que
-              sustentam sociedades inovadoras e resilientes. A Aura opera precisamente na interseção
-              entre eles.
+          <div className="mx-auto mb-16 max-w-2xl text-center">
+            <SectionLabel>04 — Framework</SectionLabel>
+            <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">O Framework RIGS</h2>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
+              Uma visão sistêmica do desenvolvimento baseada em quatro domínios fundamentais. A Aura
+              opera precisamente na interseção entre eles.
             </p>
           </div>
           <div className="relative">
             {rigs.map((r, i) => (
-              <div key={r.title} className="h-screen" style={{ zIndex: i + 1, position: "relative" }}>
+              <div
+                key={r.title}
+                className="h-[80vh]"
+                style={{ zIndex: i + 1, position: "relative" }}
+              >
                 <div className="sticky top-28">
-                  <div className="overflow-hidden rounded-3xl border border-border bg-card p-10 text-card-foreground shadow-2xl sm:p-14">
-                    <div className="grid items-center gap-8 sm:grid-cols-[auto_1fr]">
+                  <div
+                    className="mx-auto overflow-hidden rounded-3xl border border-border bg-card p-10 text-card-foreground shadow-2xl sm:p-14"
+                    style={{
+                      transform: `scale(${1 - i * 0.03})`,
+                      transformOrigin: "top center",
+                    }}
+                  >
+                    <div className="grid items-center gap-8 text-center sm:grid-cols-[auto_1fr] sm:text-left">
                       <div className="font-display text-[120px] font-light leading-none text-muted-foreground/30 sm:text-[180px]">
                         {r.letter}
                       </div>
                       <div>
-                        <span className="text-xs uppercase tracking-widest text-muted-foreground">
-                          0{i + 1} — {r.title}
-                        </span>
-                        <h3 className="mt-3 text-2xl sm:text-3xl">{r.title}</h3>
+                        <SectionLabel>0{i + 1} — {r.title}</SectionLabel>
+                        <h3 className="mt-3 font-heading text-2xl font-medium sm:text-3xl">
+                          {r.title}
+                        </h3>
                         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
                           {r.text}
                         </p>
@@ -443,40 +526,50 @@ function Home() {
 
       {/* Produtos */}
       <section id="produtos" className="mx-auto max-w-7xl px-6 py-24">
-        <div className="mb-12 max-w-3xl">
-          <span className="text-xs uppercase tracking-widest text-muted-foreground">05 — Produtos</span>
-          <h2 className="mt-3 text-3xl sm:text-4xl">Modelos especializados para o pensamento.</h2>
-          <p className="mt-5 text-lg text-muted-foreground">
-            Inteligência não é uma capacidade única, mas um conjunto de competências complementares
-            que se fortalecem mutuamente. Conheça nossa família de modelos.
+        <div className="mx-auto mb-14 max-w-2xl text-center">
+          <SectionLabel>05 — Produtos</SectionLabel>
+          <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
+            Modelos especializados para o pensamento.
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
+            Inteligência não é uma capacidade única, mas um conjunto de competências complementares.
+            Conheça nossa família de modelos.
           </p>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((prod) => (
             <article
-              key={prod.name}
-              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card text-card-foreground"
+              key={prod.slug}
+              className="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-3xl border border-border"
             >
-              <div className="relative aspect-square overflow-hidden">
-                <img
-                  src={prod.image}
-                  alt={prod.name}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                />
-                <div className="absolute left-4 top-4 rounded-full bg-background/80 px-3 py-1 text-[10px] uppercase tracking-widest text-foreground backdrop-blur">
+              <img
+                src={prod.image}
+                alt={prod.name}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/15" />
+              <div className="relative flex flex-col gap-3 p-6 text-center text-white">
+                <span className="mx-auto rounded-full bg-white/15 px-3 py-1 text-[10px] uppercase tracking-widest backdrop-blur">
                   {prod.tag}
+                </span>
+                <h3 className="font-heading text-2xl font-medium">{prod.name}</h3>
+                <p className="text-sm leading-relaxed text-white/85">{prod.text}</p>
+                <div className="mt-2 flex flex-col gap-2">
+                  <a
+                    href="#"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-medium text-neutral-900 transition hover:bg-white/90"
+                  >
+                    Teste agora <ArrowRight className="h-3.5 w-3.5" />
+                  </a>
+                  <Link
+                    to="/modelos/$slug"
+                    params={{ slug: prod.slug }}
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-4 py-2.5 text-xs font-medium text-white transition hover:bg-white/10"
+                  >
+                    Ver detalhes
+                  </Link>
                 </div>
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="font-display text-xl">{prod.name}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{prod.text}</p>
-                <a
-                  href="#manifesto"
-                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition hover:opacity-90"
-                >
-                  Teste agora <ArrowRight className="h-4 w-4" />
-                </a>
               </div>
             </article>
           ))}
@@ -486,21 +579,21 @@ function Home() {
       {/* Áreas */}
       <section id="atuacao" className="border-t border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-12 max-w-3xl">
-            <span className="text-xs uppercase tracking-widest text-muted-foreground">06 — Atuação</span>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Áreas de Atuação</h2>
-            <p className="mt-5 text-lg text-muted-foreground">
-              A Aura atua no desenvolvimento e aplicação de tecnologias avançadas em múltiplos
-              setores e domínios estratégicos.
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <SectionLabel>06 — Atuação</SectionLabel>
+            <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">Áreas de Atuação</h2>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
+              Atuamos no desenvolvimento e aplicação de tecnologias avançadas em múltiplos setores
+              estratégicos.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {areas.map((a) => {
               const Icon = a.icon;
               return (
                 <div
                   key={a.name}
-                  className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border transition hover:-translate-y-1"
+                  className="group relative aspect-[5/6] overflow-hidden rounded-3xl border border-border transition hover:-translate-y-1"
                 >
                   <img
                     src={a.image}
@@ -508,10 +601,13 @@ function Home() {
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
-                  <div className="relative flex h-full flex-col justify-between p-5">
-                    <Icon className="h-5 w-5 text-white/90" />
-                    <p className="text-sm font-medium text-white">{a.name}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
+                  <div className="relative flex h-full flex-col justify-between p-6 text-white">
+                    <Icon className="h-6 w-6 text-white/90" />
+                    <div>
+                      <h3 className="font-heading text-2xl font-medium sm:text-3xl">{a.name}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-white/85">{a.desc}</p>
+                    </div>
                   </div>
                 </div>
               );
@@ -521,52 +617,47 @@ function Home() {
       </section>
 
       {/* Por que existimos */}
-      <section className="mx-auto max-w-6xl px-6 py-24">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <span className="text-xs uppercase tracking-widest text-muted-foreground">07 — Propósito</span>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Por que existimos.</h2>
-          </div>
-          <div className="md:col-span-8">
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              A humanidade enfrenta desafios cada vez mais complexos. Questões relacionadas à saúde,
-              educação, sustentabilidade, governança, energia, segurança e desenvolvimento econômico
-              exigem novas formas de pensar e agir.
-            </p>
-            <ul className="mt-8 divide-y divide-border border-y border-border">
-              {[
-                "Desenvolver tecnologias que ampliem capacidades.",
-                "Transformar conhecimento em ação.",
-                "Conectar pesquisa, indústria, governo e sociedade.",
-                "Contribuir com um futuro mais inteligente, sustentável, próspero e humano.",
-              ].map((item, i) => (
-                <li key={item} className="flex items-baseline gap-5 py-5">
-                  <span className="font-display text-sm text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-lg text-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <section className="mx-auto max-w-4xl px-6 py-24 text-center">
+        <SectionLabel>07 — Propósito</SectionLabel>
+        <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">Por que existimos.</h2>
+        <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          A humanidade enfrenta desafios cada vez mais complexos. Saúde, educação, sustentabilidade,
+          governança, energia, segurança e desenvolvimento econômico exigem novas formas de pensar e
+          agir.
+        </p>
+        <ul className="mx-auto mt-10 max-w-2xl divide-y divide-border border-y border-border text-left">
+          {[
+            "Desenvolver tecnologias que ampliem capacidades.",
+            "Transformar conhecimento em ação.",
+            "Conectar pesquisa, indústria, governo e sociedade.",
+            "Contribuir com um futuro mais inteligente, sustentável, próspero e humano.",
+          ].map((item, i) => (
+            <li key={item} className="flex items-baseline gap-5 py-5">
+              <span className="font-heading text-sm text-muted-foreground">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="text-lg text-foreground">{item}</span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Manifesto */}
-      <section
-        id="manifesto"
-        className="relative overflow-hidden border-t border-border"
-      >
+      <section id="manifesto" className="relative overflow-hidden border-t border-border">
         <div
           className="absolute inset-0 -z-10 opacity-60"
           style={{ backgroundImage: `url(${gradient2.url})`, backgroundSize: "cover" }}
         />
         <div className="absolute inset-0 -z-10 bg-background/40 dark:bg-background/60" />
-        <div className="mx-auto max-w-4xl px-6 py-32 text-center">
-          <span className="text-xs uppercase tracking-widest text-muted-foreground">Manifesto</span>
-          <div className="mt-8 space-y-5 font-display text-xl leading-snug text-foreground sm:text-2xl">
-            <p>Máquinas processam informações.</p>
-            <p>Pessoas atribuem significado.</p>
+        <div className="mx-auto max-w-3xl px-6 py-32">
+          <div className="text-center">
+            <SectionLabel>Manifesto</SectionLabel>
+          </div>
+          <div
+            className="mt-10 space-y-5 text-left font-display text-xl leading-snug text-foreground sm:text-2xl"
+            style={{ textAlign: "justify" }}
+          >
+            <p>Máquinas processam informações. Pessoas atribuem significado.</p>
             <p className="text-muted-foreground">
               A tecnologia mais avançada do mundo não possui valor intrínseco se não contribuir para
               melhorar a condição humana.
@@ -588,21 +679,26 @@ function Home() {
 
       {/* Footer */}
       <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 py-12 md:flex-row md:items-center">
-          <div className="flex items-center gap-3">
-            <Logo />
-            <span className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Aura
-            </span>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-6 py-12 md:flex-row md:items-center">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
+            <Logo size="lg" />
+            <img
+              src={dark ? sloganWhite.url : sloganDark.url}
+              alt="For humanity, to the stars."
+              className="h-6 w-auto sm:h-8"
+            />
           </div>
-          <nav className="flex flex-wrap gap-6 text-sm text-muted-foreground">
-            <a href="#sobre" className="hover:text-foreground">Sobre</a>
-            <a href="#principios" className="hover:text-foreground">Princípios</a>
-            <a href="#rigs" className="hover:text-foreground">RIGS</a>
-            <a href="#produtos" className="hover:text-foreground">Produtos</a>
-            <a href="#atuacao" className="hover:text-foreground">Atuação</a>
-            <a href="#manifesto" className="hover:text-foreground">Manifesto</a>
-          </nav>
+          <div className="flex flex-col items-center gap-4 md:items-end">
+            <nav className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+              <a href="#sobre" className="hover:text-foreground">Sobre</a>
+              <a href="#principios" className="hover:text-foreground">Princípios</a>
+              <a href="#rigs" className="hover:text-foreground">RIGS</a>
+              <a href="#produtos" className="hover:text-foreground">Produtos</a>
+              <a href="#atuacao" className="hover:text-foreground">Atuação</a>
+              <a href="#manifesto" className="hover:text-foreground">Manifesto</a>
+            </nav>
+            <span className="text-xs text-muted-foreground">© {new Date().getFullYear()} Aura</span>
+          </div>
         </div>
       </footer>
     </div>
