@@ -36,6 +36,7 @@
   --color-surface-foreground: var(--surface-foreground);
 
   --font-display: "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Plus Jakarta Sans", "Open Sauce Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
 }
 
