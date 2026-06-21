@@ -9,9 +9,34 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ManifestoRouteImport } from './routes/manifesto'
+import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as ChatRouteImport } from './routes/chat'
+import { Route as CadastrarRouteImport } from './routes/cadastrar'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ModelosSlugRouteImport } from './routes/modelos.$slug'
+import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 
+const ManifestoRoute = ManifestoRouteImport.update({
+  id: '/manifesto',
+  path: '/manifesto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EntrarRoute = EntrarRouteImport.update({
+  id: '/entrar',
+  path: '/entrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastrarRoute = CadastrarRouteImport.update({
+  id: '/cadastrar',
+  path: '/cadastrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -22,35 +47,110 @@ const ModelosSlugRoute = ModelosSlugRouteImport.update({
   path: '/modelos/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocsSlugRoute = DocsSlugRouteImport.update({
+  id: '/docs/$slug',
+  path: '/docs/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cadastrar': typeof CadastrarRoute
+  '/chat': typeof ChatRoute
+  '/entrar': typeof EntrarRoute
+  '/manifesto': typeof ManifestoRoute
+  '/docs/$slug': typeof DocsSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cadastrar': typeof CadastrarRoute
+  '/chat': typeof ChatRoute
+  '/entrar': typeof EntrarRoute
+  '/manifesto': typeof ManifestoRoute
+  '/docs/$slug': typeof DocsSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cadastrar': typeof CadastrarRoute
+  '/chat': typeof ChatRoute
+  '/entrar': typeof EntrarRoute
+  '/manifesto': typeof ManifestoRoute
+  '/docs/$slug': typeof DocsSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/modelos/$slug'
+  fullPaths:
+    | '/'
+    | '/cadastrar'
+    | '/chat'
+    | '/entrar'
+    | '/manifesto'
+    | '/docs/$slug'
+    | '/modelos/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/modelos/$slug'
-  id: '__root__' | '/' | '/modelos/$slug'
+  to:
+    | '/'
+    | '/cadastrar'
+    | '/chat'
+    | '/entrar'
+    | '/manifesto'
+    | '/docs/$slug'
+    | '/modelos/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/cadastrar'
+    | '/chat'
+    | '/entrar'
+    | '/manifesto'
+    | '/docs/$slug'
+    | '/modelos/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CadastrarRoute: typeof CadastrarRoute
+  ChatRoute: typeof ChatRoute
+  EntrarRoute: typeof EntrarRoute
+  ManifestoRoute: typeof ManifestoRoute
+  DocsSlugRoute: typeof DocsSlugRoute
   ModelosSlugRoute: typeof ModelosSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/manifesto': {
+      id: '/manifesto'
+      path: '/manifesto'
+      fullPath: '/manifesto'
+      preLoaderRoute: typeof ManifestoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/entrar': {
+      id: '/entrar'
+      path: '/entrar'
+      fullPath: '/entrar'
+      preLoaderRoute: typeof EntrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastrar': {
+      id: '/cadastrar'
+      path: '/cadastrar'
+      fullPath: '/cadastrar'
+      preLoaderRoute: typeof CadastrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -65,11 +165,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModelosSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/docs/$slug': {
+      id: '/docs/$slug'
+      path: '/docs/$slug'
+      fullPath: '/docs/$slug'
+      preLoaderRoute: typeof DocsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CadastrarRoute: CadastrarRoute,
+  ChatRoute: ChatRoute,
+  EntrarRoute: EntrarRoute,
+  ManifestoRoute: ManifestoRoute,
+  DocsSlugRoute: DocsSlugRoute,
   ModelosSlugRoute: ModelosSlugRoute,
 }
 export const routeTree = rootRouteImport

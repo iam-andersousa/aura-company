@@ -12,7 +12,17 @@ import {
   Shield,
   Landmark,
   ChevronDown,
+  Linkedin,
+  Youtube,
+  Instagram,
 } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 import logoDark from "@/assets/aura-logo-dark.png.asset.json";
@@ -91,127 +101,43 @@ const principles = [
 ];
 
 const products = [
-  {
-    slug: "aristoteles",
-    name: "Aristoteles",
-    tag: "Raciocínio & Decisão",
-    text: "Raciocínio lógico, análise crítica e pensamento estratégico.",
-    image: pAristoteles,
-  },
-  {
-    slug: "herodotus",
-    name: "Herodotus",
-    tag: "História & Geopolítica",
-    text: "História, geopolítica, relações internacionais e ciências humanas.",
-    image: pHerodotus,
-  },
-  {
-    slug: "pythagoras",
-    name: "Pythagoras",
-    tag: "Matemática & Análise",
-    text: "Matemática, estatística e modelagem quantitativa avançada.",
-    image: pPythagoras,
-  },
-  {
-    slug: "archimedes",
-    name: "Archimedes",
-    tag: "Engenharia & Sistemas",
-    text: "Engenharia, sistemas físicos e desafios técnicos complexos.",
-    image: pArchimedes,
-  },
+  { slug: "aristoteles", name: "Aristoteles", tag: "Raciocínio & Decisão", text: "Raciocínio lógico, análise crítica e pensamento estratégico.", image: pAristoteles },
+  { slug: "herodotus", name: "Herodotus", tag: "História & Geopolítica", text: "História, geopolítica, relações internacionais e ciências humanas.", image: pHerodotus },
+  { slug: "pythagoras", name: "Pythagoras", tag: "Matemática & Análise", text: "Matemática, estatística e modelagem quantitativa avançada.", image: pPythagoras },
+  { slug: "archimedes", name: "Archimedes", tag: "Engenharia & Sistemas", text: "Engenharia, sistemas físicos e desafios técnicos complexos.", image: pArchimedes },
+];
+
+const solutions = [
+  { title: "Área Comercial", items: ["Marketing", "Vendas", "Customer Success"] },
+  { title: "Engenharia", items: ["Gestão de projetos", "CADs e Desenhos Técnicos"] },
+  { title: "Backoffice", items: ["Contabilidade", "RH", "Gestão financeira"] },
+  { title: "Atendimento", items: ["Atendimento ao cliente"] },
+  { title: "Produção Criativa", items: ["Conteúdo e Design"] },
+  { title: "Desenvolvimento e Tecnologia", items: ["Programação", "Segurança", "Redes"] },
 ];
 
 const areas = [
-  {
-    name: "Inteligência Artificial",
-    icon: Brain,
-    image: areaIa,
-    desc: "Modelos fundacionais e agentes que ampliam capacidades humanas em escala.",
-  },
-  {
-    name: "Ciência de Dados",
-    icon: Database,
-    image: areaData,
-    desc: "Transformamos dados em decisões com rigor estatístico e inteligência aplicada.",
-  },
-  {
-    name: "Automações",
-    icon: Workflow,
-    image: areaAuto,
-    desc: "Sistemas autônomos que orquestram processos críticos com precisão e segurança.",
-  },
-  {
-    name: "Pesquisa Aplicada",
-    icon: FlaskConical,
-    image: areaResearch,
-    desc: "Conectamos descoberta científica à resolução de problemas reais do mundo.",
-  },
-  {
-    name: "Educação",
-    icon: GraduationCap,
-    image: areaEdu,
-    desc: "Plataformas inteligentes que personalizam o aprendizado em todos os níveis.",
-  },
-  {
-    name: "Saúde",
-    icon: HeartPulse,
-    image: areaHealth,
-    desc: "Diagnóstico assistido e medicina de precisão para ampliar o cuidado humano.",
-  },
-  {
-    name: "Energia",
-    icon: Zap,
-    image: areaEnergy,
-    desc: "Otimização de redes e modelagem para uma matriz energética sustentável.",
-  },
-  {
-    name: "Defesa",
-    icon: Shield,
-    image: areaDefense,
-    desc: "Inteligência estratégica e sistemas críticos para soberania tecnológica.",
-  },
-  {
-    name: "Infraestrutura",
-    icon: Landmark,
-    image: areaInfra,
-    desc: "Modelagem e operação inteligente da infraestrutura física do século XXI.",
-  },
+  { name: "Inteligência Artificial", icon: Brain, image: areaIa, desc: "Modelos fundacionais e agentes que ampliam capacidades humanas em escala." },
+  { name: "Ciência de Dados", icon: Database, image: areaData, desc: "Transformamos dados em decisões com rigor estatístico e inteligência aplicada." },
+  { name: "Automações", icon: Workflow, image: areaAuto, desc: "Sistemas autônomos que orquestram processos críticos com precisão e segurança." },
+  { name: "Pesquisa Aplicada", icon: FlaskConical, image: areaResearch, desc: "Conectamos descoberta científica à resolução de problemas reais do mundo." },
+  { name: "Educação", icon: GraduationCap, image: areaEdu, desc: "Plataformas inteligentes que personalizam o aprendizado em todos os níveis." },
+  { name: "Saúde", icon: HeartPulse, image: areaHealth, desc: "Diagnóstico assistido e medicina de precisão para ampliar o cuidado humano." },
+  { name: "Energia", icon: Zap, image: areaEnergy, desc: "Otimização de redes e modelagem para uma matriz energética sustentável." },
+  { name: "Defesa", icon: Shield, image: areaDefense, desc: "Inteligência estratégica e sistemas críticos para soberania tecnológica." },
+  { name: "Infraestrutura", icon: Landmark, image: areaInfra, desc: "Modelagem e operação inteligente da infraestrutura física do século XXI." },
 ];
 
 const rigs = [
-  {
-    letter: "R",
-    title: "Research",
-    text: "A produção de conhecimento científico, tecnológico e intelectual. Universidades, centros de pesquisa, laboratórios e instituições dedicadas à descoberta.",
-  },
-  {
-    letter: "I",
-    title: "Industry",
-    text: "A transformação do conhecimento em soluções, produtos, serviços e desenvolvimento econômico. A capacidade produtiva e inovadora da sociedade.",
-  },
-  {
-    letter: "G",
-    title: "Government",
-    text: "A coordenação institucional necessária para garantir estabilidade, planejamento estratégico, investimento público e desenvolvimento de capacidades nacionais.",
-  },
-  {
-    letter: "S",
-    title: "Society",
-    text: "O conjunto de indivíduos, comunidades e organizações que orientam os valores, prioridades e necessidades que impulsionam o progresso.",
-  },
+  { letter: "R", title: "Research", text: "A produção de conhecimento científico, tecnológico e intelectual. Universidades, centros de pesquisa, laboratórios e instituições dedicadas à descoberta." },
+  { letter: "I", title: "Industry", text: "A transformação do conhecimento em soluções, produtos, serviços e desenvolvimento econômico. A capacidade produtiva e inovadora da sociedade." },
+  { letter: "G", title: "Government", text: "A coordenação institucional necessária para garantir estabilidade, planejamento estratégico, investimento público e desenvolvimento de capacidades nacionais." },
+  { letter: "S", title: "Society", text: "O conjunto de indivíduos, comunidades e organizações que orientam os valores, prioridades e necessidades que impulsionam o progresso." },
 ];
 
 const missionVision = [
-  {
-    label: "Nossa Missão",
-    text: "Desenvolver tecnologias e sistemas inteligentes que ampliem as capacidades humanas e promovam prosperidade sustentável para indivíduos, organizações e sociedades.",
-    bg: gradient1.url,
-  },
-  {
-    label: "Nossa Visão",
-    text: "Construir um futuro em que conhecimento, tecnologia e instituições atuem em harmonia para promover o florescimento humano, o desenvolvimento sustentável e o progresso coletivo.",
-    bg: gradient2.url,
-  },
+  { label: "Nossa Missão", text: "Desenvolver tecnologias e sistemas inteligentes que ampliem as capacidades humanas e promovam prosperidade sustentável para indivíduos, organizações e sociedades.", bg: gradient1.url },
+  { label: "Nossa Visão", text: "Construir um futuro em que conhecimento, tecnologia e instituições atuem em harmonia para promover o florescimento humano, o desenvolvimento sustentável e o progresso coletivo.", bg: gradient2.url },
 ];
 
 function useDark() {
@@ -226,16 +152,16 @@ function useDark() {
   return dark;
 }
 
-function Logo({ size = "default" }: { size?: "default" | "lg" }) {
+function Logo({ size = "default" }: { size?: "default" | "lg" | "xl" }) {
   const dark = useDark();
-  const cls = size === "lg" ? "h-14 w-auto sm:h-16" : "h-10 w-auto sm:h-12";
+  const cls = size === "xl" ? "h-20 w-auto sm:h-24" : size === "lg" ? "h-14 w-auto sm:h-16" : "h-10 w-auto sm:h-12";
   return (
     <img
       src={dark ? logoLight.url : logoDark.url}
       alt="Aura"
       className={cls}
-      width={size === "lg" ? 240 : 180}
-      height={size === "lg" ? 64 : 48}
+      width={size === "xl" ? 320 : size === "lg" ? 240 : 180}
+      height={size === "xl" ? 96 : size === "lg" ? 64 : 48}
     />
   );
 }
@@ -308,27 +234,128 @@ function ProductsDropdown() {
         Produtos <ChevronDown className={`h-3.5 w-3.5 transition ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <div className="absolute left-1/2 top-full z-50 mt-3 w-64 -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-popover p-2 shadow-2xl">
-          <p className="px-3 pt-2 pb-1 text-[10px] uppercase tracking-widest text-muted-foreground">
-            Modelos
-          </p>
-          {products.map((p) => (
-            <Link
-              key={p.slug}
-              to="/modelos/$slug"
-              params={{ slug: p.slug }}
-              onClick={() => setOpen(false)}
-              className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-accent"
-            >
-              <span className="font-heading text-sm font-medium text-foreground">{p.name}</span>
-              <span className="text-xs text-muted-foreground">{p.tag}</span>
-            </Link>
-          ))}
+        <div className="absolute left-1/2 top-full z-50 mt-3 grid w-[640px] -translate-x-1/2 grid-cols-2 gap-2 overflow-hidden rounded-2xl border border-border bg-popover p-4 shadow-2xl">
+          <div>
+            <p className="px-3 pt-1 pb-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+              Modelos
+            </p>
+            <div className="space-y-1">
+              {products.map((p) => (
+                <Link
+                  key={p.slug}
+                  to="/modelos/$slug"
+                  params={{ slug: p.slug }}
+                  onClick={() => setOpen(false)}
+                  className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-accent"
+                >
+                  <span className="font-heading text-sm font-medium text-foreground">{p.name}</span>
+                  <span className="text-xs text-muted-foreground">{p.tag}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="px-3 pt-1 pb-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+              Soluções
+            </p>
+            <div className="space-y-1">
+              {solutions.map((s) => (
+                <div
+                  key={s.title}
+                  className="rounded-lg px-3 py-2 text-left transition hover:bg-accent"
+                >
+                  <p className="font-heading text-sm font-medium text-foreground">{s.title}</p>
+                  <p className="text-xs text-muted-foreground">{s.items.join(" · ")}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       )}
     </div>
   );
 }
+
+function PrinciplesAccordion() {
+  const [active, setActive] = useState(0);
+  return (
+    <div className="flex h-[460px] w-full gap-3 sm:h-[520px]">
+      {principles.map((p, i) => {
+        const isActive = i === active;
+        return (
+          <button
+            key={p.title}
+            onMouseEnter={() => setActive(i)}
+            onFocus={() => setActive(i)}
+            onClick={() => setActive(i)}
+            className={`group relative overflow-hidden rounded-3xl border border-border text-left transition-all duration-700 ease-out ${
+              isActive ? "flex-[5]" : "flex-[1]"
+            }`}
+            style={{ minWidth: 0 }}
+          >
+            <img
+              src={p.image}
+              alt={p.title}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div
+              className={`absolute inset-0 transition-opacity duration-500 ${
+                isActive
+                  ? "bg-gradient-to-t from-black/95 via-black/55 to-black/15"
+                  : "bg-black/70"
+              }`}
+            />
+            <div className="relative flex h-full flex-col justify-between p-5 sm:p-7">
+              <span className="font-heading text-3xl font-light text-white/90 sm:text-4xl">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div
+                className={`transition-all duration-500 ${
+                  isActive ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"
+                }`}
+              >
+                <h3 className="font-heading text-xl font-medium text-white sm:text-2xl">{p.title}</h3>
+                <p className="mt-3 max-w-md text-sm leading-relaxed text-white/85">{p.text}</p>
+              </div>
+            </div>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function SocialIcon({ children, label }: { children: React.ReactNode; label: string }) {
+  return (
+    <a
+      href="#"
+      aria-label={label}
+      className="grid h-10 w-10 place-items-center rounded-full border border-border text-muted-foreground transition hover:bg-accent hover:text-foreground"
+    >
+      {children}
+    </a>
+  );
+}
+
+// Simple X (Twitter) icon since lucide doesn't ship one
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.84l-4.84-6.32L5.7 22H2.44l8.02-9.17L1.5 2h7l4.38 5.79L18.24 2zm-2.4 18h1.84L7.27 4H5.34l10.5 16z" />
+    </svg>
+  );
+}
+
+const sitemap = [
+  { title: "Produtos", items: ["Plataforma Aura", "API", "Aura Studio", "Enterprise"] },
+  { title: "Modelos", items: products.map((p) => p.name) },
+  { title: "Soluções", items: solutions.map((s) => s.title) },
+  { title: "Recursos", items: ["Documentação", "Blog", "Tutoriais", "Casos de uso"] },
+  { title: "Ajuda e Segurança", items: ["Central de Ajuda", "Segurança", "Status", "Contato"] },
+  { title: "Sobre a Empresa", items: ["Sobre", "Manifesto", "Carreiras", "Imprensa"] },
+  { title: "Termos e Políticas", items: ["Termos de Uso", "Privacidade", "Cookies", "DPA"] },
+];
 
 function Home() {
   const dark = useDark();
@@ -349,12 +376,12 @@ function Home() {
           </nav>
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <a
-              href="#manifesto"
-              className="hidden rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90 sm:inline-flex"
+            <Link
+              to="/entrar"
+              className="hidden rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90 sm:inline-flex"
             >
-              Manifesto
-            </a>
+              Entrar
+            </Link>
           </div>
         </div>
       </header>
@@ -405,8 +432,7 @@ function Home() {
         <div className="mx-auto mt-10 space-y-5 text-lg leading-relaxed text-muted-foreground">
           <p>
             Nossa atuação está fundamentada na criação de tecnologias responsáveis, acessíveis,
-            sustentáveis e centradas na experiência humana. O verdadeiro valor da inovação está em
-            sua capacidade de ampliar as possibilidades das pessoas e fortalecer instituições.
+            sustentáveis e centradas na experiência humana.
           </p>
           <p>
             Defendemos uma visão em que inovação e responsabilidade caminham juntas, em que o
@@ -418,8 +444,6 @@ function Home() {
             responsável e orientada ao desenvolvimento humano.
           </p>
         </div>
-
-        {/* Mission / Vision rotator */}
         <MissionVisionRotator />
       </section>
 
@@ -432,26 +456,7 @@ function Home() {
               Cinco princípios que orientam tudo o que construímos.
             </h2>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {principles.map((p) => (
-              <article
-                key={p.title}
-                className="group relative aspect-[4/5] overflow-hidden rounded-3xl border border-border"
-              >
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" />
-                <div className="relative flex h-full flex-col justify-end p-7 text-center">
-                  <h3 className="font-heading text-lg font-medium text-white">{p.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/85">{p.text}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <PrinciplesAccordion />
         </div>
       </section>
 
@@ -464,8 +469,7 @@ function Home() {
         <div className="mx-auto mt-10 space-y-5 text-lg leading-relaxed text-muted-foreground">
           <p>
             Ao longo da história, os maiores avanços ocorreram quando ciência, tecnologia,
-            instituições e pessoas atuaram de forma coordenada em torno de objetivos comuns. A Aura
-            nasce dessa convicção.
+            instituições e pessoas atuaram de forma coordenada em torno de objetivos comuns.
           </p>
           <p>
             Os desafios mais importantes do século XXI não serão resolvidos apenas por avanços
@@ -483,8 +487,7 @@ function Home() {
             <SectionLabel>04 — Framework</SectionLabel>
             <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">O Framework RIGS</h2>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
-              Uma visão sistêmica do desenvolvimento baseada em quatro domínios fundamentais. A Aura
-              opera precisamente na interseção entre eles.
+              Uma visão sistêmica do desenvolvimento baseada em quatro domínios fundamentais.
             </p>
           </div>
           <div className="relative">
@@ -498,7 +501,7 @@ function Home() {
                   <div
                     className="mx-auto overflow-hidden rounded-3xl border border-border bg-card p-10 text-card-foreground shadow-2xl sm:p-14"
                     style={{
-                      transform: `scale(${1 - i * 0.03})`,
+                      transform: `translateY(${i * 12}px) scale(${1 - i * 0.025})`,
                       transformOrigin: "top center",
                     }}
                   >
@@ -533,7 +536,6 @@ function Home() {
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
             Inteligência não é uma capacidade única, mas um conjunto de competências complementares.
-            Conheça nossa família de modelos.
           </p>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -556,12 +558,12 @@ function Home() {
                 <h3 className="font-heading text-2xl font-medium">{prod.name}</h3>
                 <p className="text-sm leading-relaxed text-white/85">{prod.text}</p>
                 <div className="mt-2 flex flex-col gap-2">
-                  <a
-                    href="#"
+                  <Link
+                    to="/chat"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-medium text-neutral-900 transition hover:bg-white/90"
                   >
                     Teste agora <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
+                  </Link>
                   <Link
                     to="/modelos/$slug"
                     params={{ slug: prod.slug }}
@@ -576,7 +578,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Áreas */}
+      {/* Áreas — carousel */}
       <section id="atuacao" className="border-t border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto mb-14 max-w-2xl text-center">
@@ -587,32 +589,41 @@ function Home() {
               estratégicos.
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {areas.map((a) => {
-              const Icon = a.icon;
-              return (
-                <div
-                  key={a.name}
-                  className="group relative aspect-[5/6] overflow-hidden rounded-3xl border border-border transition hover:-translate-y-1"
-                >
-                  <img
-                    src={a.image}
-                    alt={a.name}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
-                  <div className="relative flex h-full flex-col justify-between p-6 text-white">
-                    <Icon className="h-6 w-6 text-white/90" />
-                    <div>
-                      <h3 className="font-heading text-2xl font-medium sm:text-3xl">{a.name}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-white/85">{a.desc}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <Carousel opts={{ align: "start", loop: true }} className="mx-auto w-full max-w-6xl">
+            <CarouselContent>
+              {areas.map((a) => {
+                const Icon = a.icon;
+                return (
+                  <CarouselItem key={a.name} className="sm:basis-1/2 lg:basis-1/3">
+                    <article className="group relative aspect-[4/5] overflow-hidden rounded-3xl border border-border">
+                      <img
+                        src={a.image}
+                        alt={a.name}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
+                      <div className="relative flex h-full flex-col justify-between p-6 text-white">
+                        <Icon className="h-6 w-6 text-white/90" />
+                        <div>
+                          <h3 className="font-heading text-2xl font-medium">{a.name}</h3>
+                          <p className="mt-2 text-sm leading-relaxed text-white/85">{a.desc}</p>
+                          <a
+                            href="#"
+                            className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-medium text-neutral-900 transition hover:bg-white/90"
+                          >
+                            Saiba mais <ArrowRight className="h-3.5 w-3.5" />
+                          </a>
+                        </div>
+                      </div>
+                    </article>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
       </section>
 
@@ -640,63 +651,59 @@ function Home() {
             </li>
           ))}
         </ul>
-      </section>
-
-      {/* Manifesto */}
-      <section id="manifesto" className="relative overflow-hidden border-t border-border">
-        <div
-          className="absolute inset-0 -z-10 opacity-60"
-          style={{ backgroundImage: `url(${gradient2.url})`, backgroundSize: "cover" }}
-        />
-        <div className="absolute inset-0 -z-10 bg-background/40 dark:bg-background/60" />
-        <div className="mx-auto max-w-3xl px-6 py-32">
-          <div className="text-center">
-            <SectionLabel>Manifesto</SectionLabel>
-          </div>
-          <div
-            className="mt-10 space-y-5 text-left font-display text-xl leading-snug text-foreground sm:text-2xl"
-            style={{ textAlign: "justify" }}
+        <div className="mt-10">
+          <Link
+            to="/manifesto"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90"
           >
-            <p>Máquinas processam informações. Pessoas atribuem significado.</p>
-            <p className="text-muted-foreground">
-              A tecnologia mais avançada do mundo não possui valor intrínseco se não contribuir para
-              melhorar a condição humana.
-            </p>
-            <p>Acreditamos em uma inovação que fortalece pessoas em vez de substituí-las.</p>
-            <p className="text-muted-foreground">
-              Acreditamos em conhecimento aberto à colaboração, na ciência como instrumento de
-              progresso e na tecnologia como ferramenta de desenvolvimento.
-            </p>
-            <p>Acreditamos que excelência e responsabilidade devem caminhar juntas.</p>
-            <p className="text-muted-foreground">
-              Acreditamos que o futuro pode ser construído de forma mais inteligente, mais
-              sustentável e mais humana.
-            </p>
-            <p className="pt-4">A Aura existe para ajudar a tornar esse futuro possível.</p>
-          </div>
+            Ler nosso Manifesto <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-6 py-12 md:flex-row md:items-center">
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-            <Logo size="lg" />
-            <img
-              src={dark ? sloganWhite.url : sloganDark.url}
-              alt="For humanity, to the stars."
-              className="h-6 w-auto sm:h-8"
-            />
+        <div className="mx-auto max-w-7xl px-6 py-16">
+          {/* Top: logo + slogan */}
+          <div className="flex flex-col items-start gap-6 border-b border-border pb-12 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
+              <Logo size="xl" />
+              <img
+                src={dark ? sloganWhite.url : sloganDark.url}
+                alt="For humanity, to the stars."
+                className="h-10 w-auto sm:h-14"
+              />
+            </div>
           </div>
-          <div className="flex flex-col items-center gap-4 md:items-end">
-            <nav className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-              <a href="#sobre" className="hover:text-foreground">Sobre</a>
-              <a href="#principios" className="hover:text-foreground">Princípios</a>
-              <a href="#rigs" className="hover:text-foreground">RIGS</a>
-              <a href="#produtos" className="hover:text-foreground">Produtos</a>
-              <a href="#atuacao" className="hover:text-foreground">Atuação</a>
-              <a href="#manifesto" className="hover:text-foreground">Manifesto</a>
-            </nav>
+
+          {/* Sitemap */}
+          <div className="grid grid-cols-2 gap-8 py-12 sm:grid-cols-3 lg:grid-cols-7">
+            {sitemap.map((col) => (
+              <div key={col.title}>
+                <p className="font-heading text-xs font-semibold uppercase tracking-widest text-foreground">
+                  {col.title}
+                </p>
+                <ul className="mt-4 space-y-2.5">
+                  {col.items.map((it) => (
+                    <li key={it}>
+                      <a href="#" className="text-sm text-muted-foreground transition hover:text-foreground">
+                        {it}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom: socials + copy */}
+          <div className="flex flex-col-reverse items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center">
+            <div className="flex items-center gap-3">
+              <SocialIcon label="LinkedIn"><Linkedin className="h-4 w-4" /></SocialIcon>
+              <SocialIcon label="YouTube"><Youtube className="h-4 w-4" /></SocialIcon>
+              <SocialIcon label="X"><XIcon className="h-3.5 w-3.5" /></SocialIcon>
+              <SocialIcon label="Instagram"><Instagram className="h-4 w-4" /></SocialIcon>
+            </div>
             <span className="text-xs text-muted-foreground">© {new Date().getFullYear()} Aura</span>
           </div>
         </div>
