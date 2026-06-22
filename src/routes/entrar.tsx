@@ -1,6 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import banner from "@/assets/aura-login-banner.png.asset.json";
+import logoDark from "@/assets/aura-logo-dark.png.asset.json";
+import logoLight from "@/assets/aura-logo-light.png.asset.json";
 
 export const Route = createFileRoute("/entrar")({
   head: () => ({ meta: [{ title: "Entrar — Aura" }] }),
@@ -8,21 +12,29 @@ export const Route = createFileRoute("/entrar")({
 });
 
 function EntrarPage() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const u = () => setDark(document.documentElement.classList.contains("dark"));
+    u();
+    const o = new MutationObserver(u);
+    o.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => o.disconnect();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="fixed inset-x-0 top-0 z-50 glass-nav">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+    <div className="grid min-h-screen bg-background text-foreground lg:grid-cols-2">
+      <div className="relative flex flex-col px-8 py-8 sm:px-16">
+        <div className="flex items-center justify-between">
           <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" /> Voltar
           </Link>
           <ThemeToggle />
         </div>
-      </header>
-      <main className="flex min-h-screen items-center justify-center px-6">
-        <div className="w-full max-w-sm rounded-3xl border border-border bg-card p-8 shadow-2xl">
-          <h1 className="font-heading text-2xl font-medium">Entrar na Aura</h1>
-          <p className="mt-2 text-sm text-muted-foreground">Acesse sua conta para continuar.</p>
-          <form className="mt-6 space-y-4">
+        <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center">
+          <img src={dark ? logoLight.url : logoDark.url} alt="Aura" className="mb-10 h-10 w-auto" />
+          <h1 className="font-heading text-3xl font-medium">Entrar na Aura</h1>
+          <p className="mt-2 text-sm text-muted-foreground">Acesse sua conta para testar os modelos.</p>
+          <form className="mt-8 space-y-4">
             <input type="email" placeholder="E-mail" className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring" />
             <input type="password" placeholder="Senha" className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring" />
             <button type="button" className="w-full rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:opacity-90">Entrar</button>
@@ -31,7 +43,10 @@ function EntrarPage() {
             Não tem conta? <Link to="/cadastrar" className="text-foreground underline">Cadastre-se</Link>
           </p>
         </div>
-      </main>
+      </div>
+      <div className="relative hidden lg:block">
+        <img src={banner.url} alt="For humanity, to the stars." className="absolute inset-0 h-full w-full object-cover" />
+      </div>
     </div>
   );
 }
