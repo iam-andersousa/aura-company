@@ -690,19 +690,21 @@ function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border">
+      {/* Footer — always dark */}
+      <footer className="dark bg-background text-foreground">
         <div className="mx-auto max-w-7xl px-6 py-16">
-          {/* Top: logo + slogan */}
-          <div className="flex flex-col items-start gap-6 border-b border-border pb-12 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
-              <Logo size="xl" />
-              <img
-                src={dark ? sloganWhite.url : sloganDark.url}
-                alt="For humanity, to the stars."
-                className="h-10 w-auto sm:h-14"
-              />
-            </div>
+          {/* Top: logo + slogan stacked */}
+          <div className="flex flex-col items-start gap-6 border-b border-border pb-12">
+            <img
+              src={logoLight.url}
+              alt="Aura"
+              className="h-20 w-auto sm:h-24"
+            />
+            <img
+              src={sloganWhite.url}
+              alt="For humanity, to the stars."
+              className="h-14 w-auto sm:h-20"
+            />
           </div>
 
           {/* Sitemap */}
@@ -728,8 +730,8 @@ function Home() {
           {/* Bottom: socials + copy */}
           <div className="flex flex-col-reverse items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center">
             <div className="flex items-center gap-3">
-              <SocialIcon label="LinkedIn"><Linkedin className="h-4 w-4" /></SocialIcon>
-              <SocialIcon label="YouTube"><Youtube className="h-4 w-4" /></SocialIcon>
+              <SocialIcon label="LinkedIn"><LinkedinFilled className="h-4 w-4" /></SocialIcon>
+              <SocialIcon label="YouTube"><YoutubeFilled className="h-4 w-4" /></SocialIcon>
               <SocialIcon label="X"><XIcon className="h-3.5 w-3.5" /></SocialIcon>
               <SocialIcon label="Instagram"><Instagram className="h-4 w-4" /></SocialIcon>
             </div>
