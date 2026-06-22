@@ -12,8 +12,6 @@ import {
   Shield,
   Landmark,
   ChevronDown,
-  Linkedin,
-  Youtube,
   Instagram,
 } from "lucide-react";
 import {
@@ -52,6 +50,11 @@ import areaHealth from "@/assets/area-health.jpg";
 import areaEnergy from "@/assets/area-energy.jpg";
 import areaDefense from "@/assets/area-defense.jpg";
 import areaInfra from "@/assets/area-infra.jpg";
+
+import rigsResearchImg from "@/assets/rigs-research.png";
+import rigsIndustryImg from "@/assets/rigs-industry.png";
+import rigsGovImg from "@/assets/rigs-government.png";
+import rigsSocietyImg from "@/assets/rigs-society.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -107,8 +110,8 @@ const products = [
   { slug: "archimedes", name: "Archimedes", tag: "Engenharia & Sistemas", text: "Engenharia, sistemas físicos e desafios técnicos complexos.", image: pArchimedes },
 ];
 
-const solutions = [
-  { title: "Área Comercial", items: ["Marketing", "Vendas", "Customer Success"] },
+const solutions: { title: string; items: string[]; to?: string }[] = [
+  { title: "Midas", items: ["Marketing", "Vendas", "Customer Success"], to: "/solucoes/midas" },
   { title: "Engenharia", items: ["Gestão de projetos", "CADs e Desenhos Técnicos"] },
   { title: "Backoffice", items: ["Contabilidade", "RH", "Gestão financeira"] },
   { title: "Atendimento", items: ["Atendimento ao cliente"] },
@@ -129,10 +132,10 @@ const areas = [
 ];
 
 const rigs = [
-  { letter: "R", title: "Research", text: "A produção de conhecimento científico, tecnológico e intelectual. Universidades, centros de pesquisa, laboratórios e instituições dedicadas à descoberta." },
-  { letter: "I", title: "Industry", text: "A transformação do conhecimento em soluções, produtos, serviços e desenvolvimento econômico. A capacidade produtiva e inovadora da sociedade." },
-  { letter: "G", title: "Government", text: "A coordenação institucional necessária para garantir estabilidade, planejamento estratégico, investimento público e desenvolvimento de capacidades nacionais." },
-  { letter: "S", title: "Society", text: "O conjunto de indivíduos, comunidades e organizações que orientam os valores, prioridades e necessidades que impulsionam o progresso." },
+  { letter: "R", title: "Research", image: rigsResearchImg, text: "A produção de conhecimento científico, tecnológico e intelectual. Universidades, centros de pesquisa, laboratórios e instituições dedicadas à descoberta." },
+  { letter: "I", title: "Industry", image: rigsIndustryImg, text: "A transformação do conhecimento em soluções, produtos, serviços e desenvolvimento econômico. A capacidade produtiva e inovadora da sociedade." },
+  { letter: "G", title: "Government", image: rigsGovImg, text: "A coordenação institucional necessária para garantir estabilidade, planejamento estratégico, investimento público e desenvolvimento de capacidades nacionais." },
+  { letter: "S", title: "Society", image: rigsSocietyImg, text: "O conjunto de indivíduos, comunidades e organizações que orientam os valores, prioridades e necessidades que impulsionam o progresso." },
 ];
 
 const missionVision = [
