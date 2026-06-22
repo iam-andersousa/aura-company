@@ -348,11 +348,25 @@ function SocialIcon({ children, label }: { children: React.ReactNode; label: str
   );
 }
 
-// Simple X (Twitter) icon since lucide doesn't ship one
+// Filled brand icons
 function XIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
       <path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.84l-4.84-6.32L5.7 22H2.44l8.02-9.17L1.5 2h7l4.38 5.79L18.24 2zm-2.4 18h1.84L7.27 4H5.34l10.5 16z" />
+    </svg>
+  );
+}
+function LinkedinFilled({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11.01-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+function YoutubeFilled({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z" />
     </svg>
   );
 }
@@ -504,27 +518,32 @@ function Home() {
             {rigs.map((r, i) => (
               <div
                 key={r.title}
-                className="h-[80vh]"
+                className="h-[90vh]"
                 style={{ zIndex: i + 1, position: "relative" }}
               >
                 <div className="sticky top-28">
                   <div
-                    className="mx-auto overflow-hidden rounded-3xl border border-border bg-card p-10 text-card-foreground shadow-2xl sm:p-14"
+                    className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-border bg-card p-8 text-card-foreground shadow-2xl sm:p-12"
                     style={{
-                      transform: `translateY(${i * 12}px) scale(${1 - i * 0.025})`,
+                      transform: `translateY(${-i * 14}px)`,
                       transformOrigin: "top center",
                     }}
                   >
-                    <div className="grid items-center gap-8 text-center sm:grid-cols-[auto_1fr] sm:text-left">
-                      <div className="font-display text-[120px] font-light leading-none text-muted-foreground/30 sm:text-[180px]">
-                        {r.letter}
+                    <div className="grid items-center gap-8 sm:grid-cols-[1fr_1.2fr]">
+                      <div className="relative aspect-square overflow-hidden rounded-2xl">
+                        <img
+                          src={r.image}
+                          alt={r.title}
+                          loading="lazy"
+                          className="absolute inset-0 h-full w-full object-contain"
+                        />
                       </div>
-                      <div>
-                        <SectionLabel>0{i + 1} — {r.title}</SectionLabel>
-                        <h3 className="mt-3 font-heading text-2xl font-medium sm:text-3xl">
+                      <div className="text-center sm:text-left">
+                        <SectionLabel>{r.title}</SectionLabel>
+                        <h3 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
                           {r.title}
                         </h3>
-                        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
                           {r.text}
                         </p>
                       </div>
