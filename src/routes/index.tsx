@@ -12,8 +12,6 @@ import {
   Shield,
   Landmark,
   ChevronDown,
-  Linkedin,
-  Youtube,
   Instagram,
 } from "lucide-react";
 import {
@@ -27,7 +25,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 import logoDark from "@/assets/aura-logo-dark.png.asset.json";
 import logoLight from "@/assets/aura-logo-light.png.asset.json";
-import sloganDark from "@/assets/slogan-dark.png.asset.json";
+
 import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
@@ -52,6 +50,11 @@ import areaHealth from "@/assets/area-health.jpg";
 import areaEnergy from "@/assets/area-energy.jpg";
 import areaDefense from "@/assets/area-defense.jpg";
 import areaInfra from "@/assets/area-infra.jpg";
+
+import rigsResearchImg from "@/assets/rigs-research.png";
+import rigsIndustryImg from "@/assets/rigs-industry.png";
+import rigsGovImg from "@/assets/rigs-government.png";
+import rigsSocietyImg from "@/assets/rigs-society.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -107,8 +110,8 @@ const products = [
   { slug: "archimedes", name: "Archimedes", tag: "Engenharia & Sistemas", text: "Engenharia, sistemas físicos e desafios técnicos complexos.", image: pArchimedes },
 ];
 
-const solutions = [
-  { title: "Área Comercial", items: ["Marketing", "Vendas", "Customer Success"] },
+const solutions: { title: string; items: string[]; to?: string }[] = [
+  { title: "Midas", items: ["Marketing", "Vendas", "Customer Success"], to: "/solucoes/midas" },
   { title: "Engenharia", items: ["Gestão de projetos", "CADs e Desenhos Técnicos"] },
   { title: "Backoffice", items: ["Contabilidade", "RH", "Gestão financeira"] },
   { title: "Atendimento", items: ["Atendimento ao cliente"] },
@@ -129,10 +132,10 @@ const areas = [
 ];
 
 const rigs = [
-  { letter: "R", title: "Research", text: "A produção de conhecimento científico, tecnológico e intelectual. Universidades, centros de pesquisa, laboratórios e instituições dedicadas à descoberta." },
-  { letter: "I", title: "Industry", text: "A transformação do conhecimento em soluções, produtos, serviços e desenvolvimento econômico. A capacidade produtiva e inovadora da sociedade." },
-  { letter: "G", title: "Government", text: "A coordenação institucional necessária para garantir estabilidade, planejamento estratégico, investimento público e desenvolvimento de capacidades nacionais." },
-  { letter: "S", title: "Society", text: "O conjunto de indivíduos, comunidades e organizações que orientam os valores, prioridades e necessidades que impulsionam o progresso." },
+  { letter: "R", title: "Research", image: rigsResearchImg, text: "A produção de conhecimento científico, tecnológico e intelectual. Universidades, centros de pesquisa, laboratórios e instituições dedicadas à descoberta." },
+  { letter: "I", title: "Industry", image: rigsIndustryImg, text: "A transformação do conhecimento em soluções, produtos, serviços e desenvolvimento econômico. A capacidade produtiva e inovadora da sociedade." },
+  { letter: "G", title: "Government", image: rigsGovImg, text: "A coordenação institucional necessária para garantir estabilidade, planejamento estratégico, investimento público e desenvolvimento de capacidades nacionais." },
+  { letter: "S", title: "Society", image: rigsSocietyImg, text: "O conjunto de indivíduos, comunidades e organizações que orientam os valores, prioridades e necessidades que impulsionam o progresso." },
 ];
 
 const missionVision = [
@@ -226,7 +229,7 @@ function ProductsDropdown() {
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref}>
       <button
         onClick={() => setOpen((o) => !o)}
         className="inline-flex items-center gap-1 transition hover:text-foreground"
@@ -234,40 +237,47 @@ function ProductsDropdown() {
         Produtos <ChevronDown className={`h-3.5 w-3.5 transition ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <div className="absolute left-1/2 top-full z-50 mt-3 grid w-[640px] -translate-x-1/2 grid-cols-2 gap-2 overflow-hidden rounded-2xl border border-border bg-popover p-4 shadow-2xl">
-          <div>
-            <p className="px-3 pt-1 pb-2 text-[10px] uppercase tracking-widest text-muted-foreground">
-              Modelos
-            </p>
-            <div className="space-y-1">
-              {products.map((p) => (
-                <Link
-                  key={p.slug}
-                  to="/modelos/$slug"
-                  params={{ slug: p.slug }}
-                  onClick={() => setOpen(false)}
-                  className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-accent"
-                >
-                  <span className="font-heading text-sm font-medium text-foreground">{p.name}</span>
-                  <span className="text-xs text-muted-foreground">{p.tag}</span>
-                </Link>
-              ))}
+        <div className="glass-nav fixed inset-x-0 top-20 z-40 border-t border-border/40 shadow-xl">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-10 sm:grid-cols-2">
+            <div>
+              <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-muted-foreground">Modelos</p>
+              <div className="grid grid-cols-2 gap-1">
+                {products.map((p) => (
+                  <Link
+                    key={p.slug}
+                    to="/modelos/$slug"
+                    params={{ slug: p.slug }}
+                    onClick={() => setOpen(false)}
+                    className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-accent"
+                  >
+                    <span className="font-heading text-sm font-medium text-foreground">{p.name}</span>
+                    <span className="text-xs text-muted-foreground">{p.tag}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-          <div>
-            <p className="px-3 pt-1 pb-2 text-[10px] uppercase tracking-widest text-muted-foreground">
-              Soluções
-            </p>
-            <div className="space-y-1">
-              {solutions.map((s) => (
-                <div
-                  key={s.title}
-                  className="rounded-lg px-3 py-2 text-left transition hover:bg-accent"
-                >
-                  <p className="font-heading text-sm font-medium text-foreground">{s.title}</p>
-                  <p className="text-xs text-muted-foreground">{s.items.join(" · ")}</p>
-                </div>
-              ))}
+            <div>
+              <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-muted-foreground">Soluções</p>
+              <div className="grid grid-cols-2 gap-1">
+                {solutions.map((s) =>
+                  s.to ? (
+                    <Link
+                      key={s.title}
+                      to={s.to}
+                      onClick={() => setOpen(false)}
+                      className="rounded-lg px-3 py-2 text-left transition hover:bg-accent"
+                    >
+                      <p className="font-heading text-sm font-medium text-foreground">{s.title}</p>
+                      <p className="text-xs text-muted-foreground">{s.items.join(" · ")}</p>
+                    </Link>
+                  ) : (
+                    <div key={s.title} className="rounded-lg px-3 py-2 text-left transition hover:bg-accent">
+                      <p className="font-heading text-sm font-medium text-foreground">{s.title}</p>
+                      <p className="text-xs text-muted-foreground">{s.items.join(" · ")}</p>
+                    </div>
+                  ),
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -338,11 +348,25 @@ function SocialIcon({ children, label }: { children: React.ReactNode; label: str
   );
 }
 
-// Simple X (Twitter) icon since lucide doesn't ship one
+// Filled brand icons
 function XIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
       <path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.84l-4.84-6.32L5.7 22H2.44l8.02-9.17L1.5 2h7l4.38 5.79L18.24 2zm-2.4 18h1.84L7.27 4H5.34l10.5 16z" />
+    </svg>
+  );
+}
+function LinkedinFilled({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11.01-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+function YoutubeFilled({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z" />
     </svg>
   );
 }
@@ -358,7 +382,6 @@ const sitemap = [
 ];
 
 function Home() {
-  const dark = useDark();
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Nav */}
@@ -425,7 +448,7 @@ function Home() {
 
       {/* Sobre */}
       <section id="sobre" className="mx-auto max-w-4xl px-6 py-24 text-center">
-        <SectionLabel>01 — Sobre</SectionLabel>
+        <SectionLabel>Sobre</SectionLabel>
         <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
           Tecnologia centrada nas pessoas.
         </h2>
@@ -451,7 +474,7 @@ function Home() {
       <section id="principios" className="border-t border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <SectionLabel>02 — Princípios</SectionLabel>
+            <SectionLabel>Princípios</SectionLabel>
             <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
               Cinco princípios que orientam tudo o que construímos.
             </h2>
@@ -462,7 +485,7 @@ function Home() {
 
       {/* Filosofia */}
       <section className="mx-auto max-w-4xl px-6 py-24 text-center">
-        <SectionLabel>03 — Filosofia</SectionLabel>
+        <SectionLabel>Filosofia</SectionLabel>
         <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
           Conhecimento é infraestrutura.
         </h2>
@@ -484,7 +507,7 @@ function Home() {
       <section id="rigs" className="border-y border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto mb-16 max-w-2xl text-center">
-            <SectionLabel>04 — Framework</SectionLabel>
+            <SectionLabel>Framework</SectionLabel>
             <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">O Framework RIGS</h2>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
               Uma visão sistêmica do desenvolvimento baseada em quatro domínios fundamentais.
@@ -494,27 +517,32 @@ function Home() {
             {rigs.map((r, i) => (
               <div
                 key={r.title}
-                className="h-[80vh]"
+                className="h-[90vh]"
                 style={{ zIndex: i + 1, position: "relative" }}
               >
                 <div className="sticky top-28">
                   <div
-                    className="mx-auto overflow-hidden rounded-3xl border border-border bg-card p-10 text-card-foreground shadow-2xl sm:p-14"
+                    className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-border bg-card p-8 text-card-foreground shadow-2xl sm:p-12"
                     style={{
-                      transform: `translateY(${i * 12}px) scale(${1 - i * 0.025})`,
+                      transform: `translateY(${-i * 14}px)`,
                       transformOrigin: "top center",
                     }}
                   >
-                    <div className="grid items-center gap-8 text-center sm:grid-cols-[auto_1fr] sm:text-left">
-                      <div className="font-display text-[120px] font-light leading-none text-muted-foreground/30 sm:text-[180px]">
-                        {r.letter}
+                    <div className="grid items-center gap-8 sm:grid-cols-[1fr_1.2fr]">
+                      <div className="relative aspect-square overflow-hidden rounded-2xl">
+                        <img
+                          src={r.image}
+                          alt={r.title}
+                          loading="lazy"
+                          className="absolute inset-0 h-full w-full object-contain"
+                        />
                       </div>
-                      <div>
-                        <SectionLabel>0{i + 1} — {r.title}</SectionLabel>
-                        <h3 className="mt-3 font-heading text-2xl font-medium sm:text-3xl">
+                      <div className="text-center sm:text-left">
+                        <SectionLabel>{r.title}</SectionLabel>
+                        <h3 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
                           {r.title}
                         </h3>
-                        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
                           {r.text}
                         </p>
                       </div>
@@ -530,7 +558,7 @@ function Home() {
       {/* Produtos */}
       <section id="produtos" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto mb-14 max-w-2xl text-center">
-          <SectionLabel>05 — Produtos</SectionLabel>
+          <SectionLabel>Produtos</SectionLabel>
           <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
             Modelos especializados para o pensamento.
           </h2>
@@ -559,7 +587,7 @@ function Home() {
                 <p className="text-sm leading-relaxed text-white/85">{prod.text}</p>
                 <div className="mt-2 flex flex-col gap-2">
                   <Link
-                    to="/chat"
+                    to="/entrar"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-medium text-neutral-900 transition hover:bg-white/90"
                   >
                     Teste agora <ArrowRight className="h-3.5 w-3.5" />
@@ -582,7 +610,7 @@ function Home() {
       <section id="atuacao" className="border-t border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <SectionLabel>06 — Atuação</SectionLabel>
+            <SectionLabel>Atuação</SectionLabel>
             <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">Áreas de Atuação</h2>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
               Atuamos no desenvolvimento e aplicação de tecnologias avançadas em múltiplos setores
@@ -629,7 +657,7 @@ function Home() {
 
       {/* Por que existimos */}
       <section className="mx-auto max-w-4xl px-6 py-24 text-center">
-        <SectionLabel>07 — Propósito</SectionLabel>
+        <SectionLabel>Propósito</SectionLabel>
         <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">Por que existimos.</h2>
         <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
           A humanidade enfrenta desafios cada vez mais complexos. Saúde, educação, sustentabilidade,
@@ -661,19 +689,21 @@ function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border">
+      {/* Footer — always dark */}
+      <footer className="dark bg-background text-foreground">
         <div className="mx-auto max-w-7xl px-6 py-16">
-          {/* Top: logo + slogan */}
-          <div className="flex flex-col items-start gap-6 border-b border-border pb-12 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
-              <Logo size="xl" />
-              <img
-                src={dark ? sloganWhite.url : sloganDark.url}
-                alt="For humanity, to the stars."
-                className="h-10 w-auto sm:h-14"
-              />
-            </div>
+          {/* Top: logo + slogan stacked */}
+          <div className="flex flex-col items-start gap-6 border-b border-border pb-12">
+            <img
+              src={logoLight.url}
+              alt="Aura"
+              className="h-20 w-auto sm:h-24"
+            />
+            <img
+              src={sloganWhite.url}
+              alt="For humanity, to the stars."
+              className="h-14 w-auto sm:h-20"
+            />
           </div>
 
           {/* Sitemap */}
@@ -699,8 +729,8 @@ function Home() {
           {/* Bottom: socials + copy */}
           <div className="flex flex-col-reverse items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center">
             <div className="flex items-center gap-3">
-              <SocialIcon label="LinkedIn"><Linkedin className="h-4 w-4" /></SocialIcon>
-              <SocialIcon label="YouTube"><Youtube className="h-4 w-4" /></SocialIcon>
+              <SocialIcon label="LinkedIn"><LinkedinFilled className="h-4 w-4" /></SocialIcon>
+              <SocialIcon label="YouTube"><YoutubeFilled className="h-4 w-4" /></SocialIcon>
               <SocialIcon label="X"><XIcon className="h-3.5 w-3.5" /></SocialIcon>
               <SocialIcon label="Instagram"><Instagram className="h-4 w-4" /></SocialIcon>
             </div>

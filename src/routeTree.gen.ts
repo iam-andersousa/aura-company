@@ -14,6 +14,7 @@ import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as CadastrarRouteImport } from './routes/cadastrar'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SolucoesMidasRouteImport } from './routes/solucoes.midas'
 import { Route as ModelosSlugRouteImport } from './routes/modelos.$slug'
 import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 
@@ -42,6 +43,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolucoesMidasRoute = SolucoesMidasRouteImport.update({
+  id: '/solucoes/midas',
+  path: '/solucoes/midas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ModelosSlugRoute = ModelosSlugRouteImport.update({
   id: '/modelos/$slug',
   path: '/modelos/$slug',
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/manifesto': typeof ManifestoRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
+  '/solucoes/midas': typeof SolucoesMidasRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/manifesto': typeof ManifestoRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
+  '/solucoes/midas': typeof SolucoesMidasRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/manifesto': typeof ManifestoRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
+  '/solucoes/midas': typeof SolucoesMidasRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/manifesto'
     | '/docs/$slug'
     | '/modelos/$slug'
+    | '/solucoes/midas'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/manifesto'
     | '/docs/$slug'
     | '/modelos/$slug'
+    | '/solucoes/midas'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/manifesto'
     | '/docs/$slug'
     | '/modelos/$slug'
+    | '/solucoes/midas'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   ManifestoRoute: typeof ManifestoRoute
   DocsSlugRoute: typeof DocsSlugRoute
   ModelosSlugRoute: typeof ModelosSlugRoute
+  SolucoesMidasRoute: typeof SolucoesMidasRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solucoes/midas': {
+      id: '/solucoes/midas'
+      path: '/solucoes/midas'
+      fullPath: '/solucoes/midas'
+      preLoaderRoute: typeof SolucoesMidasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/modelos/$slug': {
       id: '/modelos/$slug'
       path: '/modelos/$slug'
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   ManifestoRoute: ManifestoRoute,
   DocsSlugRoute: DocsSlugRoute,
   ModelosSlugRoute: ModelosSlugRoute,
+  SolucoesMidasRoute: SolucoesMidasRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
