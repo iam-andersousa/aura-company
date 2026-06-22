@@ -435,7 +435,7 @@ function Home() {
 
       {/* Sobre */}
       <section id="sobre" className="mx-auto max-w-4xl px-6 py-24 text-center">
-        <SectionLabel>01 — Sobre</SectionLabel>
+        <SectionLabel>Sobre</SectionLabel>
         <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
           Tecnologia centrada nas pessoas.
         </h2>
@@ -461,7 +461,7 @@ function Home() {
       <section id="principios" className="border-t border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <SectionLabel>02 — Princípios</SectionLabel>
+            <SectionLabel>Princípios</SectionLabel>
             <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
               Cinco princípios que orientam tudo o que construímos.
             </h2>
@@ -472,7 +472,7 @@ function Home() {
 
       {/* Filosofia */}
       <section className="mx-auto max-w-4xl px-6 py-24 text-center">
-        <SectionLabel>03 — Filosofia</SectionLabel>
+        <SectionLabel>Filosofia</SectionLabel>
         <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
           Conhecimento é infraestrutura.
         </h2>
@@ -494,7 +494,7 @@ function Home() {
       <section id="rigs" className="border-y border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto mb-16 max-w-2xl text-center">
-            <SectionLabel>04 — Framework</SectionLabel>
+            <SectionLabel>Framework</SectionLabel>
             <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">O Framework RIGS</h2>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
               Uma visão sistêmica do desenvolvimento baseada em quatro domínios fundamentais.
@@ -540,7 +540,7 @@ function Home() {
       {/* Produtos */}
       <section id="produtos" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto mb-14 max-w-2xl text-center">
-          <SectionLabel>05 — Produtos</SectionLabel>
+          <SectionLabel>Produtos</SectionLabel>
           <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
             Modelos especializados para o pensamento.
           </h2>
@@ -569,7 +569,7 @@ function Home() {
                 <p className="text-sm leading-relaxed text-white/85">{prod.text}</p>
                 <div className="mt-2 flex flex-col gap-2">
                   <Link
-                    to="/chat"
+                    to="/entrar"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-medium text-neutral-900 transition hover:bg-white/90"
                   >
                     Teste agora <ArrowRight className="h-3.5 w-3.5" />
@@ -592,7 +592,7 @@ function Home() {
       <section id="atuacao" className="border-t border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <SectionLabel>06 — Atuação</SectionLabel>
+            <SectionLabel>Atuação</SectionLabel>
             <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">Áreas de Atuação</h2>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
               Atuamos no desenvolvimento e aplicação de tecnologias avançadas em múltiplos setores
@@ -639,7 +639,7 @@ function Home() {
 
       {/* Por que existimos */}
       <section className="mx-auto max-w-4xl px-6 py-24 text-center">
-        <SectionLabel>07 — Propósito</SectionLabel>
+        <SectionLabel>Propósito</SectionLabel>
         <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">Por que existimos.</h2>
         <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
           A humanidade enfrenta desafios cada vez mais complexos. Saúde, educação, sustentabilidade,
