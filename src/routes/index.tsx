@@ -25,7 +25,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 import logoDark from "@/assets/aura-logo-dark.png.asset.json";
 import logoLight from "@/assets/aura-logo-light.png.asset.json";
-import sloganDark from "@/assets/slogan-dark.png.asset.json";
+
 import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
@@ -382,7 +382,6 @@ const sitemap = [
 ];
 
 function Home() {
-  const dark = useDark();
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Nav */}
