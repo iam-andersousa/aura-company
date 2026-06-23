@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, GitMerge, LineChart, Users, Megaphone, Workflow, Target, Headphones, Repeat } from "lucide-react";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ArrowRight, GitMerge, LineChart, Users, Megaphone, Workflow, Target, Headphones, Repeat } from "lucide-react";
+import { SiteHeader } from "@/components/SiteHeader";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 
 export const Route = createFileRoute("/solucoes/midas")({
@@ -27,15 +27,8 @@ const pillars = [
 function MidasPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="fixed inset-x-0 top-0 z-50 glass-nav">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground">
-            <ArrowLeft className="h-4 w-4" /> Voltar
-          </Link>
-          <span className="font-heading text-sm font-medium">Midas — RevOps</span>
-          <ThemeToggle />
-        </div>
-      </header>
+      <SiteHeader />
+
 
       <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40">
         <div

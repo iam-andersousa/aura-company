@@ -9,15 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermosRouteImport } from './routes/termos'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as ManifestoRouteImport } from './routes/manifesto'
 import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as DpaRouteImport } from './routes/dpa'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ChatRouteImport } from './routes/chat'
+import { Route as CarreirasRouteImport } from './routes/carreiras'
 import { Route as CadastrarRouteImport } from './routes/cadastrar'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesMidasRouteImport } from './routes/solucoes.midas'
 import { Route as ModelosSlugRouteImport } from './routes/modelos.$slug'
 import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 
+const TermosRoute = TermosRouteImport.update({
+  id: '/termos',
+  path: '/termos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ManifestoRoute = ManifestoRouteImport.update({
   id: '/manifesto',
   path: '/manifesto',
@@ -28,9 +43,24 @@ const EntrarRoute = EntrarRouteImport.update({
   path: '/entrar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DpaRoute = DpaRouteImport.update({
+  id: '/dpa',
+  path: '/dpa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChatRoute = ChatRouteImport.update({
   id: '/chat',
   path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarreirasRoute = CarreirasRouteImport.update({
+  id: '/carreiras',
+  path: '/carreiras',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CadastrarRoute = CadastrarRouteImport.update({
@@ -62,9 +92,14 @@ const DocsSlugRoute = DocsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cadastrar': typeof CadastrarRoute
+  '/carreiras': typeof CarreirasRoute
   '/chat': typeof ChatRoute
+  '/cookies': typeof CookiesRoute
+  '/dpa': typeof DpaRoute
   '/entrar': typeof EntrarRoute
   '/manifesto': typeof ManifestoRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/termos': typeof TermosRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
   '/solucoes/midas': typeof SolucoesMidasRoute
@@ -72,9 +107,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cadastrar': typeof CadastrarRoute
+  '/carreiras': typeof CarreirasRoute
   '/chat': typeof ChatRoute
+  '/cookies': typeof CookiesRoute
+  '/dpa': typeof DpaRoute
   '/entrar': typeof EntrarRoute
   '/manifesto': typeof ManifestoRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/termos': typeof TermosRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
   '/solucoes/midas': typeof SolucoesMidasRoute
@@ -83,9 +123,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cadastrar': typeof CadastrarRoute
+  '/carreiras': typeof CarreirasRoute
   '/chat': typeof ChatRoute
+  '/cookies': typeof CookiesRoute
+  '/dpa': typeof DpaRoute
   '/entrar': typeof EntrarRoute
   '/manifesto': typeof ManifestoRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/termos': typeof TermosRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
   '/solucoes/midas': typeof SolucoesMidasRoute
@@ -95,9 +140,14 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cadastrar'
+    | '/carreiras'
     | '/chat'
+    | '/cookies'
+    | '/dpa'
     | '/entrar'
     | '/manifesto'
+    | '/privacidade'
+    | '/termos'
     | '/docs/$slug'
     | '/modelos/$slug'
     | '/solucoes/midas'
@@ -105,9 +155,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/cadastrar'
+    | '/carreiras'
     | '/chat'
+    | '/cookies'
+    | '/dpa'
     | '/entrar'
     | '/manifesto'
+    | '/privacidade'
+    | '/termos'
     | '/docs/$slug'
     | '/modelos/$slug'
     | '/solucoes/midas'
@@ -115,9 +170,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/cadastrar'
+    | '/carreiras'
     | '/chat'
+    | '/cookies'
+    | '/dpa'
     | '/entrar'
     | '/manifesto'
+    | '/privacidade'
+    | '/termos'
     | '/docs/$slug'
     | '/modelos/$slug'
     | '/solucoes/midas'
@@ -126,9 +186,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CadastrarRoute: typeof CadastrarRoute
+  CarreirasRoute: typeof CarreirasRoute
   ChatRoute: typeof ChatRoute
+  CookiesRoute: typeof CookiesRoute
+  DpaRoute: typeof DpaRoute
   EntrarRoute: typeof EntrarRoute
   ManifestoRoute: typeof ManifestoRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
+  TermosRoute: typeof TermosRoute
   DocsSlugRoute: typeof DocsSlugRoute
   ModelosSlugRoute: typeof ModelosSlugRoute
   SolucoesMidasRoute: typeof SolucoesMidasRoute
@@ -136,6 +201,20 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/termos': {
+      id: '/termos'
+      path: '/termos'
+      fullPath: '/termos'
+      preLoaderRoute: typeof TermosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/manifesto': {
       id: '/manifesto'
       path: '/manifesto'
@@ -150,11 +229,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EntrarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dpa': {
+      id: '/dpa'
+      path: '/dpa'
+      fullPath: '/dpa'
+      preLoaderRoute: typeof DpaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/chat': {
       id: '/chat'
       path: '/chat'
       fullPath: '/chat'
       preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carreiras': {
+      id: '/carreiras'
+      path: '/carreiras'
+      fullPath: '/carreiras'
+      preLoaderRoute: typeof CarreirasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cadastrar': {
@@ -198,9 +298,14 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CadastrarRoute: CadastrarRoute,
+  CarreirasRoute: CarreirasRoute,
   ChatRoute: ChatRoute,
+  CookiesRoute: CookiesRoute,
+  DpaRoute: DpaRoute,
   EntrarRoute: EntrarRoute,
   ManifestoRoute: ManifestoRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
+  TermosRoute: TermosRoute,
   DocsSlugRoute: DocsSlugRoute,
   ModelosSlugRoute: ModelosSlugRoute,
   SolucoesMidasRoute: SolucoesMidasRoute,
