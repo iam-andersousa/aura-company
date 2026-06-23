@@ -172,15 +172,8 @@ function ModelDetail() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="fixed inset-x-0 top-0 z-50 glass-nav">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground">
-            <ArrowLeft className="h-4 w-4" /> Voltar
-          </Link>
-          <span className="font-heading text-sm font-medium">Modelo {model.name}</span>
-          <ThemeToggle />
-        </div>
-      </header>
+      <SiteHeader />
+
 
       <main className="mx-auto max-w-5xl px-6 pt-32 pb-24 text-center">
         <span className="text-xs uppercase tracking-widest text-muted-foreground">{model.tag}</span>
