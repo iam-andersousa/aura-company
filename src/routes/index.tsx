@@ -613,9 +613,9 @@ function Home() {
                   {col.items.map((it) => (
                     <li key={it.label}>
                       {it.to ? (
-                        <Link to={it.to} className="text-sm text-muted-foreground transition hover:text-foreground">
+                        <a href={it.to} className="text-sm text-muted-foreground transition hover:text-foreground">
                           {it.label}
-                        </Link>
+                        </a>
                       ) : (
                         <a href="#" className="text-sm text-muted-foreground transition hover:text-foreground">
                           {it.label}
