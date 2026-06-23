@@ -305,15 +305,17 @@ function YoutubeFilled({ className }: { className?: string }) {
   );
 }
 
-const sitemap = [
-  { title: "Produtos", items: ["Plataforma Aura", "API", "Aura Studio", "Enterprise"] },
-  { title: "Modelos", items: products.map((p) => p.name) },
-  { title: "Soluções", items: solutions.map((s) => s.title) },
-  { title: "Recursos", items: ["Documentação", "Blog", "Tutoriais", "Casos de uso"] },
-  { title: "Ajuda e Segurança", items: ["Central de Ajuda", "Segurança", "Status", "Contato"] },
-  { title: "Sobre a Empresa", items: ["Sobre", "Manifesto", "Carreiras", "Imprensa"] },
-  { title: "Termos e Políticas", items: ["Termos de Uso", "Privacidade", "Cookies", "DPA"] },
+type SitemapItem = { label: string; to?: string };
+const sitemap: { title: string; items: SitemapItem[] }[] = [
+  { title: "Produtos", items: [{ label: "Plataforma Aura" }, { label: "API" }, { label: "Aura Studio" }, { label: "Enterprise" }] },
+  { title: "Modelos", items: products.map((p) => ({ label: p.name, to: `/modelos/${p.slug}` })) },
+  { title: "Soluções", items: [{ label: "Midas", to: "/solucoes/midas" }, ...solutions.slice(1).map((s) => ({ label: s.title }))] },
+  { title: "Recursos", items: [{ label: "Documentação", to: "/docs/aristoteles" }, { label: "Blog" }, { label: "Tutoriais" }, { label: "Casos de uso" }] },
+  { title: "Ajuda e Segurança", items: [{ label: "Central de Ajuda" }, { label: "Segurança" }, { label: "Status" }, { label: "Contato" }] },
+  { title: "Sobre a Empresa", items: [{ label: "Sobre" }, { label: "Manifesto", to: "/manifesto" }, { label: "Carreiras", to: "/carreiras" }, { label: "Imprensa" }] },
+  { title: "Termos e Políticas", items: [{ label: "Termos de Uso", to: "/termos" }, { label: "Privacidade", to: "/privacidade" }, { label: "Cookies", to: "/cookies" }, { label: "DPA", to: "/dpa" }] },
 ];
+
 
 function Home() {
   return (
