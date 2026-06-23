@@ -425,45 +425,30 @@ function Home() {
               Uma visão sistêmica do desenvolvimento baseada em quatro domínios fundamentais.
             </p>
           </div>
-          <div className="relative">
-            {rigs.map((r, i) => (
+          <div className="grid gap-6 sm:grid-cols-2">
+            {rigs.map((r) => (
               <div
                 key={r.title}
-                className="h-[90vh]"
-                style={{ zIndex: i + 1, position: "relative" }}
+                className="overflow-hidden rounded-3xl border border-border bg-card text-card-foreground shadow-sm transition hover:shadow-xl"
               >
-                <div className="sticky top-28">
-                  <div
-                    className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-border bg-card p-8 text-card-foreground shadow-2xl sm:p-12"
-                    style={{
-                      transform: `translateY(${-i * 14}px)`,
-                      transformOrigin: "top center",
-                    }}
-                  >
-                    <div className="grid items-center gap-8 sm:grid-cols-[1fr_1.2fr]">
-                      <div className="relative aspect-square overflow-hidden rounded-2xl">
-                        <img
-                          src={r.image}
-                          alt={r.title}
-                          loading="lazy"
-                          className="absolute inset-0 h-full w-full object-contain"
-                        />
-                      </div>
-                      <div className="text-center sm:text-left">
-                        <SectionLabel>{r.title}</SectionLabel>
-                        <h3 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">
-                          {r.title}
-                        </h3>
-                        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-                          {r.text}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                <div className="relative aspect-[5/3] overflow-hidden bg-gradient-to-br from-neutral-900/5 to-neutral-900/15 dark:from-white/5 dark:to-white/10">
+                  <img
+                    src={r.image}
+                    alt={r.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-contain p-4 contrast-125 saturate-125"
+                    style={{ filter: "contrast(1.18) saturate(1.25)" }}
+                  />
+                </div>
+                <div className="p-7 text-center sm:p-8 sm:text-left">
+                  <SectionLabel>{r.letter} — {r.title}</SectionLabel>
+                  <h3 className="mt-3 font-heading text-2xl font-medium sm:text-3xl">{r.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">{r.text}</p>
                 </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
