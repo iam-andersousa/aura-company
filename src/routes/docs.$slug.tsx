@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowLeft, KeyRound, Github, Plug, Webhook, Server, Puzzle } from "lucide-react";
+import { ArrowLeft, KeyRound, Github, Plug, Webhook, Server, Puzzle, Terminal } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAMES: Record<string, string> = {
@@ -32,24 +32,52 @@ export const Route = createFileRoute("/docs/$slug")({
   component: DocsPage,
 });
 
-const NAV = [
+type NavItem = { id: string; label: string; method?: string };
+const NAV: { group: string; items: NavItem[] }[] = [
   {
     group: "Introdução",
     items: [
       { id: "overview", label: "Visão geral" },
-      { id: "auth", label: "Autenticação" },
       { id: "quickstart", label: "Quickstart" },
+      { id: "auth", label: "Autenticação" },
+      { id: "rate-limits", label: "Limites e cotas" },
+      { id: "errors", label: "Códigos de erro" },
+      { id: "versioning", label: "Versionamento" },
     ],
   },
   {
-    group: "API HTTP",
+    group: "API HTTP — Inferência",
     items: [
       { id: "post-completions", label: "POST /completions", method: "POST" },
-      { id: "post-chat", label: "POST /chat", method: "POST" },
+      { id: "post-chat", label: "POST /chat/completions", method: "POST" },
       { id: "post-embeddings", label: "POST /embeddings", method: "POST" },
+      { id: "post-rerank", label: "POST /rerank", method: "POST" },
+      { id: "post-vision", label: "POST /vision", method: "POST" },
+      { id: "post-audio-stt", label: "POST /audio/transcriptions", method: "POST" },
+      { id: "post-audio-tts", label: "POST /audio/speech", method: "POST" },
+    ],
+  },
+  {
+    group: "API HTTP — Recursos",
+    items: [
       { id: "get-models", label: "GET /models", method: "GET" },
+      { id: "get-model", label: "GET /models/:id", method: "GET" },
       { id: "get-usage", label: "GET /usage", method: "GET" },
+      { id: "get-keys", label: "GET /keys", method: "GET" },
+      { id: "post-keys", label: "POST /keys", method: "POST" },
+      { id: "put-keys", label: "PUT /keys/:id", method: "PUT" },
+      { id: "patch-keys", label: "PATCH /keys/:id", method: "PATCH" },
       { id: "delete-key", label: "DELETE /keys/:id", method: "DELETE" },
+    ],
+  },
+  {
+    group: "API HTTP — Arquivos & Fine-tuning",
+    items: [
+      { id: "post-files", label: "POST /files", method: "POST" },
+      { id: "get-files", label: "GET /files", method: "GET" },
+      { id: "delete-files", label: "DELETE /files/:id", method: "DELETE" },
+      { id: "post-finetune", label: "POST /fine-tunes", method: "POST" },
+      { id: "get-finetune", label: "GET /fine-tunes/:id", method: "GET" },
     ],
   },
   {
@@ -59,25 +87,33 @@ const NAV = [
       { id: "wh-events", label: "Eventos disponíveis" },
       { id: "wh-signing", label: "Assinatura HMAC" },
       { id: "wh-retries", label: "Retentativas" },
+      { id: "wh-test", label: "Ambiente de testes" },
     ],
   },
   {
     group: "Integrações",
     items: [
       { id: "int-zapier", label: "Zapier" },
+      { id: "int-make", label: "Make" },
+      { id: "int-n8n", label: "n8n" },
       { id: "int-slack", label: "Slack" },
       { id: "int-notion", label: "Notion" },
       { id: "int-langchain", label: "LangChain" },
       { id: "int-llamaindex", label: "LlamaIndex" },
+      { id: "int-vercel", label: "Vercel AI SDK" },
     ],
   },
   {
     group: "Plug-ins & SDKs",
     items: [
       { id: "sdk-python", label: "Python SDK" },
-      { id: "sdk-node", label: "Node.js SDK" },
+      { id: "sdk-node", label: "Node.js / TS SDK" },
+      { id: "sdk-go", label: "Go SDK" },
+      { id: "sdk-rust", label: "Rust SDK" },
       { id: "plg-vscode", label: "VS Code Extension" },
+      { id: "plg-jetbrains", label: "JetBrains Plug-in" },
       { id: "plg-chrome", label: "Chrome Extension" },
+      { id: "plg-figma", label: "Figma Plug-in" },
     ],
   },
 ];
@@ -87,7 +123,31 @@ const METHOD_COLOR: Record<string, string> = {
   POST: "bg-blue-500/15 text-blue-500",
   DELETE: "bg-red-500/15 text-red-500",
   PUT: "bg-amber-500/15 text-amber-500",
+  PATCH: "bg-purple-500/15 text-purple-500",
 };
+
+const ENDPOINTS = [
+  { m: "POST", p: "/completions", d: "Geração de texto a partir de prompt." },
+  { m: "POST", p: "/chat/completions", d: "Conversação multi-turno com histórico." },
+  { m: "POST", p: "/embeddings", d: "Embeddings vetoriais para busca semântica." },
+  { m: "POST", p: "/rerank", d: "Reordenação de resultados por relevância." },
+  { m: "POST", p: "/vision", d: "Análise multimodal de imagens." },
+  { m: "POST", p: "/audio/transcriptions", d: "Speech-to-text em 96 idiomas." },
+  { m: "POST", p: "/audio/speech", d: "Síntese de voz natural com clonagem opcional." },
+  { m: "GET", p: "/models", d: "Lista modelos disponíveis e capacidades." },
+  { m: "GET", p: "/models/:id", d: "Metadados detalhados do modelo." },
+  { m: "GET", p: "/usage", d: "Consumo de tokens, custos e cotas." },
+  { m: "POST", p: "/files", d: "Upload de arquivos para grounding e fine-tuning." },
+  { m: "GET", p: "/files", d: "Lista arquivos carregados." },
+  { m: "DELETE", p: "/files/:id", d: "Remove arquivo." },
+  { m: "POST", p: "/fine-tunes", d: "Inicia job de fine-tuning supervisionado." },
+  { m: "GET", p: "/fine-tunes/:id", d: "Status e métricas de fine-tuning." },
+  { m: "POST", p: "/keys", d: "Cria nova chave de API." },
+  { m: "GET", p: "/keys", d: "Lista chaves ativas." },
+  { m: "PUT", p: "/keys/:id", d: "Substitui configuração da chave." },
+  { m: "PATCH", p: "/keys/:id", d: "Atualiza escopos ou rate limit." },
+  { m: "DELETE", p: "/keys/:id", d: "Revoga uma chave de API." },
+];
 
 function DocsPage() {
   const { name, slug } = Route.useLoaderData();
@@ -106,7 +166,6 @@ function DocsPage() {
       </header>
 
       <div className="mx-auto flex max-w-[1400px] pt-16">
-        {/* Sidebar */}
         <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-72 shrink-0 overflow-y-auto border-r border-border px-6 py-8 lg:block">
           {NAV.map((group) => (
             <div key={group.group} className="mb-8">
@@ -120,7 +179,7 @@ function DocsPage() {
                         active === item.id ? "bg-accent text-foreground" : "text-muted-foreground hover:bg-accent hover:text-foreground"
                       }`}
                     >
-                      {"method" in item && item.method && (
+                      {item.method && (
                         <span className={`rounded px-1.5 py-0.5 text-[9px] font-bold ${METHOD_COLOR[item.method]}`}>{item.method}</span>
                       )}
                       <span className="truncate">{item.label}</span>
@@ -149,7 +208,8 @@ function DocsPage() {
             <div className="mt-4 flex items-start gap-4 rounded-2xl border border-border bg-card p-5">
               <KeyRound className="mt-0.5 h-5 w-5 text-muted-foreground" />
               <p className="text-sm text-muted-foreground">
-                Use a chave gerada em <span className="text-foreground">Conta → API Keys</span> no header <code className="rounded bg-muted px-1.5 py-0.5">Authorization: Bearer …</code>.
+                Use a chave gerada em <span className="text-foreground">Conta → API Keys</span> no header{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5">Authorization: Bearer …</code>.
               </p>
             </div>
           </section>
@@ -157,21 +217,25 @@ function DocsPage() {
           <section className="mt-12">
             <h2 className="font-heading text-2xl font-medium">Métodos HTTP</h2>
             <div className="mt-4 space-y-3">
-              {[
-                { m: "POST", p: "/completions", d: "Geração de texto a partir de prompt." },
-                { m: "POST", p: "/chat", d: "Conversação multi-turno com histórico." },
-                { m: "POST", p: "/embeddings", d: "Embeddings vetoriais." },
-                { m: "GET", p: "/models", d: "Lista modelos disponíveis." },
-                { m: "GET", p: "/usage", d: "Uso de tokens e custos." },
-                { m: "DELETE", p: "/keys/:id", d: "Revoga uma chave de API." },
-              ].map((e) => (
+              {ENDPOINTS.map((e) => (
                 <div key={e.p + e.m} className="flex items-center gap-4 rounded-2xl border border-border bg-card p-4">
                   <span className={`shrink-0 rounded px-2 py-1 text-[10px] font-bold ${METHOD_COLOR[e.m]}`}>{e.m}</span>
                   <code className="font-mono text-sm">{e.p}</code>
-                  <span className="ml-auto text-sm text-muted-foreground">{e.d}</span>
+                  <span className="ml-auto text-right text-sm text-muted-foreground">{e.d}</span>
                 </div>
               ))}
             </div>
+          </section>
+
+          <section className="mt-12">
+            <h2 className="font-heading text-2xl font-medium">Exemplo — cURL</h2>
+            <pre className="mt-4 overflow-x-auto rounded-2xl border border-border bg-card p-5 text-xs leading-relaxed"><code>{`curl https://api.aura.ai/v1/${slug}/chat/completions \\
+  -H "Authorization: Bearer $AURA_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "${slug}-latest",
+    "messages": [{"role": "user", "content": "Olá"}]
+  }'`}</code></pre>
           </section>
 
           <section className="mt-12">
@@ -179,7 +243,13 @@ function DocsPage() {
             <div className="mt-4 flex items-start gap-4 rounded-2xl border border-border bg-card p-5">
               <Webhook className="mt-0.5 h-5 w-5 text-muted-foreground" />
               <div className="text-sm text-muted-foreground">
-                Receba eventos de <code className="rounded bg-muted px-1.5 py-0.5">completion.finished</code>, <code className="rounded bg-muted px-1.5 py-0.5">conversation.created</code> e <code className="rounded bg-muted px-1.5 py-0.5">key.rotated</code>. Todas as entregas são assinadas com HMAC-SHA256.
+                Receba eventos de{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5">completion.finished</code>,{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5">conversation.created</code>,{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5">file.processed</code>,{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5">finetune.completed</code> e{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5">key.rotated</code>. Entregas
+                assinadas com HMAC-SHA256 e retentativa exponencial por até 24h.
               </div>
             </div>
           </section>
@@ -187,7 +257,7 @@ function DocsPage() {
           <section className="mt-12">
             <h2 className="font-heading text-2xl font-medium">Integrações</h2>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {["Zapier", "Slack", "Notion", "LangChain", "LlamaIndex", "n8n"].map((p) => (
+              {["Zapier", "Make", "n8n", "Slack", "Notion", "LangChain", "LlamaIndex", "Vercel AI SDK"].map((p) => (
                 <div key={p} className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4">
                   <Plug className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm font-medium">{p}</span>
@@ -201,9 +271,13 @@ function DocsPage() {
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {[
                 { name: "Python SDK", icon: Server },
-                { name: "Node.js SDK", icon: Server },
+                { name: "Node.js / TS SDK", icon: Server },
+                { name: "Go SDK", icon: Terminal },
+                { name: "Rust SDK", icon: Terminal },
                 { name: "VS Code Extension", icon: Puzzle },
+                { name: "JetBrains Plug-in", icon: Puzzle },
                 { name: "Chrome Extension", icon: Puzzle },
+                { name: "Figma Plug-in", icon: Puzzle },
               ].map((p) => (
                 <div key={p.name} className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4">
                   <p.icon className="h-4 w-4 text-muted-foreground" />
