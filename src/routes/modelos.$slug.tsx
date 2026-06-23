@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, Cpu, Gauge, Zap, BookOpen } from "lucide-react";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ArrowRight, Cpu, Gauge, Zap, BookOpen } from "lucide-react";
+import { SiteHeader } from "@/components/SiteHeader";
 
 import pAristoteles from "@/assets/product-aristoteles.jpg";
 import pHerodotus from "@/assets/product-herodotus.jpg";
