@@ -589,17 +589,14 @@ function Home() {
       {/* Footer — always dark */}
       <footer className="dark bg-background text-foreground">
         <div className="mx-auto max-w-7xl px-6 py-16">
-          {/* Top: logo + slogan stacked */}
-          <div className="flex flex-col items-start gap-6 border-b border-border pb-12">
-            <img
-              src={logoLight.url}
-              alt="Aura"
-              className="h-20 w-auto sm:h-24"
-            />
+          {/* Top: logo + slogan side by side */}
+          <div className="flex flex-col items-start gap-8 border-b border-border pb-12 sm:flex-row sm:items-center sm:gap-10">
+            <img src={logoLight.url} alt="Aura" className="h-16 w-auto sm:h-20" />
+            <div className="hidden h-16 w-px bg-border sm:block" />
             <img
               src={sloganWhite.url}
               alt="For humanity, to the stars."
-              className="h-14 w-auto sm:h-20"
+              className="h-24 w-auto sm:h-32 md:h-40"
             />
           </div>
 
@@ -612,10 +609,16 @@ function Home() {
                 </p>
                 <ul className="mt-4 space-y-2.5">
                   {col.items.map((it) => (
-                    <li key={it}>
-                      <a href="#" className="text-sm text-muted-foreground transition hover:text-foreground">
-                        {it}
-                      </a>
+                    <li key={it.label}>
+                      {it.to ? (
+                        <Link to={it.to} className="text-sm text-muted-foreground transition hover:text-foreground">
+                          {it.label}
+                        </Link>
+                      ) : (
+                        <a href="#" className="text-sm text-muted-foreground transition hover:text-foreground">
+                          {it.label}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -638,3 +641,4 @@ function Home() {
     </div>
   );
 }
+
