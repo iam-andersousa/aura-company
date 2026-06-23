@@ -318,30 +318,8 @@ const sitemap = [
 function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Nav */}
-      <header className="fixed inset-x-0 top-0 z-50 glass-nav">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-          <a href="#top" className="flex items-center gap-2">
-            <Logo />
-          </a>
-          <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-            <a href="#sobre" className="transition hover:text-foreground">Sobre</a>
-            <a href="#principios" className="transition hover:text-foreground">Princípios</a>
-            <a href="#rigs" className="transition hover:text-foreground">RIGS</a>
-            <ProductsDropdown />
-            <a href="#atuacao" className="transition hover:text-foreground">Atuação</a>
-          </nav>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <Link
-              to="/entrar"
-              className="hidden rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90 sm:inline-flex"
-            >
-              Entrar
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
+
 
       {/* Hero */}
       <section id="top" className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
