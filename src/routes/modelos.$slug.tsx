@@ -191,6 +191,7 @@ function ModelDetail() {
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <Link
             to="/chat"
+            search={{ model: model.slug }}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90"
           >
             Teste agora <ArrowRight className="h-4 w-4" />
