@@ -11,7 +11,6 @@ import {
   Zap,
   Shield,
   Landmark,
-  ChevronDown,
   Instagram,
 } from "lucide-react";
 import {
@@ -21,7 +20,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { SiteHeader } from "@/components/SiteHeader";
 
 import logoDark from "@/assets/aura-logo-dark.png.asset.json";
 import logoLight from "@/assets/aura-logo-light.png.asset.json";
