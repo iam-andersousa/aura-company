@@ -50,10 +50,10 @@ import areaEnergy from "@/assets/area-energy.jpg";
 import areaDefense from "@/assets/area-defense.jpg";
 import areaInfra from "@/assets/area-infra.jpg";
 
-import rigsResearchImg from "@/assets/rigs-research.png";
-import rigsIndustryImg from "@/assets/rigs-industry.png";
-import rigsGovImg from "@/assets/rigs-government.png";
-import rigsSocietyImg from "@/assets/rigs-society.png";
+import rigsResearchImg from "@/assets/rigs-research.png.asset.json";
+import rigsIndustryImg from "@/assets/rigs-industry.png.asset.json";
+import rigsGovImg from "@/assets/rigs-government.png.asset.json";
+import rigsSocietyImg from "@/assets/rigs-society.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -131,10 +131,10 @@ const areas = [
 ];
 
 const rigs = [
-  { letter: "R", title: "Research", image: rigsResearchImg, text: "A produção de conhecimento científico, tecnológico e intelectual. Universidades, centros de pesquisa, laboratórios e instituições dedicadas à descoberta." },
-  { letter: "I", title: "Industry", image: rigsIndustryImg, text: "A transformação do conhecimento em soluções, produtos, serviços e desenvolvimento econômico. A capacidade produtiva e inovadora da sociedade." },
-  { letter: "G", title: "Government", image: rigsGovImg, text: "A coordenação institucional necessária para garantir estabilidade, planejamento estratégico, investimento público e desenvolvimento de capacidades nacionais." },
-  { letter: "S", title: "Society", image: rigsSocietyImg, text: "O conjunto de indivíduos, comunidades e organizações que orientam os valores, prioridades e necessidades que impulsionam o progresso." },
+  { letter: "R", title: "Research", subtitle: "Para Universidades", image: rigsResearchImg.url, text: "A produção de conhecimento científico, tecnológico e intelectual. Universidades, centros de pesquisa, laboratórios e instituições dedicadas à descoberta." },
+  { letter: "I", title: "Industry", subtitle: "Para Empresas", image: rigsIndustryImg.url, text: "A transformação do conhecimento em soluções, produtos, serviços e desenvolvimento econômico. A capacidade produtiva e inovadora da sociedade." },
+  { letter: "G", title: "Government", subtitle: "Para Governos", image: rigsGovImg.url, text: "A coordenação institucional necessária para garantir estabilidade, planejamento estratégico, investimento público e desenvolvimento de capacidades nacionais." },
+  { letter: "S", title: "Society", subtitle: "Para Pessoas", image: rigsSocietyImg.url, text: "O conjunto de indivíduos, comunidades e organizações que orientam os valores, prioridades e necessidades que impulsionam o progresso." },
 ];
 
 const missionVision = [
@@ -445,6 +445,7 @@ function Home() {
                 <div className="p-7 text-center sm:p-8 sm:text-left">
                   <SectionLabel>{r.letter} — {r.title}</SectionLabel>
                   <h3 className="mt-3 font-heading text-2xl font-medium sm:text-3xl">{r.title}</h3>
+                  <p className="mt-1 text-sm font-medium text-foreground/80">{r.subtitle}</p>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">{r.text}</p>
                 </div>
               </div>

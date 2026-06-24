@@ -17,7 +17,7 @@ const solutions: { title: string; items: string; to?: string }[] = [
   { title: "Engenharia", items: "Gestão de projetos · CADs" },
   { title: "Backoffice", items: "Contabilidade · RH · Financeiro" },
   { title: "Atendimento", items: "Atendimento ao cliente" },
-  { title: "Produção Criativa", items: "Conteúdo e Design" },
+  { title: "Muse", items: "Produção Criativa · Conteúdo · Design" },
   { title: "Desenvolvimento e Tecnologia", items: "Programação · Segurança · Redes" },
 ];
 
