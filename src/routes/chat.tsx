@@ -123,8 +123,12 @@ function ChatPage() {
     <div className="flex h-screen bg-background text-foreground">
       {/* Sidebar */}
       <aside className="hidden w-72 shrink-0 flex-col border-r border-border bg-surface/40 md:flex">
-        <div className="p-4">
-          <Link to="/" className="font-heading text-sm font-medium">Aura</Link>
+        <div className="flex items-center gap-3 border-b border-border px-4 py-4">
+          <Link to="/" className="shrink-0">
+            <img src={dark ? logoLight.url : logoDark.url} alt="Aura" className="h-7 w-auto" />
+          </Link>
+          <span className="h-5 w-px bg-border" />
+          <span className="font-heading text-sm font-medium">{modelName}</span>
         </div>
         <div className="space-y-1 px-3">
           <SidebarBtn icon={Plus} label="Novo chat" onClick={() => { setMessages([{ role: "assistant", text: "Como posso ajudar?" }]); setTitle("Nova conversa"); }} />
@@ -217,12 +221,6 @@ function ChatPage() {
         {/* Top */}
         <header className="flex h-16 items-center justify-between border-b border-border px-6">
           <div className="flex min-w-0 items-center gap-3">
-            <Link to="/" className="flex items-center gap-2">
-              <img src={dark ? logoLight.url : logoDark.url} alt="Aura" className="h-7 w-auto" />
-            </Link>
-            <span className="h-5 w-px bg-border" />
-            <span className="font-heading text-sm font-medium">{modelName}</span>
-            <span className="ml-3 hidden h-5 w-px bg-border sm:inline-block" />
             {editingTitle ? (
               <input
                 autoFocus
@@ -230,12 +228,12 @@ function ChatPage() {
                 onChange={(e) => setTitle(e.target.value)}
                 onBlur={() => setEditingTitle(false)}
                 onKeyDown={(e) => e.key === "Enter" && setEditingTitle(false)}
-                className="ml-3 hidden rounded-md border border-border bg-background px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-ring sm:block"
+                className="rounded-md border border-border bg-background px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-ring"
               />
             ) : (
-              <button onClick={() => setEditingTitle(true)} className="group ml-3 hidden items-center gap-2 truncate text-sm text-muted-foreground sm:flex">
+              <button onClick={() => setEditingTitle(true)} className="group flex items-center gap-2 truncate text-sm font-medium text-foreground">
                 <span className="truncate">{title}</span>
-                <Pencil className="h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100" />
+                <Pencil className="h-3.5 w-3.5 text-muted-foreground opacity-0 transition group-hover:opacity-100" />
               </button>
             )}
           </div>
