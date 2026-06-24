@@ -438,8 +438,7 @@ function Home() {
                     src={r.image}
                     alt={r.title}
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-contain p-4 contrast-125 saturate-125"
-                    style={{ filter: "contrast(1.18) saturate(1.25)" }}
+                    className="absolute inset-0 h-full w-full object-contain p-2"
                   />
                 </div>
                 <div className="p-7 text-center sm:p-8 sm:text-left">
