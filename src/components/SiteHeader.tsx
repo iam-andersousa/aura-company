@@ -33,22 +33,51 @@ function useDark() {
   return dark;
 }
 
-function ProductsDropdown() {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+export function SiteHeader() {
+  const dark = useDark();
+  const [productsOpen, setProductsOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const h = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setProductsOpen(false);
     };
     document.addEventListener("mousedown", h);
     return () => document.removeEventListener("mousedown", h);
   }, []);
+
   return (
-    <div ref={ref}>
-      <button onClick={() => setOpen((o) => !o)} className="inline-flex items-center gap-1 transition hover:text-foreground">
-        Produtos <ChevronDown className={`h-3.5 w-3.5 transition ${open ? "rotate-180" : ""}`} />
-      </button>
-      {open && (
+    <div ref={wrapRef}>
+      <header className="fixed inset-x-0 top-0 z-50 glass-nav">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+          <Link to="/" className="flex items-center gap-2">
+            <img src={dark ? logoLight.url : logoDark.url} alt="Aura" className="h-10 w-auto sm:h-12" />
+          </Link>
+          <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
+            <Link to="/" hash="sobre" className="transition hover:text-foreground">Sobre</Link>
+            <Link to="/" hash="principios" className="transition hover:text-foreground">Princípios</Link>
+            <Link to="/" hash="rigs" className="transition hover:text-foreground">RIGS</Link>
+            <button
+              onClick={() => setProductsOpen((o) => !o)}
+              className="inline-flex items-center gap-1 transition hover:text-foreground"
+            >
+              Produtos <ChevronDown className={`h-3.5 w-3.5 transition ${productsOpen ? "rotate-180" : ""}`} />
+            </button>
+            <Link to="/" hash="atuacao" className="transition hover:text-foreground">Atuação</Link>
+          </nav>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <Link
+              to="/entrar"
+              className="hidden rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90 sm:inline-flex"
+            >
+              Entrar
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      {productsOpen && (
         <div className="glass-nav fixed inset-x-0 top-20 z-40 shadow-xl">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-10 sm:grid-cols-2">
             <div>
@@ -59,7 +88,7 @@ function ProductsDropdown() {
                     key={p.slug}
                     to="/modelos/$slug"
                     params={{ slug: p.slug }}
-                    onClick={() => setOpen(false)}
+                    onClick={() => setProductsOpen(false)}
                     className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-accent"
                   >
                     <span className="font-heading text-sm font-medium text-foreground">{p.name}</span>
@@ -73,7 +102,7 @@ function ProductsDropdown() {
               <div className="grid grid-cols-2 gap-1">
                 {solutions.map((s) =>
                   s.to ? (
-                    <Link key={s.title} to={s.to} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-left transition hover:bg-accent">
+                    <Link key={s.title} to={s.to} onClick={() => setProductsOpen(false)} className="rounded-lg px-3 py-2 text-left transition hover:bg-accent">
                       <p className="font-heading text-sm font-medium text-foreground">{s.title}</p>
                       <p className="text-xs text-muted-foreground">{s.items}</p>
                     </Link>
@@ -90,34 +119,5 @@ function ProductsDropdown() {
         </div>
       )}
     </div>
-  );
-}
-
-export function SiteHeader() {
-  const dark = useDark();
-  return (
-    <header className="fixed inset-x-0 top-0 z-50 glass-nav">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={dark ? logoLight.url : logoDark.url} alt="Aura" className="h-10 w-auto sm:h-12" />
-        </Link>
-        <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <Link to="/" hash="sobre" className="transition hover:text-foreground">Sobre</Link>
-          <Link to="/" hash="principios" className="transition hover:text-foreground">Princípios</Link>
-          <Link to="/" hash="rigs" className="transition hover:text-foreground">RIGS</Link>
-          <ProductsDropdown />
-          <Link to="/" hash="atuacao" className="transition hover:text-foreground">Atuação</Link>
-        </nav>
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <Link
-            to="/entrar"
-            className="hidden rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90 sm:inline-flex"
-          >
-            Entrar
-          </Link>
-        </div>
-      </div>
-    </header>
   );
 }
