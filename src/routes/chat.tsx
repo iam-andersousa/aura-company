@@ -254,7 +254,7 @@ function ChatPage() {
               ) : (
                 <div
                   className="relative max-w-[80%] overflow-hidden rounded-3xl rounded-tl-md px-5 py-4 text-sm text-white shadow-md"
-                  style={{ background: BUBBLE_GRADIENT }}
+                  style={{ background: BUBBLE_GRADIENT, backgroundSize: "900px 600px", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
                 >
                   <p className="relative leading-relaxed">{m.text}</p>
                 </div>
