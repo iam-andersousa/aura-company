@@ -290,11 +290,12 @@ function ChatPage() {
                 className="max-h-40 flex-1 resize-none bg-transparent px-2 py-2.5 text-sm outline-none placeholder:text-muted-foreground"
               />
 
-              {/* Options dropdown */}
-              <div className="relative" ref={optsRef}>
+              {/* Options dropdown — moved to the right, gradient background */}
+              <div className="relative order-last ml-auto" ref={optsRef}>
                 <button
                   onClick={() => setOptionsOpen((o) => !o)}
-                  className="flex h-10 items-center gap-1.5 rounded-full border border-border px-3 text-muted-foreground transition hover:bg-accent hover:text-foreground"
+                  className="flex h-10 items-center gap-1.5 rounded-full px-3 text-xs font-medium text-white shadow-md transition hover:opacity-90"
+                  style={{ background: BUBBLE_GRADIENT, backgroundSize: "900px 600px", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
                   aria-label="Opções"
                 >
                   <ModeIcon className="h-3.5 w-3.5" />
