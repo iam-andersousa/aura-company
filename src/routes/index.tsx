@@ -1,28 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
-import {
-  ArrowRight,
-  Brain,
-  Database,
-  Workflow,
-  FlaskConical,
-  GraduationCap,
-  HeartPulse,
-  Zap,
-  Shield,
-  Landmark,
-  Instagram,
-} from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
+import { ArrowRight, ArrowLeft, Instagram } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 
-import logoDark from "@/assets/aura-logo-dark.png.asset.json";
 import logoLight from "@/assets/aura-logo-light.png.asset.json";
 
 import sloganWhite from "@/assets/slogan-white.png.asset.json";
@@ -35,25 +15,12 @@ import p2 from "@/assets/principle-2.jpg";
 import p3 from "@/assets/principle-3.jpg";
 import p4 from "@/assets/principle-4.jpg";
 import p5 from "@/assets/principle-5.jpg";
-import pAristoteles from "@/assets/product-aristoteles.jpg";
-import pHerodotus from "@/assets/product-herodotus.jpg";
-import pPythagoras from "@/assets/product-pythagoras.jpg";
-import pArchimedes from "@/assets/product-archimedes.jpg";
 
-import areaIa from "@/assets/area-ia.jpg";
-import areaData from "@/assets/area-data.jpg";
-import areaAuto from "@/assets/area-auto.jpg";
-import areaResearch from "@/assets/area-research.jpg";
-import areaEdu from "@/assets/area-edu.jpg";
-import areaHealth from "@/assets/area-health.jpg";
-import areaEnergy from "@/assets/area-energy.jpg";
-import areaDefense from "@/assets/area-defense.jpg";
-import areaInfra from "@/assets/area-infra.jpg";
-
-import rigsResearchImg from "@/assets/rigs-research.png.asset.json";
-import rigsIndustryImg from "@/assets/rigs-industry.png.asset.json";
-import rigsGovImg from "@/assets/rigs-government.png.asset.json";
-import rigsSocietyImg from "@/assets/rigs-society.png.asset.json";
+import mktEdu from "@/assets/market-education.jpg.asset.json";
+import mktHealth from "@/assets/market-health.jpg.asset.json";
+import mktLaw from "@/assets/market-law.jpg.asset.json";
+import mktAcc from "@/assets/market-accounting.jpg.asset.json";
+import mktBiz from "@/assets/market-business.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
