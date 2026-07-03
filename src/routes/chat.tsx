@@ -325,13 +325,15 @@ function ChatPage() {
                     <div className="mt-3 grid grid-cols-2 gap-1 rounded-xl border border-border p-1">
                       <button
                         onClick={() => setTokenAuto(true)}
-                        className={`rounded-lg py-1.5 text-xs transition ${tokenAuto ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-accent"}`}
+                        className={`rounded-lg py-1.5 text-xs transition ${tokenAuto ? "text-white shadow" : "text-muted-foreground hover:bg-accent"}`}
+                        style={tokenAuto ? { background: BUBBLE_GRADIENT, backgroundSize: "900px 600px", backgroundPosition: "center", backgroundRepeat: "no-repeat" } : undefined}
                       >
                         Auto
                       </button>
                       <button
                         onClick={() => setTokenAuto(false)}
-                        className={`rounded-lg py-1.5 text-xs transition ${!tokenAuto ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-accent"}`}
+                        className={`rounded-lg py-1.5 text-xs transition ${!tokenAuto ? "text-white shadow" : "text-muted-foreground hover:bg-accent"}`}
+                        style={!tokenAuto ? { background: BUBBLE_GRADIENT, backgroundSize: "900px 600px", backgroundPosition: "center", backgroundRepeat: "no-repeat" } : undefined}
                       >
                         Manual
                       </button>
