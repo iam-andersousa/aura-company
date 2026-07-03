@@ -240,27 +240,71 @@ function DocsPage() {
 
           <section className="mt-12">
             <h2 className="font-heading text-2xl font-medium">Webhooks</h2>
-            <div className="mt-4 flex items-start gap-4 rounded-2xl border border-border bg-card p-5">
-              <Webhook className="mt-0.5 h-5 w-5 text-muted-foreground" />
-              <div className="text-sm text-muted-foreground">
-                Receba eventos de{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5">completion.finished</code>,{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5">conversation.created</code>,{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5">file.processed</code>,{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5">finetune.completed</code> e{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5">key.rotated</code>. Entregas
-                assinadas com HMAC-SHA256 e retentativa exponencial por até 24h.
-              </div>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Receba eventos assinados via HMAC-SHA256 diretamente no seu endpoint. Configure em <span className="text-foreground">Conta → Webhooks</span>.
+            </p>
+            <div className="mt-4 space-y-3">
+              {[
+                { e: "completion.finished", d: "Conclusão de geração de texto — inclui métricas de tokens e latência." },
+                { e: "conversation.created", d: "Nova conversa aberta em qualquer contexto (chat, API, plug-in)." },
+                { e: "conversation.message", d: "Nova mensagem em uma conversa existente." },
+                { e: "file.processed", d: "Arquivo carregado terminou o pré-processamento (chunking, embedding)." },
+                { e: "file.failed", d: "Falha ao processar arquivo — inclui razão e código." },
+                { e: "finetune.started", d: "Job de fine-tuning iniciado." },
+                { e: "finetune.completed", d: "Fine-tuning concluído — modelo customizado disponível." },
+                { e: "key.rotated", d: "Chave de API rotacionada ou revogada." },
+                { e: "quota.threshold", d: "Consumo atingiu 80% / 100% da cota configurada." },
+                { e: "billing.invoice", d: "Nova fatura gerada." },
+              ].map((w) => (
+                <div key={w.e} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-4">
+                  <Webhook className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                  <code className="shrink-0 rounded bg-muted px-2 py-1 font-mono text-xs">{w.e}</code>
+                  <span className="text-sm text-muted-foreground">{w.d}</span>
+                </div>
+              ))}
             </div>
+            <pre className="mt-4 overflow-x-auto rounded-2xl border border-border bg-card p-5 text-xs leading-relaxed"><code>{`// Verificação de assinatura HMAC
+const sig = req.headers["x-aura-signature"];
+const expected = createHmac("sha256", process.env.AURA_WEBHOOK_SECRET)
+  .update(rawBody).digest("hex");
+if (!timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) return res.status(401).end();`}</code></pre>
           </section>
 
           <section className="mt-12">
-            <h2 className="font-heading text-2xl font-medium">Integrações</h2>
+            <h2 className="font-heading text-2xl font-medium">Integrações nativas</h2>
+            <p className="mt-3 text-sm text-muted-foreground">Conectores oficiais mantidos pela equipe Aura. Configuração via OAuth ou API key.</p>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {["Zapier", "Make", "n8n", "Slack", "Notion", "LangChain", "LlamaIndex", "Vercel AI SDK"].map((p) => (
-                <div key={p} className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4">
-                  <Plug className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm font-medium">{p}</span>
+              {[
+                { name: "Zapier", cat: "Automação", desc: "Mais de 300 gatilhos e ações prontos." },
+                { name: "Make", cat: "Automação", desc: "Cenários visuais com módulos Aura." },
+                { name: "n8n", cat: "Automação", desc: "Node oficial self-hosted ou cloud." },
+                { name: "Slack", cat: "Comunicação", desc: "Bot conversacional + slash commands." },
+                { name: "Microsoft Teams", cat: "Comunicação", desc: "App corporativo com SSO Entra ID." },
+                { name: "Discord", cat: "Comunicação", desc: "Bot para servidores e canais privados." },
+                { name: "Notion", cat: "Produtividade", desc: "Grounding em databases e pages." },
+                { name: "Google Workspace", cat: "Produtividade", desc: "Drive, Docs, Gmail e Calendar." },
+                { name: "Microsoft 365", cat: "Produtividade", desc: "OneDrive, Outlook, SharePoint." },
+                { name: "GitHub", cat: "Dev", desc: "Repositórios, issues, PRs e Actions." },
+                { name: "GitLab", cat: "Dev", desc: "Repos, MRs e pipelines CI/CD." },
+                { name: "Linear", cat: "Dev", desc: "Sincronização bidirecional de issues." },
+                { name: "Jira", cat: "Dev", desc: "Cloud e Data Center." },
+                { name: "Salesforce", cat: "CRM", desc: "Objetos padrão e customizados." },
+                { name: "HubSpot", cat: "CRM", desc: "Contatos, deals, tickets e workflows." },
+                { name: "Stripe", cat: "Pagamentos", desc: "Assinaturas, faturas e eventos." },
+                { name: "Snowflake", cat: "Dados", desc: "Query direto via Cortex SQL." },
+                { name: "BigQuery", cat: "Dados", desc: "Datasets e sinks nativos." },
+                { name: "Segment", cat: "Dados", desc: "Sources e destinations." },
+                { name: "LangChain", cat: "Frameworks IA", desc: "Provider oficial Python e JS." },
+                { name: "LlamaIndex", cat: "Frameworks IA", desc: "LLM e Embedding wrappers." },
+                { name: "Vercel AI SDK", cat: "Frameworks IA", desc: "Provider com streaming nativo." },
+              ].map((p) => (
+                <div key={p.name} className="rounded-2xl border border-border bg-card p-4">
+                  <div className="flex items-center gap-3">
+                    <Plug className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm font-medium">{p.name}</span>
+                    <span className="ml-auto rounded-full bg-muted px-2 py-0.5 text-[10px] text-muted-foreground">{p.cat}</span>
+                  </div>
+                  <p className="mt-2 text-xs text-muted-foreground">{p.desc}</p>
                 </div>
               ))}
             </div>
@@ -270,18 +314,25 @@ function DocsPage() {
             <h2 className="font-heading text-2xl font-medium">Plug-ins & SDKs</h2>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {[
-                { name: "Python SDK", icon: Server },
-                { name: "Node.js / TS SDK", icon: Server },
-                { name: "Go SDK", icon: Terminal },
-                { name: "Rust SDK", icon: Terminal },
-                { name: "VS Code Extension", icon: Puzzle },
-                { name: "JetBrains Plug-in", icon: Puzzle },
-                { name: "Chrome Extension", icon: Puzzle },
-                { name: "Figma Plug-in", icon: Puzzle },
+                { name: "Python SDK", icon: Server, desc: "pip install aura — async, streaming, tool-calling." },
+                { name: "Node.js / TS SDK", icon: Server, desc: "npm i @aura/sdk — tipagem completa e edge runtime." },
+                { name: "Go SDK", icon: Terminal, desc: "go get github.com/aura-ai/aura-go." },
+                { name: "Rust SDK", icon: Terminal, desc: "cargo add aura — cliente async + tokio." },
+                { name: "Ruby SDK", icon: Terminal, desc: "gem install aura-ruby." },
+                { name: "PHP SDK", icon: Terminal, desc: "composer require aura/aura-php." },
+                { name: "VS Code Extension", icon: Puzzle, desc: "Autocomplete, chat inline e refactoring." },
+                { name: "JetBrains Plug-in", icon: Puzzle, desc: "IntelliJ, PyCharm, WebStorm e Rider." },
+                { name: "Chrome Extension", icon: Puzzle, desc: "Aura em qualquer aba e conversa contextual." },
+                { name: "Figma Plug-in", icon: Puzzle, desc: "Geração de copy, componentes e specs." },
+                { name: "Raycast Extension", icon: Puzzle, desc: "Comandos rápidos e snippets." },
+                { name: "CLI Aura", icon: Terminal, desc: "aura chat, aura run, aura keys." },
               ].map((p) => (
-                <div key={p.name} className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4">
-                  <p.icon className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm font-medium">{p.name}</span>
+                <div key={p.name} className="rounded-2xl border border-border bg-card p-4">
+                  <div className="flex items-center gap-3">
+                    <p.icon className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm font-medium">{p.name}</span>
+                  </div>
+                  <p className="mt-2 text-xs text-muted-foreground">{p.desc}</p>
                 </div>
               ))}
             </div>

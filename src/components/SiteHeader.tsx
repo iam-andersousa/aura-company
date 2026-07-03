@@ -14,11 +14,26 @@ const products = [
 
 const solutions: { title: string; items: string; to?: string }[] = [
   { title: "Midas", items: "Marketing · Vendas · Customer Success", to: "/solucoes/midas" },
-  { title: "Engenharia", items: "Gestão de projetos · CADs" },
-  { title: "Backoffice", items: "Contabilidade · RH · Financeiro" },
+  { title: "Hefesto", items: "Engenharia · Gestão de projetos · CADs" },
+  { title: "Atlas", items: "Contabilidade · RH · Financeiro" },
   { title: "Atendimento", items: "Atendimento ao cliente" },
   { title: "Muse", items: "Produção Criativa · Conteúdo · Design" },
-  { title: "Desenvolvimento e Tecnologia", items: "Programação · Segurança · Redes" },
+  { title: "Dev & Tech", items: "Programação · Segurança · Redes" },
+];
+
+const rigsSections = [
+  { slug: "research", title: "Research", tag: "Para Universidades" },
+  { slug: "industry", title: "Industry", tag: "Para Empresas" },
+  { slug: "government", title: "Government", tag: "Para Governos" },
+  { slug: "society", title: "Society", tag: "Para Pessoas" },
+];
+
+const marketSections = [
+  { slug: "educacao", title: "Educação", tag: "Aprendizado em escala" },
+  { slug: "saude", title: "Saúde", tag: "Cuidado ampliado" },
+  { slug: "direito", title: "Direito", tag: "Análise jurídica" },
+  { slug: "contabilidade", title: "Contabilidade", tag: "Precisão e conformidade" },
+  { slug: "negocios", title: "Negócios", tag: "Decisão executiva" },
 ];
 
 function useDark() {
@@ -33,37 +48,67 @@ function useDark() {
   return dark;
 }
 
+type MenuKey = "produtos" | "rigs" | "atuacao" | null;
+
 export function SiteHeader() {
   const dark = useDark();
-  const [productsOpen, setProductsOpen] = useState(false);
+  const [open, setOpen] = useState<MenuKey>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const scheduleClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(null), 120);
+  };
+  const cancelClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  };
+  const openMenu = (k: MenuKey) => {
+    cancelClose();
+    setOpen(k);
+  };
 
   useEffect(() => {
     const h = (e: MouseEvent) => {
-      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setProductsOpen(false);
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(null);
     };
     document.addEventListener("mousedown", h);
     return () => document.removeEventListener("mousedown", h);
   }, []);
 
+  const navLink = "transition text-foreground/70 hover:text-foreground";
+
   return (
-    <div ref={wrapRef}>
+    <div ref={wrapRef} onMouseLeave={scheduleClose}>
       <header className="fixed inset-x-0 top-0 z-50 glass-nav">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <Link to="/" className="flex items-center gap-2">
             <img src={dark ? logoLight.url : logoDark.url} alt="Aura" className="h-10 w-auto sm:h-12" />
           </Link>
-          <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-            <Link to="/" hash="sobre" className="transition hover:text-foreground">Sobre</Link>
-            <Link to="/" hash="principios" className="transition hover:text-foreground">Princípios</Link>
-            <Link to="/" hash="rigs" className="transition hover:text-foreground">RIGS</Link>
+          <nav className="hidden items-center gap-8 text-sm md:flex">
+            <Link to="/" hash="sobre" onMouseEnter={() => openMenu(null)} className={navLink}>Sobre</Link>
+            <Link to="/" hash="principios" onMouseEnter={() => openMenu(null)} className={navLink}>Princípios</Link>
             <button
-              onClick={() => setProductsOpen((o) => !o)}
-              className="inline-flex items-center gap-1 transition hover:text-foreground"
+              onMouseEnter={() => openMenu("rigs")}
+              onClick={() => setOpen(open === "rigs" ? null : "rigs")}
+              className={`inline-flex items-center gap-1 ${navLink}`}
             >
-              Produtos <ChevronDown className={`h-3.5 w-3.5 transition ${productsOpen ? "rotate-180" : ""}`} />
+              RIGS <ChevronDown className={`h-3.5 w-3.5 transition ${open === "rigs" ? "rotate-180" : ""}`} />
             </button>
-            <Link to="/" hash="atuacao" className="transition hover:text-foreground">Atuação</Link>
+            <button
+              onMouseEnter={() => openMenu("produtos")}
+              onClick={() => setOpen(open === "produtos" ? null : "produtos")}
+              className={`inline-flex items-center gap-1 ${navLink}`}
+            >
+              Produtos <ChevronDown className={`h-3.5 w-3.5 transition ${open === "produtos" ? "rotate-180" : ""}`} />
+            </button>
+            <button
+              onMouseEnter={() => openMenu("atuacao")}
+              onClick={() => setOpen(open === "atuacao" ? null : "atuacao")}
+              className={`inline-flex items-center gap-1 ${navLink}`}
+            >
+              Atuação <ChevronDown className={`h-3.5 w-3.5 transition ${open === "atuacao" ? "rotate-180" : ""}`} />
+            </button>
           </nav>
           <div className="flex items-center gap-3">
             <ThemeToggle />
@@ -77,44 +122,92 @@ export function SiteHeader() {
         </div>
       </header>
 
-      {productsOpen && (
-        <div className="glass-nav fixed inset-x-0 top-20 z-40 shadow-xl">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-10 sm:grid-cols-2">
-            <div>
-              <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-muted-foreground">Modelos</p>
-              <div className="grid grid-cols-2 gap-1">
-                {products.map((p) => (
-                  <Link
-                    key={p.slug}
-                    to="/modelos/$slug"
-                    params={{ slug: p.slug }}
-                    onClick={() => setProductsOpen(false)}
-                    className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-accent"
-                  >
-                    <span className="font-heading text-sm font-medium text-foreground">{p.name}</span>
-                    <span className="text-xs text-muted-foreground">{p.tag}</span>
-                  </Link>
-                ))}
+      {open && (
+        <div
+          className="glass-nav fixed inset-x-0 top-20 z-40 text-foreground shadow-xl"
+          onMouseEnter={cancelClose}
+          onMouseLeave={scheduleClose}
+        >
+          <div className="mx-auto max-w-7xl px-6 py-10">
+            {open === "produtos" && (
+              <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
+                <div>
+                  <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-foreground/60">Modelos</p>
+                  <div className="grid grid-cols-2 gap-1">
+                    {products.map((p) => (
+                      <Link
+                        key={p.slug}
+                        to="/modelos/$slug"
+                        params={{ slug: p.slug }}
+                        onClick={() => setOpen(null)}
+                        className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10"
+                      >
+                        <span className="font-heading text-sm font-medium">{p.name}</span>
+                        <span className="text-xs text-foreground/60">{p.tag}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-foreground/60">Soluções</p>
+                  <div className="grid grid-cols-2 gap-1">
+                    {solutions.map((s) =>
+                      s.to ? (
+                        <Link key={s.title} to={s.to} onClick={() => setOpen(null)} className="rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10">
+                          <p className="font-heading text-sm font-medium">{s.title}</p>
+                          <p className="text-xs text-foreground/60">{s.items}</p>
+                        </Link>
+                      ) : (
+                        <div key={s.title} className="rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10">
+                          <p className="font-heading text-sm font-medium">{s.title}</p>
+                          <p className="text-xs text-foreground/60">{s.items}</p>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div>
-              <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-muted-foreground">Soluções</p>
-              <div className="grid grid-cols-2 gap-1">
-                {solutions.map((s) =>
-                  s.to ? (
-                    <Link key={s.title} to={s.to} onClick={() => setProductsOpen(false)} className="rounded-lg px-3 py-2 text-left transition hover:bg-accent">
-                      <p className="font-heading text-sm font-medium text-foreground">{s.title}</p>
-                      <p className="text-xs text-muted-foreground">{s.items}</p>
+            )}
+
+            {open === "rigs" && (
+              <div>
+                <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-foreground/60">Framework RIGS</p>
+                <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">
+                  {rigsSections.map((r) => (
+                    <Link
+                      key={r.slug}
+                      to="/rigs/$slug"
+                      params={{ slug: r.slug }}
+                      onClick={() => setOpen(null)}
+                      className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10"
+                    >
+                      <span className="font-heading text-sm font-medium">{r.title}</span>
+                      <span className="text-xs text-foreground/60">{r.tag}</span>
                     </Link>
-                  ) : (
-                    <div key={s.title} className="rounded-lg px-3 py-2 text-left transition hover:bg-accent">
-                      <p className="font-heading text-sm font-medium text-foreground">{s.title}</p>
-                      <p className="text-xs text-muted-foreground">{s.items}</p>
-                    </div>
-                  ),
-                )}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
+
+            {open === "atuacao" && (
+              <div>
+                <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-foreground/60">Mercados de Atuação</p>
+                <div className="grid grid-cols-2 gap-1 sm:grid-cols-5">
+                  {marketSections.map((m) => (
+                    <Link
+                      key={m.slug}
+                      to="/mercados/$slug"
+                      params={{ slug: m.slug }}
+                      onClick={() => setOpen(null)}
+                      className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10"
+                    >
+                      <span className="font-heading text-sm font-medium">{m.title}</span>
+                      <span className="text-xs text-foreground/60">{m.tag}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
