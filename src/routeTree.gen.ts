@@ -22,6 +22,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesMidasRouteImport } from './routes/solucoes.midas'
 import { Route as RigsSlugRouteImport } from './routes/rigs.$slug'
 import { Route as ModelosSlugRouteImport } from './routes/modelos.$slug'
+import { Route as MercadosSlugRouteImport } from './routes/mercados.$slug'
 import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 
 const TermosRoute = TermosRouteImport.update({
@@ -89,6 +90,11 @@ const ModelosSlugRoute = ModelosSlugRouteImport.update({
   path: '/modelos/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MercadosSlugRoute = MercadosSlugRouteImport.update({
+  id: '/mercados/$slug',
+  path: '/mercados/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DocsSlugRoute = DocsSlugRouteImport.update({
   id: '/docs/$slug',
   path: '/docs/$slug',
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/privacidade': typeof PrivacidadeRoute
   '/termos': typeof TermosRoute
   '/docs/$slug': typeof DocsSlugRoute
+  '/mercados/$slug': typeof MercadosSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
   '/rigs/$slug': typeof RigsSlugRoute
   '/solucoes/midas': typeof SolucoesMidasRoute
@@ -123,6 +130,7 @@ export interface FileRoutesByTo {
   '/privacidade': typeof PrivacidadeRoute
   '/termos': typeof TermosRoute
   '/docs/$slug': typeof DocsSlugRoute
+  '/mercados/$slug': typeof MercadosSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
   '/rigs/$slug': typeof RigsSlugRoute
   '/solucoes/midas': typeof SolucoesMidasRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/privacidade': typeof PrivacidadeRoute
   '/termos': typeof TermosRoute
   '/docs/$slug': typeof DocsSlugRoute
+  '/mercados/$slug': typeof MercadosSlugRoute
   '/modelos/$slug': typeof ModelosSlugRoute
   '/rigs/$slug': typeof RigsSlugRoute
   '/solucoes/midas': typeof SolucoesMidasRoute
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
     | '/privacidade'
     | '/termos'
     | '/docs/$slug'
+    | '/mercados/$slug'
     | '/modelos/$slug'
     | '/rigs/$slug'
     | '/solucoes/midas'
@@ -174,6 +184,7 @@ export interface FileRouteTypes {
     | '/privacidade'
     | '/termos'
     | '/docs/$slug'
+    | '/mercados/$slug'
     | '/modelos/$slug'
     | '/rigs/$slug'
     | '/solucoes/midas'
@@ -190,6 +201,7 @@ export interface FileRouteTypes {
     | '/privacidade'
     | '/termos'
     | '/docs/$slug'
+    | '/mercados/$slug'
     | '/modelos/$slug'
     | '/rigs/$slug'
     | '/solucoes/midas'
@@ -207,6 +219,7 @@ export interface RootRouteChildren {
   PrivacidadeRoute: typeof PrivacidadeRoute
   TermosRoute: typeof TermosRoute
   DocsSlugRoute: typeof DocsSlugRoute
+  MercadosSlugRoute: typeof MercadosSlugRoute
   ModelosSlugRoute: typeof ModelosSlugRoute
   RigsSlugRoute: typeof RigsSlugRoute
   SolucoesMidasRoute: typeof SolucoesMidasRoute
@@ -305,6 +318,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModelosSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mercados/$slug': {
+      id: '/mercados/$slug'
+      path: '/mercados/$slug'
+      fullPath: '/mercados/$slug'
+      preLoaderRoute: typeof MercadosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/docs/$slug': {
       id: '/docs/$slug'
       path: '/docs/$slug'
@@ -327,6 +347,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacidadeRoute: PrivacidadeRoute,
   TermosRoute: TermosRoute,
   DocsSlugRoute: DocsSlugRoute,
+  MercadosSlugRoute: MercadosSlugRoute,
   ModelosSlugRoute: ModelosSlugRoute,
   RigsSlugRoute: RigsSlugRoute,
   SolucoesMidasRoute: SolucoesMidasRoute,
