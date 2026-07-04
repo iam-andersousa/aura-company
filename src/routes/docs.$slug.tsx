@@ -158,8 +158,8 @@ function DocsPage() {
     <div className="min-h-screen bg-background text-foreground">
       <header className="fixed inset-x-0 top-0 z-50 glass-nav">
         <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6">
-          <Link to="/modelos/$slug" params={{ slug }} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-            <ArrowLeft className="h-4 w-4" /> Voltar ao modelo
+          <Link to="/produtos/$slug" params={{ slug }} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+            <ArrowLeft className="h-4 w-4" /> Voltar ao produto
           </Link>
           <span className="font-heading text-sm font-medium">Docs — {name}</span>
           <ThemeToggle />
