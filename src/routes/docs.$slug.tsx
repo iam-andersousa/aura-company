@@ -4,10 +4,11 @@ import { ArrowLeft, KeyRound, Github, Plug, Webhook, Server, Puzzle, Terminal } 
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAMES: Record<string, string> = {
-  aristoteles: "Aristoteles",
-  herodotus: "Herodotus",
-  pythagoras: "Pythagoras",
-  archimedes: "Archimedes",
+  vector: "Vector",
+  axis: "Axis",
+  pulse: "Pulse",
+  genius: "Genius",
+  codex: "Codex",
 };
 
 export const Route = createFileRoute("/docs/$slug")({
