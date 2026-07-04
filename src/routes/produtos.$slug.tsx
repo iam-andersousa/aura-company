@@ -202,7 +202,7 @@ export const Route = createFileRoute("/produtos/$slug")({
 });
 
 function ProdutoPage() {
-  const p = Route.useLoaderData();
+  const p = Route.useLoaderData() as Product;
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
