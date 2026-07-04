@@ -21,7 +21,7 @@ import { Route as CadastrarRouteImport } from './routes/cadastrar'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesMidasRouteImport } from './routes/solucoes.midas'
 import { Route as RigsSlugRouteImport } from './routes/rigs.$slug'
-import { Route as ModelosSlugRouteImport } from './routes/modelos.$slug'
+import { Route as ProdutosSlugRouteImport } from './routes/produtos.$slug'
 import { Route as MercadosSlugRouteImport } from './routes/mercados.$slug'
 import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 
@@ -85,9 +85,9 @@ const RigsSlugRoute = RigsSlugRouteImport.update({
   path: '/rigs/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ModelosSlugRoute = ModelosSlugRouteImport.update({
-  id: '/modelos/$slug',
-  path: '/modelos/$slug',
+const ProdutosSlugRoute = ProdutosSlugRouteImport.update({
+  id: '/produtos/$slug',
+  path: '/produtos/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MercadosSlugRoute = MercadosSlugRouteImport.update({
@@ -114,7 +114,7 @@ export interface FileRoutesByFullPath {
   '/termos': typeof TermosRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/mercados/$slug': typeof MercadosSlugRoute
-  '/modelos/$slug': typeof ModelosSlugRoute
+  '/produtos/$slug': typeof ProdutosSlugRoute
   '/rigs/$slug': typeof RigsSlugRoute
   '/solucoes/midas': typeof SolucoesMidasRoute
 }
@@ -131,7 +131,7 @@ export interface FileRoutesByTo {
   '/termos': typeof TermosRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/mercados/$slug': typeof MercadosSlugRoute
-  '/modelos/$slug': typeof ModelosSlugRoute
+  '/produtos/$slug': typeof ProdutosSlugRoute
   '/rigs/$slug': typeof RigsSlugRoute
   '/solucoes/midas': typeof SolucoesMidasRoute
 }
@@ -149,7 +149,7 @@ export interface FileRoutesById {
   '/termos': typeof TermosRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/mercados/$slug': typeof MercadosSlugRoute
-  '/modelos/$slug': typeof ModelosSlugRoute
+  '/produtos/$slug': typeof ProdutosSlugRoute
   '/rigs/$slug': typeof RigsSlugRoute
   '/solucoes/midas': typeof SolucoesMidasRoute
 }
@@ -168,7 +168,7 @@ export interface FileRouteTypes {
     | '/termos'
     | '/docs/$slug'
     | '/mercados/$slug'
-    | '/modelos/$slug'
+    | '/produtos/$slug'
     | '/rigs/$slug'
     | '/solucoes/midas'
   fileRoutesByTo: FileRoutesByTo
@@ -185,7 +185,7 @@ export interface FileRouteTypes {
     | '/termos'
     | '/docs/$slug'
     | '/mercados/$slug'
-    | '/modelos/$slug'
+    | '/produtos/$slug'
     | '/rigs/$slug'
     | '/solucoes/midas'
   id:
@@ -202,7 +202,7 @@ export interface FileRouteTypes {
     | '/termos'
     | '/docs/$slug'
     | '/mercados/$slug'
-    | '/modelos/$slug'
+    | '/produtos/$slug'
     | '/rigs/$slug'
     | '/solucoes/midas'
   fileRoutesById: FileRoutesById
@@ -220,7 +220,7 @@ export interface RootRouteChildren {
   TermosRoute: typeof TermosRoute
   DocsSlugRoute: typeof DocsSlugRoute
   MercadosSlugRoute: typeof MercadosSlugRoute
-  ModelosSlugRoute: typeof ModelosSlugRoute
+  ProdutosSlugRoute: typeof ProdutosSlugRoute
   RigsSlugRoute: typeof RigsSlugRoute
   SolucoesMidasRoute: typeof SolucoesMidasRoute
 }
@@ -311,11 +311,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RigsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/modelos/$slug': {
-      id: '/modelos/$slug'
-      path: '/modelos/$slug'
-      fullPath: '/modelos/$slug'
-      preLoaderRoute: typeof ModelosSlugRouteImport
+    '/produtos/$slug': {
+      id: '/produtos/$slug'
+      path: '/produtos/$slug'
+      fullPath: '/produtos/$slug'
+      preLoaderRoute: typeof ProdutosSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mercados/$slug': {
@@ -348,7 +348,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermosRoute: TermosRoute,
   DocsSlugRoute: DocsSlugRoute,
   MercadosSlugRoute: MercadosSlugRoute,
-  ModelosSlugRoute: ModelosSlugRoute,
+  ProdutosSlugRoute: ProdutosSlugRoute,
   RigsSlugRoute: RigsSlugRoute,
   SolucoesMidasRoute: SolucoesMidasRoute,
 }

@@ -10,7 +10,7 @@ import logoDark from "@/assets/aura-logo-dark.png.asset.json";
 import logoLight from "@/assets/aura-logo-light.png.asset.json";
 
 export const Route = createFileRoute("/chat")({
-  validateSearch: (s: Record<string, unknown>) => ({ model: (s.model as string) || "aristoteles" }),
+  validateSearch: (s: Record<string, unknown>) => ({ model: (s.model as string) || "vector" }),
   head: () => ({ meta: [{ title: "Chat — Aura" }] }),
   component: ChatPage,
 });
@@ -20,10 +20,11 @@ type Chat = { id: string; title: string };
 type Project = { id: string; name: string };
 
 const MODEL_NAMES: Record<string, string> = {
-  aristoteles: "Aristoteles",
-  herodotus: "Herodotus",
-  pythagoras: "Pythagoras",
-  archimedes: "Archimedes",
+  vector: "Vector",
+  axis: "Axis",
+  pulse: "Pulse",
+  genius: "Genius",
+  codex: "Codex",
 };
 
 // CSS gradient mimicking the attached bannercolors.png

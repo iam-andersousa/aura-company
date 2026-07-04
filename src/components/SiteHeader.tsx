@@ -6,19 +6,11 @@ import logoDark from "@/assets/aura-logo-dark.png.asset.json";
 import logoLight from "@/assets/aura-logo-light.png.asset.json";
 
 const products = [
-  { slug: "aristoteles", name: "Aristoteles", tag: "Raciocínio & Decisão" },
-  { slug: "herodotus", name: "Herodotus", tag: "História & Geopolítica" },
-  { slug: "pythagoras", name: "Pythagoras", tag: "Matemática & Análise" },
-  { slug: "archimedes", name: "Archimedes", tag: "Engenharia & Sistemas" },
-];
-
-const solutions: { title: string; items: string; to?: string }[] = [
-  { title: "Midas", items: "Marketing · Vendas · Customer Success", to: "/solucoes/midas" },
-  { title: "Hefesto", items: "Engenharia · Gestão de projetos · CADs" },
-  { title: "Atlas", items: "Contabilidade · RH · Financeiro" },
-  { title: "Atendimento", items: "Atendimento ao cliente" },
-  { title: "Muse", items: "Produção Criativa · Conteúdo · Design" },
-  { title: "Dev & Tech", items: "Programação · Segurança · Redes" },
+  { slug: "vector", name: "Vector", tag: "Front-office — Marketing, Vendas, CS" },
+  { slug: "axis", name: "Axis", tag: "Back-office — Finanças, RH, TI, Ops" },
+  { slug: "pulse", name: "Pulse", tag: "Saúde & Bem-estar" },
+  { slug: "genius", name: "Genius", tag: "Educação & Pesquisa" },
+  { slug: "codex", name: "Codex", tag: "Direito" },
 ];
 
 const rigsSections = [
@@ -29,11 +21,11 @@ const rigsSections = [
 ];
 
 const marketSections = [
-  { slug: "educacao", title: "Educação", tag: "Aprendizado em escala" },
-  { slug: "saude", title: "Saúde", tag: "Cuidado ampliado" },
-  { slug: "direito", title: "Direito", tag: "Análise jurídica" },
-  { slug: "contabilidade", title: "Contabilidade", tag: "Precisão e conformidade" },
-  { slug: "negocios", title: "Negócios", tag: "Decisão executiva" },
+  { slug: "educacao", title: "Educação", tag: "Genius em ação" },
+  { slug: "saude", title: "Saúde", tag: "Pulse em ação" },
+  { slug: "direito", title: "Direito", tag: "Codex em ação" },
+  { slug: "contabilidade", title: "Contabilidade", tag: "Axis em ação" },
+  { slug: "negocios", title: "Negócios", tag: "Vector em ação" },
 ];
 
 function useDark() {
@@ -130,41 +122,21 @@ export function SiteHeader() {
         >
           <div className="mx-auto max-w-7xl px-6 py-10">
             {open === "produtos" && (
-              <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
-                <div>
-                  <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-foreground/60">Modelos</p>
-                  <div className="grid grid-cols-2 gap-1">
-                    {products.map((p) => (
-                      <Link
-                        key={p.slug}
-                        to="/modelos/$slug"
-                        params={{ slug: p.slug }}
-                        onClick={() => setOpen(null)}
-                        className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10"
-                      >
-                        <span className="font-heading text-sm font-medium">{p.name}</span>
-                        <span className="text-xs text-foreground/60">{p.tag}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-foreground/60">Soluções</p>
-                  <div className="grid grid-cols-2 gap-1">
-                    {solutions.map((s) =>
-                      s.to ? (
-                        <Link key={s.title} to={s.to} onClick={() => setOpen(null)} className="rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10">
-                          <p className="font-heading text-sm font-medium">{s.title}</p>
-                          <p className="text-xs text-foreground/60">{s.items}</p>
-                        </Link>
-                      ) : (
-                        <div key={s.title} className="rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10">
-                          <p className="font-heading text-sm font-medium">{s.title}</p>
-                          <p className="text-xs text-foreground/60">{s.items}</p>
-                        </div>
-                      ),
-                    )}
-                  </div>
+              <div>
+                <p className="px-2 pb-3 text-[10px] uppercase tracking-widest text-foreground/60">Produtos Aura</p>
+                <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-5">
+                  {products.map((p) => (
+                    <Link
+                      key={p.slug}
+                      to="/produtos/$slug"
+                      params={{ slug: p.slug }}
+                      onClick={() => setOpen(null)}
+                      className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10"
+                    >
+                      <span className="font-heading text-sm font-medium">{p.name}</span>
+                      <span className="text-xs text-foreground/60">{p.tag}</span>
+                    </Link>
+                  ))}
                 </div>
               </div>
             )}

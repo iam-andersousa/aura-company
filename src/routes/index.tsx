@@ -9,17 +9,15 @@ import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
 
 import heroBg from "@/assets/hero-bg.jpg";
-import p1 from "@/assets/principle-1.jpg";
-import p2 from "@/assets/principle-2.jpg";
-import p3 from "@/assets/principle-3.jpg";
-import p4 from "@/assets/principle-4.jpg";
-import p5 from "@/assets/principle-5.jpg";
 
 import mktEdu from "@/assets/market-education.jpg.asset.json";
 import mktHealth from "@/assets/market-health.jpg.asset.json";
 import mktLaw from "@/assets/market-law.jpg.asset.json";
 import mktAcc from "@/assets/market-accounting.jpg.asset.json";
 import mktBiz from "@/assets/market-business.jpg.asset.json";
+
+const PHOTO = (id: string, w = 1600) =>
+  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,18 +32,18 @@ export const Route = createFileRoute("/")({
 });
 
 const principles = [
-  { title: "Desenvolvimento Humano em Primeiro Lugar", text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas.", image: p1 },
-  { title: "Excelência como Compromisso", text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade.", image: p2 },
-  { title: "Inovação Responsável", text: "Tecnologias transformadoras desenvolvidas com responsabilidade — considerando impactos sociais, econômicos e éticos.", image: p3 },
-  { title: "Transparência e Integridade", text: "Construímos relações baseadas em confiança, clareza e responsabilidade.", image: p4 },
-  { title: "Sustentabilidade", text: "Equilíbrio entre crescimento econômico, preservação ambiental e prosperidade social.", image: p5 },
+  { title: "Desenvolvimento Humano em Primeiro Lugar", text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas.", image: PHOTO("photo-1522071820081-009f0129c71c") },
+  { title: "Excelência como Compromisso", text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade.", image: PHOTO("photo-1552664730-d307ca884978") },
+  { title: "Inovação Responsável", text: "Tecnologias transformadoras desenvolvidas com responsabilidade — considerando impactos sociais, econômicos e éticos.", image: PHOTO("photo-1573497019940-1c28c88b4f3e") },
+  { title: "Transparência e Integridade", text: "Construímos relações baseadas em confiança, clareza e responsabilidade.", image: PHOTO("photo-1600880292203-757bb62b4baf") },
+  { title: "Sustentabilidade", text: "Equilíbrio entre crescimento econômico, preservação ambiental e prosperidade social.", image: PHOTO("photo-1542601906990-b4d3fb778b09") },
 ];
 
 const rigs = [
-  { slug: "research", title: "Research", subtitle: "Para Universidades", image: mktEdu.url, text: "A produção de conhecimento científico, tecnológico e intelectual." },
-  { slug: "industry", title: "Industry", subtitle: "Para Empresas", image: mktBiz.url, text: "A transformação do conhecimento em soluções, produtos e desenvolvimento econômico." },
-  { slug: "government", title: "Government", subtitle: "Para Governos", image: mktLaw.url, text: "A coordenação institucional para estabilidade, planejamento estratégico e capacidades nacionais." },
-  { slug: "society", title: "Society", subtitle: "Para Pessoas", image: mktHealth.url, text: "Indivíduos, comunidades e organizações que orientam valores, prioridades e necessidades." },
+  { slug: "research", title: "Research", subtitle: "Para Universidades", image: PHOTO("photo-1523050854058-8df90110c9f1"), text: "A produção de conhecimento científico, tecnológico e intelectual." },
+  { slug: "industry", title: "Industry", subtitle: "Para Empresas", image: PHOTO("photo-1486406146926-c627a92ad1ab"), text: "A transformação do conhecimento em soluções, produtos e desenvolvimento econômico." },
+  { slug: "government", title: "Government", subtitle: "Para Governos", image: PHOTO("photo-1541872703-74c5e44368f9"), text: "A coordenação institucional para estabilidade e capacidades nacionais." },
+  { slug: "society", title: "Society", subtitle: "Para Pessoas", image: PHOTO("photo-1568605114967-8130f3a36994"), text: "Indivíduos, comunidades e organizações que orientam valores, prioridades e necessidades." },
 ];
 
 const markets = [
@@ -57,19 +55,11 @@ const markets = [
 ];
 
 const products = [
-  { slug: "aristoteles", name: "Aristoteles" },
-  { slug: "herodotus", name: "Herodotus" },
-  { slug: "pythagoras", name: "Pythagoras" },
-  { slug: "archimedes", name: "Archimedes" },
-];
-
-const solutions = [
-  { title: "Midas", to: "/solucoes/midas" },
-  { title: "Hefesto" },
-  { title: "Atlas" },
-  { title: "Atendimento" },
-  { title: "Muse" },
-  { title: "Dev & Tech" },
+  { slug: "vector", name: "Vector" },
+  { slug: "axis", name: "Axis" },
+  { slug: "pulse", name: "Pulse" },
+  { slug: "genius", name: "Genius" },
+  { slug: "codex", name: "Codex" },
 ];
 
 const missionVision = [
@@ -128,7 +118,6 @@ function MarketsCarousel() {
 
   const start = page * perPage;
   const visible = markets.slice(start, start + perPage);
-  // ensure we always show perPage cards even when wrapping at the end
   while (visible.length < perPage) visible.push(markets[visible.length % markets.length]);
 
   return (
@@ -169,10 +158,18 @@ function MarketsCarousel() {
 
 function PrinciplesAccordion() {
   const [active, setActive] = useState(0);
+  // Text renders only once the card has finished expanding (delay = duration).
+  const [textVisible, setTextVisible] = useState(0);
+  useEffect(() => {
+    const t = setTimeout(() => setTextVisible(active), 700);
+    return () => clearTimeout(t);
+  }, [active]);
+
   return (
     <div className="flex h-[460px] w-full gap-3 sm:h-[520px]">
       {principles.map((p, i) => {
         const isActive = i === active;
+        const showText = isActive && textVisible === i;
         return (
           <button
             key={p.title}
@@ -183,13 +180,15 @@ function PrinciplesAccordion() {
             style={{ minWidth: 0 }}
           >
             <img src={p.image} alt={p.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-            <div className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "bg-gradient-to-t from-black/95 via-black/55 to-black/15" : "bg-black/70"}`} />
+            <div className={`absolute inset-0 ${isActive ? "bg-gradient-to-t from-black/95 via-black/55 to-black/15" : "bg-black/70"}`} />
             <div className="relative flex h-full flex-col justify-between p-5 sm:p-7">
               <span className="font-heading text-3xl font-light text-white/90 sm:text-4xl">{String(i + 1).padStart(2, "0")}</span>
-              <div className={`transition-all duration-500 ${isActive ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"}`}>
-                <h3 className="font-heading text-xl font-medium text-white sm:text-2xl">{p.title}</h3>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-white/85">{p.text}</p>
-              </div>
+              {showText && (
+                <div>
+                  <h3 className="font-heading text-xl font-medium text-white sm:text-2xl">{p.title}</h3>
+                  <p className="mt-3 max-w-md text-sm leading-relaxed text-white/85">{p.text}</p>
+                </div>
+              )}
             </div>
           </button>
         );
@@ -217,10 +216,10 @@ function YoutubeFilled({ className }: { className?: string }) {
 
 type SitemapItem = { label: string; to?: string };
 const sitemap: { title: string; items: SitemapItem[] }[] = [
-  { title: "Produtos", items: [{ label: "Plataforma Aura" }, { label: "API" }, { label: "Aura Studio" }, { label: "Enterprise" }] },
-  { title: "Modelos", items: products.map((p) => ({ label: p.name, to: `/modelos/${p.slug}` })) },
-  { title: "Soluções", items: solutions.map((s) => ({ label: s.title, to: s.to })) },
-  { title: "Recursos", items: [{ label: "Documentação", to: "/docs/aristoteles" }, { label: "Blog" }, { label: "Tutoriais" }, { label: "Casos de uso" }] },
+  { title: "Produtos", items: products.map((p) => ({ label: p.name, to: `/produtos/${p.slug}` })) },
+  { title: "RIGS", items: rigs.map((r) => ({ label: r.title, to: `/rigs/${r.slug}` })) },
+  { title: "Atuação", items: markets.map((m) => ({ label: m.title, to: `/mercados/${m.slug}` })) },
+  { title: "Recursos", items: [{ label: "Documentação", to: "/docs/vector" }, { label: "Blog" }, { label: "Tutoriais" }, { label: "Casos de uso" }] },
   { title: "Ajuda e Segurança", items: [{ label: "Central de Ajuda" }, { label: "Segurança" }, { label: "Status" }, { label: "Contato" }] },
   { title: "Sobre a Empresa", items: [{ label: "Sobre" }, { label: "Manifesto", to: "/manifesto" }, { label: "Carreiras", to: "/carreiras" }, { label: "Imprensa" }] },
   { title: "Termos e Políticas", items: [{ label: "Termos de Uso", to: "/termos" }, { label: "Privacidade", to: "/privacidade" }, { label: "Cookies", to: "/cookies" }, { label: "DPA", to: "/dpa" }] },
@@ -294,7 +293,7 @@ function Home() {
         </div>
       </section>
 
-      {/* RIGS — 4 side by side, cover image + gradient + arrow */}
+      {/* RIGS */}
       <section id="rigs" className="border-y border-border bg-surface/30 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto mb-16 max-w-2xl text-center">
@@ -337,7 +336,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Propósito — 2 col */}
+      {/* Propósito */}
       <section className="mx-auto max-w-6xl px-6 py-24">
         <div className="grid gap-14 md:grid-cols-2">
           <div>
