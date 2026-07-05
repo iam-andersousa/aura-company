@@ -109,21 +109,15 @@ function MissionVisionRotator() {
 }
 
 function MarketsCarousel() {
-  const [page, setPage] = useState(0);
-  const perPage = 2;
-  const totalPages = Math.ceil(markets.length / perPage);
-  const prev = () => setPage((p) => (p - 1 + totalPages) % totalPages);
-  const next = () => setPage((p) => (p + 1) % totalPages);
+  const [idx, setIdx] = useState(0);
+  const total = markets.length;
+  const prev = () => setIdx((p) => (p - 1 + total) % total);
+  const next = () => setIdx((p) => (p + 1) % total);
 
   useEffect(() => {
-    const id = setInterval(next, 5500);
+    const id = setInterval(() => setIdx((p) => (p + 1) % total), 10000);
     return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [totalPages]);
-
-  const start = page * perPage;
-  const visible = markets.slice(start, start + perPage);
-  while (visible.length < perPage) visible.push(markets[visible.length % markets.length]);
+  }, [total]);
 
   return (
     <div>
@@ -135,26 +129,31 @@ function MarketsCarousel() {
           <ArrowRight className="h-4 w-4" />
         </button>
       </div>
-      <div className="grid gap-6 sm:grid-cols-2">
-        {visible.map((m, i) => (
-          <Link
-            key={`${m.slug}-${i}`}
-            to="/mercados/$slug"
-            params={{ slug: m.slug }}
-            className="group relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-3xl border border-border"
-          >
-            <img src={m.image} alt={m.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
-            <div className="relative p-7 text-white">
-              <h3 className="font-heading text-3xl font-medium">{m.title}</h3>
-              <p className="mt-2 text-sm text-white/85">{m.subtitle}</p>
-            </div>
-          </Link>
-        ))}
+      <div className="relative overflow-hidden rounded-3xl">
+        <div
+          className="flex transition-transform duration-1000 ease-in-out"
+          style={{ transform: `translateX(-${idx * 100}%)` }}
+        >
+          {markets.map((m) => (
+            <Link
+              key={m.slug}
+              to="/mercados/$slug"
+              params={{ slug: m.slug }}
+              className="group relative flex aspect-[21/9] w-full shrink-0 flex-col justify-end overflow-hidden border border-border"
+            >
+              <img src={m.image} alt={m.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-[1200ms] group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
+              <div className="relative p-10 text-white sm:p-14">
+                <h3 className="font-heading text-4xl font-medium sm:text-5xl">{m.title}</h3>
+                <p className="mt-2 max-w-xl text-base text-white/85 sm:text-lg">{m.subtitle}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
       <div className="mt-6 flex justify-center gap-2">
-        {Array.from({ length: totalPages }).map((_, i) => (
-          <button key={i} onClick={() => setPage(i)} aria-label={`Página ${i + 1}`} className={`h-1.5 rounded-full transition-all ${i === page ? "w-8 bg-foreground" : "w-3 bg-muted-foreground/40"}`} />
+        {markets.map((m, i) => (
+          <button key={m.slug} onClick={() => setIdx(i)} aria-label={`Slide ${i + 1}`} className={`h-1.5 rounded-full transition-all ${i === idx ? "w-8 bg-foreground" : "w-3 bg-muted-foreground/40"}`} />
         ))}
       </div>
     </div>
