@@ -238,13 +238,13 @@ function Home() {
       {/* Hero */}
       <section id="top" className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
         <div
-          className="absolute inset-0 -z-10 opacity-[0.18] dark:opacity-[0.35]"
+          className="absolute inset-0 -z-10 opacity-40 dark:opacity-50"
           style={{
             backgroundImage: `url(${heroThinker.url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            maskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
-            WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
+            maskImage: "radial-gradient(ellipse at center, black 45%, transparent 85%)",
+            WebkitMaskImage: "radial-gradient(ellipse at center, black 45%, transparent 85%)",
           }}
         />
         <div className="mx-auto max-w-5xl px-6 text-center">
