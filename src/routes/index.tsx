@@ -8,13 +8,18 @@ import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
 
-import heroBg from "@/assets/hero-bg.jpg";
+import heroThinker from "@/assets/hero-thinker.jpg.asset.json";
 
 import mktEdu from "@/assets/market-education.jpg.asset.json";
 import mktHealth from "@/assets/market-health.jpg.asset.json";
 import mktLaw from "@/assets/market-law.jpg.asset.json";
 import mktAcc from "@/assets/market-accounting.jpg.asset.json";
 import mktBiz from "@/assets/market-business.jpg.asset.json";
+
+import rigsResearch from "@/assets/rigs-research-v2.png.asset.json";
+import rigsIndustry from "@/assets/rigs-industry-v2.png.asset.json";
+import rigsGovernment from "@/assets/rigs-government-v2.png.asset.json";
+import rigsSociety from "@/assets/rigs-society-v2.png.asset.json";
 
 const PHOTO = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
@@ -32,18 +37,18 @@ export const Route = createFileRoute("/")({
 });
 
 const principles = [
-  { title: "Desenvolvimento Humano em Primeiro Lugar", text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas.", image: PHOTO("photo-1522071820081-009f0129c71c") },
-  { title: "Excelência como Compromisso", text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade.", image: PHOTO("photo-1552664730-d307ca884978") },
-  { title: "Inovação Responsável", text: "Tecnologias transformadoras desenvolvidas com responsabilidade — considerando impactos sociais, econômicos e éticos.", image: PHOTO("photo-1573497019940-1c28c88b4f3e") },
-  { title: "Transparência e Integridade", text: "Construímos relações baseadas em confiança, clareza e responsabilidade.", image: PHOTO("photo-1600880292203-757bb62b4baf") },
-  { title: "Sustentabilidade", text: "Equilíbrio entre crescimento econômico, preservação ambiental e prosperidade social.", image: PHOTO("photo-1542601906990-b4d3fb778b09") },
+  { title: "Desenvolvimento Humano em Primeiro Lugar", text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas.", image: PHOTO("photo-1529156069898-49953e39b3ac") },
+  { title: "Excelência como Compromisso", text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade.", image: PHOTO("photo-1519681393784-d120267933ba") },
+  { title: "Inovação Responsável", text: "Tecnologias transformadoras desenvolvidas com responsabilidade — considerando impactos sociais, econômicos e éticos.", image: PHOTO("photo-1451187580459-43490279c0fa") },
+  { title: "Transparência e Integridade", text: "Construímos relações baseadas em confiança, clareza e responsabilidade.", image: PHOTO("photo-1507525428034-b723cf961d3e") },
+  { title: "Sustentabilidade", text: "Equilíbrio entre crescimento econômico, preservação ambiental e prosperidade social.", image: PHOTO("photo-1470071459604-3b5ec3a7fe05") },
 ];
 
 const rigs = [
-  { slug: "research", title: "Research", subtitle: "Para Universidades", image: PHOTO("photo-1523050854058-8df90110c9f1"), text: "A produção de conhecimento científico, tecnológico e intelectual." },
-  { slug: "industry", title: "Industry", subtitle: "Para Empresas", image: PHOTO("photo-1486406146926-c627a92ad1ab"), text: "A transformação do conhecimento em soluções, produtos e desenvolvimento econômico." },
-  { slug: "government", title: "Government", subtitle: "Para Governos", image: PHOTO("photo-1541872703-74c5e44368f9"), text: "A coordenação institucional para estabilidade e capacidades nacionais." },
-  { slug: "society", title: "Society", subtitle: "Para Pessoas", image: PHOTO("photo-1568605114967-8130f3a36994"), text: "Indivíduos, comunidades e organizações que orientam valores, prioridades e necessidades." },
+  { slug: "research", title: "Research", subtitle: "Para Universidades", image: rigsResearch.url, text: "A produção de conhecimento científico, tecnológico e intelectual." },
+  { slug: "industry", title: "Industry", subtitle: "Para Empresas", image: rigsIndustry.url, text: "A transformação do conhecimento em soluções, produtos e desenvolvimento econômico." },
+  { slug: "government", title: "Government", subtitle: "Para Governos", image: rigsGovernment.url, text: "A coordenação institucional para estabilidade e capacidades nacionais." },
+  { slug: "society", title: "Society", subtitle: "Para Pessoas", image: rigsSociety.url, text: "Indivíduos, comunidades e organizações que orientam valores, prioridades e necessidades." },
 ];
 
 const markets = [
@@ -104,21 +109,15 @@ function MissionVisionRotator() {
 }
 
 function MarketsCarousel() {
-  const [page, setPage] = useState(0);
-  const perPage = 2;
-  const totalPages = Math.ceil(markets.length / perPage);
-  const prev = () => setPage((p) => (p - 1 + totalPages) % totalPages);
-  const next = () => setPage((p) => (p + 1) % totalPages);
+  const [idx, setIdx] = useState(0);
+  const total = markets.length;
+  const prev = () => setIdx((p) => (p - 1 + total) % total);
+  const next = () => setIdx((p) => (p + 1) % total);
 
   useEffect(() => {
-    const id = setInterval(next, 5500);
+    const id = setInterval(() => setIdx((p) => (p + 1) % total), 10000);
     return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [totalPages]);
-
-  const start = page * perPage;
-  const visible = markets.slice(start, start + perPage);
-  while (visible.length < perPage) visible.push(markets[visible.length % markets.length]);
+  }, [total]);
 
   return (
     <div>
@@ -130,26 +129,31 @@ function MarketsCarousel() {
           <ArrowRight className="h-4 w-4" />
         </button>
       </div>
-      <div className="grid gap-6 sm:grid-cols-2">
-        {visible.map((m, i) => (
-          <Link
-            key={`${m.slug}-${i}`}
-            to="/mercados/$slug"
-            params={{ slug: m.slug }}
-            className="group relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-3xl border border-border"
-          >
-            <img src={m.image} alt={m.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
-            <div className="relative p-7 text-white">
-              <h3 className="font-heading text-3xl font-medium">{m.title}</h3>
-              <p className="mt-2 text-sm text-white/85">{m.subtitle}</p>
-            </div>
-          </Link>
-        ))}
+      <div className="relative overflow-hidden rounded-3xl">
+        <div
+          className="flex transition-transform duration-1000 ease-in-out"
+          style={{ transform: `translateX(-${idx * 100}%)` }}
+        >
+          {markets.map((m) => (
+            <Link
+              key={m.slug}
+              to="/mercados/$slug"
+              params={{ slug: m.slug }}
+              className="group relative flex aspect-[21/9] w-full shrink-0 flex-col justify-end overflow-hidden border border-border"
+            >
+              <img src={m.image} alt={m.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-[1200ms] group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
+              <div className="relative p-10 text-white sm:p-14">
+                <h3 className="font-heading text-4xl font-medium sm:text-5xl">{m.title}</h3>
+                <p className="mt-2 max-w-xl text-base text-white/85 sm:text-lg">{m.subtitle}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
       <div className="mt-6 flex justify-center gap-2">
-        {Array.from({ length: totalPages }).map((_, i) => (
-          <button key={i} onClick={() => setPage(i)} aria-label={`Página ${i + 1}`} className={`h-1.5 rounded-full transition-all ${i === page ? "w-8 bg-foreground" : "w-3 bg-muted-foreground/40"}`} />
+        {markets.map((m, i) => (
+          <button key={m.slug} onClick={() => setIdx(i)} aria-label={`Slide ${i + 1}`} className={`h-1.5 rounded-full transition-all ${i === idx ? "w-8 bg-foreground" : "w-3 bg-muted-foreground/40"}`} />
         ))}
       </div>
     </div>
@@ -233,13 +237,13 @@ function Home() {
       {/* Hero */}
       <section id="top" className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
         <div
-          className="absolute inset-0 -z-10 opacity-[0.18] dark:opacity-[0.35]"
+          className="absolute inset-0 -z-10 opacity-40 dark:opacity-50"
           style={{
-            backgroundImage: `url(${heroBg})`,
+            backgroundImage: `url(${heroThinker.url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            maskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
-            WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
+            maskImage: "radial-gradient(ellipse at center, black 45%, transparent 85%)",
+            WebkitMaskImage: "radial-gradient(ellipse at center, black 45%, transparent 85%)",
           }}
         />
         <div className="mx-auto max-w-5xl px-6 text-center">

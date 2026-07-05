@@ -131,7 +131,7 @@ export function SiteHeader() {
                       to="/produtos/$slug"
                       params={{ slug: p.slug }}
                       onClick={() => setOpen(null)}
-                      className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10"
+                      className="flex flex-col rounded-full px-4 py-2 text-left transition hover:bg-foreground/10"
                     >
                       <span className="font-heading text-sm font-medium">{p.name}</span>
                       <span className="text-xs text-foreground/60">{p.tag}</span>
@@ -151,7 +151,7 @@ export function SiteHeader() {
                       to="/rigs/$slug"
                       params={{ slug: r.slug }}
                       onClick={() => setOpen(null)}
-                      className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10"
+                      className="flex flex-col rounded-full px-4 py-2 text-left transition hover:bg-foreground/10"
                     >
                       <span className="font-heading text-sm font-medium">{r.title}</span>
                       <span className="text-xs text-foreground/60">{r.tag}</span>
@@ -171,7 +171,7 @@ export function SiteHeader() {
                       to="/mercados/$slug"
                       params={{ slug: m.slug }}
                       onClick={() => setOpen(null)}
-                      className="flex flex-col rounded-lg px-3 py-2 text-left transition hover:bg-foreground/10"
+                      className="flex flex-col rounded-full px-4 py-2 text-left transition hover:bg-foreground/10"
                     >
                       <span className="font-heading text-sm font-medium">{m.title}</span>
                       <span className="text-xs text-foreground/60">{m.tag}</span>

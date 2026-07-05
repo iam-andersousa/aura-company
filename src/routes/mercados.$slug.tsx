@@ -89,6 +89,41 @@ function MercadoSlugPage() {
           </div>
         </div>
       </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <div className="mx-auto mb-14 max-w-2xl text-center">
+          <span className="text-xs uppercase tracking-widest text-muted-foreground">O que muda</span>
+          <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">Aplicações práticas</h2>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[
+            { title: "Produtividade", text: `Automação de rotinas repetitivas em ${d.title.toLowerCase()}, liberando tempo para o trabalho de maior valor.` },
+            { title: "Qualidade", text: `Padronização, revisão e checagem contínua reduzem erros críticos no setor de ${d.title.toLowerCase()}.` },
+            { title: "Escala", text: `Ampliação do alcance de bons profissionais e boas práticas em ${d.title.toLowerCase()}.` },
+          ].map((h) => (
+            <div key={h.title} className="rounded-2xl border border-border bg-card p-6">
+              <h3 className="font-heading text-lg font-medium">{h.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{h.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-24">
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="overflow-hidden rounded-2xl border border-border sm:col-span-2 aspect-[16/9]">
+            <img src={d.image} alt="" className="h-full w-full object-cover" />
+          </div>
+          <div className="grid gap-3">
+            <div className="overflow-hidden rounded-2xl border border-border aspect-square">
+              <img src={`https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=800&q=80&auto=format&fit=crop`} alt="" className="h-full w-full object-cover" />
+            </div>
+            <div className="overflow-hidden rounded-2xl border border-border aspect-square">
+              <img src={`https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80&auto=format&fit=crop`} alt="" className="h-full w-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
       <footer className="dark bg-background py-16 text-foreground">
         <div className="mx-auto max-w-7xl px-6 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} Aura — For humanity, to the stars.

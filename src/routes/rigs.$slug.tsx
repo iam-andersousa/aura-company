@@ -1,44 +1,66 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
-import rigsResearch from "@/assets/rigs-research.png.asset.json";
-import rigsIndustry from "@/assets/rigs-industry.png.asset.json";
-import rigsGov from "@/assets/rigs-government.png.asset.json";
-import rigsSociety from "@/assets/rigs-society.png.asset.json";
-import mktEdu from "@/assets/market-education.jpg.asset.json";
-import mktBiz from "@/assets/market-business.jpg.asset.json";
-import mktLaw from "@/assets/market-law.jpg.asset.json";
-import mktHealth from "@/assets/market-health.jpg.asset.json";
+import rigsResearch from "@/assets/rigs-research-v2.png.asset.json";
+import rigsIndustry from "@/assets/rigs-industry-v2.png.asset.json";
+import rigsGov from "@/assets/rigs-government-v2.png.asset.json";
+import rigsSociety from "@/assets/rigs-society-v2.png.asset.json";
 
-const DATA: Record<string, { title: string; subtitle: string; text: string; image: string }> = {
+const PHOTO = (id: string, w = 1600) =>
+  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
+
+const DATA: Record<string, { title: string; subtitle: string; text: string; image: string; gallery: string[]; highlights: { title: string; text: string }[] }> = {
   research: {
     title: "Research",
     subtitle: "Para Universidades",
-    text: "A produção de conhecimento científico, tecnológico e intelectual. Universidades, centros de pesquisa, laboratórios e instituições dedicadas à descoberta compõem a base sobre a qual se constroem os avanços de longo prazo. É onde nascem hipóteses, teorias, experimentos e ideias que redefinem o que é possível.",
-    image: mktEdu.url,
+    text: "A produção de conhecimento científico, tecnológico e intelectual. Universidades, centros de pesquisa, laboratórios e instituições dedicadas à descoberta compõem a base sobre a qual se constroem os avanços de longo prazo.",
+    image: rigsResearch.url,
+    gallery: [PHOTO("photo-1523240795612-9a054b0db644"), PHOTO("photo-1532094349884-543bc11b234d"), PHOTO("photo-1554475901-4538ddfbccc2")],
+    highlights: [
+      { title: "Ciência aberta", text: "Ferramentas para revisão de literatura, escrita colaborativa e dados abertos." },
+      { title: "Formação avançada", text: "Trilhas para graduação, mestrado e doutorado com apoio de IA." },
+      { title: "Transferência de tecnologia", text: "Pontes estruturadas entre laboratório, indústria e mercado." },
+    ],
   },
   industry: {
     title: "Industry",
     subtitle: "Para Empresas",
-    text: "A transformação do conhecimento em soluções, produtos, serviços e desenvolvimento econômico. A capacidade produtiva e inovadora da sociedade — empresas, startups e organizações que convertem descoberta em valor prático e escalável para pessoas, mercados e nações.",
-    image: mktBiz.url,
+    text: "A transformação do conhecimento em soluções, produtos, serviços e desenvolvimento econômico. Empresas, startups e organizações que convertem descoberta em valor prático e escalável.",
+    image: rigsIndustry.url,
+    gallery: [PHOTO("photo-1497366216548-37526070297c"), PHOTO("photo-1521737604893-d14cc237f11d"), PHOTO("photo-1454165804606-c3d57bc86b40")],
+    highlights: [
+      { title: "Produtividade", text: "Automação assistida em operações críticas, do back ao front-office." },
+      { title: "Novos mercados", text: "Ampliação da fronteira de produtos e serviços possíveis." },
+      { title: "Escala responsável", text: "Crescimento com governança de dados e IA responsável." },
+    ],
   },
   government: {
     title: "Government",
     subtitle: "Para Governos",
-    text: "A coordenação institucional necessária para garantir estabilidade, planejamento estratégico, investimento público e desenvolvimento de capacidades nacionais. Governos definem regras, incentivos, prioridades e visão de longo prazo que orientam o esforço coletivo em direção ao progresso.",
-    image: mktLaw.url,
+    text: "A coordenação institucional necessária para garantir estabilidade, planejamento estratégico, investimento público e desenvolvimento de capacidades nacionais.",
+    image: rigsGov.url,
+    gallery: [PHOTO("photo-1541872703-74c5e44368f9"), PHOTO("photo-1589829545856-d10d557cf95f"), PHOTO("photo-1591189863430-ab87e120f312")],
+    highlights: [
+      { title: "Serviços públicos", text: "Atendimento ao cidadão com prontidão, transparência e escala." },
+      { title: "Políticas orientadas a dados", text: "Instrumentação de indicadores, avaliação de impacto e simulações." },
+      { title: "Capacidades nacionais", text: "Soberania tecnológica em setores estratégicos." },
+    ],
   },
   society: {
     title: "Society",
     subtitle: "Para Pessoas",
-    text: "O conjunto de indivíduos, comunidades e organizações que orientam os valores, prioridades e necessidades que impulsionam o progresso. É a sociedade que legitima, direciona e se beneficia de tudo o que é construído — o propósito último de qualquer avanço.",
+    text: "O conjunto de indivíduos, comunidades e organizações que orientam os valores, prioridades e necessidades que impulsionam o progresso.",
     image: rigsSociety.url,
+    gallery: [PHOTO("photo-1529156069898-49953e39b3ac"), PHOTO("photo-1517649763962-0c623066013b"), PHOTO("photo-1509099836639-18ba1795216d")],
+    highlights: [
+      { title: "Acesso", text: "Democratização de ferramentas de conhecimento, saúde e produtividade." },
+      { title: "Cidadania digital", text: "Educação, participação e proteção em ambientes conectados." },
+      { title: "Bem-estar", text: "Tecnologias que reforçam laços comunitários e qualidade de vida." },
+    ],
   },
 };
 
-// keep asset imports referenced
-void rigsResearch; void rigsIndustry; void rigsGov;
+void rigsResearch; void rigsIndustry; void rigsGov; void rigsSociety;
 
 export const Route = createFileRoute("/rigs/$slug")({
   loader: ({ params }) => {
@@ -68,7 +90,7 @@ export const Route = createFileRoute("/rigs/$slug")({
 });
 
 function RigsSlugPage() {
-  const d = Route.useLoaderData();
+  const d = Route.useLoaderData() as (typeof DATA)[string] & { slug: string };
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
@@ -87,6 +109,31 @@ function RigsSlugPage() {
               <ArrowLeft className="h-4 w-4" /> Voltar
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <div className="mx-auto mb-14 max-w-2xl text-center">
+          <span className="text-xs uppercase tracking-widest text-muted-foreground">Impacto</span>
+          <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">Onde {d.title} atua</h2>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {d.highlights.map((h) => (
+            <div key={h.title} className="rounded-2xl border border-border bg-card p-6">
+              <h3 className="font-heading text-lg font-medium">{h.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{h.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-24">
+        <div className="grid gap-3 sm:grid-cols-3">
+          {d.gallery.map((g, i) => (
+            <div key={g} className={`overflow-hidden rounded-2xl border border-border ${i === 0 ? "sm:col-span-2 aspect-[16/9]" : "aspect-square"}`}>
+              <img src={g} alt="" className="h-full w-full object-cover" />
+            </div>
+          ))}
         </div>
       </section>
 
