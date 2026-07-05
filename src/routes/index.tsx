@@ -240,7 +240,7 @@ function Home() {
         <div
           className="absolute inset-0 -z-10 opacity-[0.18] dark:opacity-[0.35]"
           style={{
-            backgroundImage: `url(${heroBg})`,
+            backgroundImage: `url(${heroThinker.url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             maskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
