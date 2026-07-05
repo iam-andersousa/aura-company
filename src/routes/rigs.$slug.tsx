@@ -90,7 +90,7 @@ export const Route = createFileRoute("/rigs/$slug")({
 });
 
 function RigsSlugPage() {
-  const d = Route.useLoaderData();
+  const d = Route.useLoaderData() as (typeof DATA)[string] & { slug: string };
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
