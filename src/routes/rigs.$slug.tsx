@@ -112,6 +112,31 @@ function RigsSlugPage() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <div className="mx-auto mb-14 max-w-2xl text-center">
+          <span className="text-xs uppercase tracking-widest text-muted-foreground">Impacto</span>
+          <h2 className="mt-3 font-heading text-3xl font-medium sm:text-4xl">Onde {d.title} atua</h2>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {d.highlights.map((h) => (
+            <div key={h.title} className="rounded-2xl border border-border bg-card p-6">
+              <h3 className="font-heading text-lg font-medium">{h.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{h.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-24">
+        <div className="grid gap-3 sm:grid-cols-3">
+          {d.gallery.map((g, i) => (
+            <div key={g} className={`overflow-hidden rounded-2xl border border-border ${i === 0 ? "sm:col-span-2 aspect-[16/9]" : "aspect-square"}`}>
+              <img src={g} alt="" className="h-full w-full object-cover" />
+            </div>
+          ))}
+        </div>
+      </section>
+
       <footer className="dark bg-background py-16 text-foreground">
         <div className="mx-auto max-w-7xl px-6 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} Aura — For humanity, to the stars.
