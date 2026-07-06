@@ -320,8 +320,8 @@ function Home() {
                   <p className="text-sm font-medium text-white/85">{r.subtitle}</p>
                   <p className="mt-1 text-sm leading-relaxed text-white/80">{r.text}</p>
                 </div>
-                <span className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white text-neutral-900 shadow-lg transition group-hover:scale-110">
-                  <ArrowRight className="h-4 w-4" />
+                <span className="absolute right-5 top-5 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-150">
+                  <ArrowRight className="h-6 w-6" strokeWidth={2} />
                 </span>
               </Link>
             ))}
