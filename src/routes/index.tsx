@@ -8,7 +8,7 @@ import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
 
-import heroThinker from "@/assets/hero-thinker.jpg.asset.json";
+import heroThinker from "@/assets/hero-thinker-v2.jpg.asset.json";
 
 import mktEdu from "@/assets/market-education.jpg.asset.json";
 import mktHealth from "@/assets/market-health.jpg.asset.json";
@@ -37,11 +37,11 @@ export const Route = createFileRoute("/")({
 });
 
 const principles = [
-  { title: "Desenvolvimento Humano em Primeiro Lugar", text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas.", image: PHOTO("photo-1529156069898-49953e39b3ac") },
-  { title: "Excelência como Compromisso", text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade.", image: PHOTO("photo-1519681393784-d120267933ba") },
-  { title: "Inovação Responsável", text: "Tecnologias transformadoras desenvolvidas com responsabilidade — considerando impactos sociais, econômicos e éticos.", image: PHOTO("photo-1451187580459-43490279c0fa") },
-  { title: "Transparência e Integridade", text: "Construímos relações baseadas em confiança, clareza e responsabilidade.", image: PHOTO("photo-1507525428034-b723cf961d3e") },
-  { title: "Sustentabilidade", text: "Equilíbrio entre crescimento econômico, preservação ambiental e prosperidade social.", image: PHOTO("photo-1470071459604-3b5ec3a7fe05") },
+  { title: "Desenvolvimento Humano em Primeiro Lugar", text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas.", image: PHOTO("photo-1447069387593-a5de0862481e") },
+  { title: "Excelência como Compromisso", text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade.", image: PHOTO("photo-1522071820081-009f0129c71c") },
+  { title: "Inovação Responsável", text: "Tecnologias transformadoras desenvolvidas com responsabilidade — considerando impactos sociais, econômicos e éticos.", image: PHOTO("photo-1516627145497-ae6968895b74") },
+  { title: "Transparência e Integridade", text: "Construímos relações baseadas em confiança, clareza e responsabilidade.", image: PHOTO("photo-1560439514-4e9645039924") },
+  { title: "Sustentabilidade", text: "Equilíbrio entre crescimento econômico, preservação ambiental e prosperidade social.", image: PHOTO("photo-1552728089-57bdde30beb3") },
 ];
 
 const rigs = [
@@ -235,29 +235,30 @@ function Home() {
       <SiteHeader />
 
       {/* Hero */}
-      <section id="top" className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
+      <section id="top" className="relative overflow-hidden pt-32 pb-32 sm:pt-40 sm:pb-40">
         <div
-          className="absolute inset-0 -z-10 opacity-40 dark:opacity-50"
+          className="absolute inset-0 -z-10"
           style={{
             backgroundImage: `url(${heroThinker.url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            maskImage: "radial-gradient(ellipse at center, black 45%, transparent 85%)",
-            WebkitMaskImage: "radial-gradient(ellipse at center, black 45%, transparent 85%)",
           }}
         />
+        {/* Readability overlay + theme-aware fade into the next section */}
+        <div className="absolute inset-0 -z-10 bg-background/40 dark:bg-background/55" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-64 bg-gradient-to-b from-transparent to-background" />
         <div className="mx-auto max-w-5xl px-6 text-center">
-          <h1 className="font-heading text-balance text-4xl font-medium leading-[1.1] sm:text-5xl md:text-6xl">
+          <h1 className="font-heading text-balance text-4xl font-medium leading-[1.1] text-foreground sm:text-5xl md:text-6xl">
             Inteligência para o Desenvolvimento Humano
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-muted-foreground">
+          <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-foreground/80">
             A Aura é uma organização dedicada ao desenvolvimento de tecnologias avançadas, sistemas inteligentes e soluções de alto impacto orientadas para o desenvolvimento humano.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a href="#sobre" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90">
               Conheça a Aura <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#rigs" className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-6 py-3 text-sm font-medium text-foreground transition hover:bg-surface">
+            <a href="#rigs" className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-6 py-3 text-sm font-medium text-foreground backdrop-blur transition hover:bg-surface">
               Framework RIGS
             </a>
           </div>
@@ -320,8 +321,8 @@ function Home() {
                   <p className="text-sm font-medium text-white/85">{r.subtitle}</p>
                   <p className="mt-1 text-sm leading-relaxed text-white/80">{r.text}</p>
                 </div>
-                <span className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white text-neutral-900 shadow-lg transition group-hover:scale-110">
-                  <ArrowRight className="h-4 w-4" />
+                <span className="absolute right-5 top-5 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-150">
+                  <ArrowRight className="h-6 w-6" strokeWidth={2} />
                 </span>
               </Link>
             ))}
