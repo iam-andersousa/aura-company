@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import banner from "@/assets/hero-thinker.jpg.asset.json";
+import banner from "@/assets/hero-thinker-v2.jpg.asset.json";
 import logoDark from "@/assets/aura-logo-dark.png.asset.json";
 import logoLight from "@/assets/aura-logo-light.png.asset.json";
 import googleLogo from "@/assets/google-logo.png.asset.json";
@@ -35,7 +35,7 @@ function CadastrarPage() {
         <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center">
           <img src={dark ? logoLight.url : logoDark.url} alt="Aura" className="mb-8 h-10 w-auto object-contain object-left" />
           <h1 className="font-heading text-3xl font-medium">Crie sua conta</h1>
-          <p className="mt-2 text-sm text-muted-foreground">Comece a usar os produtos da Aura.</p>
+          <p className="mt-2 text-sm text-muted-foreground">Comece agora a usar os produtos da Aura.</p>
 
           <div className="mt-6 grid grid-cols-2 gap-3">
             <button type="button" className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-3 text-sm font-medium transition hover:bg-accent">
