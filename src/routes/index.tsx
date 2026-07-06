@@ -8,7 +8,7 @@ import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
 
-import heroThinker from "@/assets/hero-thinker.jpg.asset.json";
+import heroThinker from "@/assets/hero-thinker-v2.jpg.asset.json";
 
 import mktEdu from "@/assets/market-education.jpg.asset.json";
 import mktHealth from "@/assets/market-health.jpg.asset.json";
@@ -37,11 +37,11 @@ export const Route = createFileRoute("/")({
 });
 
 const principles = [
-  { title: "Desenvolvimento Humano em Primeiro Lugar", text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas.", image: PHOTO("photo-1529156069898-49953e39b3ac") },
-  { title: "Excelência como Compromisso", text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade.", image: PHOTO("photo-1519681393784-d120267933ba") },
-  { title: "Inovação Responsável", text: "Tecnologias transformadoras desenvolvidas com responsabilidade — considerando impactos sociais, econômicos e éticos.", image: PHOTO("photo-1451187580459-43490279c0fa") },
-  { title: "Transparência e Integridade", text: "Construímos relações baseadas em confiança, clareza e responsabilidade.", image: PHOTO("photo-1507525428034-b723cf961d3e") },
-  { title: "Sustentabilidade", text: "Equilíbrio entre crescimento econômico, preservação ambiental e prosperidade social.", image: PHOTO("photo-1470071459604-3b5ec3a7fe05") },
+  { title: "Desenvolvimento Humano em Primeiro Lugar", text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas.", image: PHOTO("photo-1447069387593-a5de0862481e") },
+  { title: "Excelência como Compromisso", text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade.", image: PHOTO("photo-1522071820081-009f0129c71c") },
+  { title: "Inovação Responsável", text: "Tecnologias transformadoras desenvolvidas com responsabilidade — considerando impactos sociais, econômicos e éticos.", image: PHOTO("photo-1516627145497-ae6968895b74") },
+  { title: "Transparência e Integridade", text: "Construímos relações baseadas em confiança, clareza e responsabilidade.", image: PHOTO("photo-1560439514-4e9645039924") },
+  { title: "Sustentabilidade", text: "Equilíbrio entre crescimento econômico, preservação ambiental e prosperidade social.", image: PHOTO("photo-1552728089-57bdde30beb3") },
 ];
 
 const rigs = [
