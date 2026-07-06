@@ -235,29 +235,30 @@ function Home() {
       <SiteHeader />
 
       {/* Hero */}
-      <section id="top" className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
+      <section id="top" className="relative overflow-hidden pt-32 pb-32 sm:pt-40 sm:pb-40">
         <div
-          className="absolute inset-0 -z-10 opacity-40 dark:opacity-50"
+          className="absolute inset-0 -z-10"
           style={{
             backgroundImage: `url(${heroThinker.url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            maskImage: "radial-gradient(ellipse at center, black 45%, transparent 85%)",
-            WebkitMaskImage: "radial-gradient(ellipse at center, black 45%, transparent 85%)",
           }}
         />
+        {/* Readability overlay + theme-aware fade into the next section */}
+        <div className="absolute inset-0 -z-10 bg-background/40 dark:bg-background/55" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-64 bg-gradient-to-b from-transparent to-background" />
         <div className="mx-auto max-w-5xl px-6 text-center">
-          <h1 className="font-heading text-balance text-4xl font-medium leading-[1.1] sm:text-5xl md:text-6xl">
+          <h1 className="font-heading text-balance text-4xl font-medium leading-[1.1] text-foreground sm:text-5xl md:text-6xl">
             Inteligência para o Desenvolvimento Humano
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-muted-foreground">
+          <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-foreground/80">
             A Aura é uma organização dedicada ao desenvolvimento de tecnologias avançadas, sistemas inteligentes e soluções de alto impacto orientadas para o desenvolvimento humano.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a href="#sobre" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90">
               Conheça a Aura <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#rigs" className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-6 py-3 text-sm font-medium text-foreground transition hover:bg-surface">
+            <a href="#rigs" className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-6 py-3 text-sm font-medium text-foreground backdrop-blur transition hover:bg-surface">
               Framework RIGS
             </a>
           </div>
