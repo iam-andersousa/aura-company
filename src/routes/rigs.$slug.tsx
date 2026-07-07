@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import rigsResearch from "@/assets/rigs-research-v2.png.asset.json";
