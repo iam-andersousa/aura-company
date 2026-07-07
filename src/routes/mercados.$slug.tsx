@@ -70,10 +70,29 @@ export const Route = createFileRoute("/mercados/$slug")({
 
 function MercadoSlugPage() {
   const d = Route.useLoaderData();
+  useEffect(() => {
+    const hero = document.getElementById("top");
+    if (!hero) return;
+    const root = document.documentElement;
+    const restore = () => {
+      let pref: string | null = null;
+      try { pref = localStorage.getItem("aura-theme"); } catch {}
+      root.classList.toggle("dark", pref !== "light");
+    };
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.35) root.classList.add("dark");
+        else restore();
+      },
+      { threshold: [0, 0.35, 0.6, 1] }
+    );
+    io.observe(hero);
+    return () => { io.disconnect(); restore(); };
+  }, []);
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-24">
+      <section id="top" className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-24">
         <img src={d.image} alt={d.title} className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/30" />
         <div className="relative mx-auto max-w-3xl px-6 py-24 text-center text-white">
