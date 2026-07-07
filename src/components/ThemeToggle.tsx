@@ -12,8 +12,11 @@ export function ThemeToggle() {
   }, []);
 
   useEffect(() => {
-    const isHome = pathname === "/";
-    if (!isHome) {
+    const heroGated =
+      pathname === "/" ||
+      pathname.startsWith("/mercados/") ||
+      pathname.startsWith("/rigs/");
+    if (!heroGated) {
       setVisible(true);
       return;
     }

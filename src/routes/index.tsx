@@ -8,7 +8,10 @@ import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
 
-import heroThinker from "@/assets/hero-thinker-v3.jpg.asset.json";
+import heroThinker from "@/assets/hero-thinker-v4.jpg.asset.json";
+import principleHands from "@/assets/principle-hands.jpg.asset.json";
+import principleTablet from "@/assets/principle-tablet.jpg.asset.json";
+import principleMacaw from "@/assets/principle-macaw.jpg.asset.json";
 
 import mktEdu from "@/assets/market-education.jpg.asset.json";
 import mktHealth from "@/assets/market-health.jpg.asset.json";
@@ -37,11 +40,11 @@ export const Route = createFileRoute("/")({
 });
 
 const principles = [
-  { title: "Desenvolvimento Humano em Primeiro Lugar", text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas.", image: PHOTO("photo-1511895426328-dc8714191300") },
+  { title: "Desenvolvimento Humano em Primeiro Lugar", text: "A tecnologia é um meio, não um fim. Toda inovação deve ser avaliada pela sua capacidade de melhorar a vida das pessoas.", image: principleHands.url },
   { title: "Excelência como Compromisso", text: "Buscamos os mais altos padrões de qualidade técnica, rigor intelectual e responsabilidade.", image: PHOTO("photo-1522071820081-009f0129c71c") },
-  { title: "Inovação Responsável", text: "Tecnologias transformadoras desenvolvidas com responsabilidade — considerando impactos sociais, econômicos e éticos.", image: PHOTO("photo-1503602642458-232111445657") },
+  { title: "Inovação Responsável", text: "Tecnologias transformadoras desenvolvidas com responsabilidade — considerando impactos sociais, econômicos e éticos.", image: principleTablet.url },
   { title: "Transparência e Integridade", text: "Construímos relações baseadas em confiança, clareza e responsabilidade.", image: PHOTO("photo-1475721027785-f74eccf877e2") },
-  { title: "Sustentabilidade", text: "Equilíbrio entre crescimento econômico, preservação ambiental e prosperidade social.", image: PHOTO("photo-1552727451-6f88f9e01925") },
+  { title: "Sustentabilidade", text: "Equilíbrio entre crescimento econômico, preservação ambiental e prosperidade social.", image: principleMacaw.url },
 ];
 
 const rigs = [
