@@ -8,7 +8,10 @@ import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
 
-import heroThinker from "@/assets/hero-thinker-v3.jpg.asset.json";
+import heroThinker from "@/assets/hero-thinker-v4.jpg.asset.json";
+import principleHands from "@/assets/principle-hands.jpg.asset.json";
+import principleTablet from "@/assets/principle-tablet.jpg.asset.json";
+import principleMacaw from "@/assets/principle-macaw.jpg.asset.json";
 
 import mktEdu from "@/assets/market-education.jpg.asset.json";
 import mktHealth from "@/assets/market-health.jpg.asset.json";
