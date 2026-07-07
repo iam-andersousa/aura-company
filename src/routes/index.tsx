@@ -8,7 +8,7 @@ import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
 
-import heroThinker from "@/assets/hero-thinker-v4.jpg.asset.json";
+import heroThinker from "@/assets/hero-thinker-v5.jpg.asset.json";
 import principleHands from "@/assets/principle-hands.jpg.asset.json";
 import principleTablet from "@/assets/principle-tablet.jpg.asset.json";
 import principleMacaw from "@/assets/principle-macaw.jpg.asset.json";
@@ -30,10 +30,10 @@ const PHOTO = (id: string, w = 1600) =>
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Aura — Inteligência para o Desenvolvimento Humano" },
-      { name: "description", content: "A Aura desenvolve tecnologias avançadas e sistemas inteligentes orientados ao desenvolvimento humano." },
-      { property: "og:title", content: "Aura — Inteligência para o Desenvolvimento Humano" },
-      { property: "og:description", content: "Tecnologias responsáveis, acessíveis e centradas na experiência humana." },
+      { title: "Aura — O futuro começa aqui" },
+      { name: "description", content: "Desenvolvendo tecnologia responsável para potencializar pessoas e instituições." },
+      { property: "og:title", content: "Aura — O futuro começa aqui" },
+      { property: "og:description", content: "Desenvolvendo tecnologia responsável para potencializar pessoas e instituições." },
     ],
   }),
   component: Home,
@@ -276,10 +276,10 @@ function Home() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-64 bg-gradient-to-b from-transparent to-background" />
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h1 className="mt-3 font-heading text-3xl font-medium text-white sm:text-4xl">
-            Inteligência para o Desenvolvimento Humano
+            O futuro começa aqui
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-            A Aura é uma organização dedicada ao desenvolvimento de tecnologias avançadas, sistemas inteligentes e soluções de alto impacto orientadas para o desenvolvimento humano.
+            Desenvolvendo tecnologia responsável para potencializar pessoas e instituições.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a href="#sobre" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-neutral-900 transition hover:bg-white/90">
