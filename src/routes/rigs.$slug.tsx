@@ -2,10 +2,10 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
-import rigsResearch from "@/assets/rigs-research-v2.png.asset.json";
-import rigsIndustry from "@/assets/rigs-industry-v2.png.asset.json";
-import rigsGov from "@/assets/rigs-government-v2.png.asset.json";
-import rigsSociety from "@/assets/rigs-society-v2.png.asset.json";
+import rigsResearch from "@/assets/rigs-research-v3.jpg.asset.json";
+import rigsIndustry from "@/assets/rigs-industry-v3.jpg.asset.json";
+import rigsGov from "@/assets/rigs-government-v3.jpg.asset.json";
+import rigsSociety from "@/assets/rigs-society-v3.jpg.asset.json";
 
 const PHOTO = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;

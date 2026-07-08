@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import banner from "@/assets/hero-thinker-v2.jpg.asset.json";
+import banner from "@/assets/hero-dev.jpg.asset.json";
 import logoDark from "@/assets/aura-logo-dark.png.asset.json";
 import logoLight from "@/assets/aura-logo-light.png.asset.json";
 import googleLogo from "@/assets/google-logo.png.asset.json";
