@@ -8,7 +8,7 @@ import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
 
-import heroThinker from "@/assets/hero-thinker-v5.jpg.asset.json";
+import heroThinker from "@/assets/hero-dev.jpg.asset.json";
 import principleHands from "@/assets/principle-hands.jpg.asset.json";
 import principleTablet from "@/assets/principle-tablet.jpg.asset.json";
 import principleMacaw from "@/assets/principle-macaw.jpg.asset.json";
@@ -19,10 +19,10 @@ import mktLaw from "@/assets/market-law.jpg.asset.json";
 import mktAcc from "@/assets/market-accounting.jpg.asset.json";
 import mktBiz from "@/assets/market-business.jpg.asset.json";
 
-import rigsResearch from "@/assets/rigs-research-v2.png.asset.json";
-import rigsIndustry from "@/assets/rigs-industry-v2.png.asset.json";
-import rigsGovernment from "@/assets/rigs-government-v2.png.asset.json";
-import rigsSociety from "@/assets/rigs-society-v2.png.asset.json";
+import rigsResearch from "@/assets/rigs-research-v3.jpg.asset.json";
+import rigsIndustry from "@/assets/rigs-industry-v3.jpg.asset.json";
+import rigsGovernment from "@/assets/rigs-government-v3.jpg.asset.json";
+import rigsSociety from "@/assets/rigs-society-v3.jpg.asset.json";
 
 const PHOTO = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
