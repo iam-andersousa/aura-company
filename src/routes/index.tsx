@@ -370,41 +370,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="dark bg-background text-foreground">
-        <div className="mx-auto max-w-7xl px-6 py-16">
-          <div className="flex flex-col items-start gap-8 border-b border-border pb-12 sm:flex-row sm:items-center sm:gap-10">
-            <img src={logoLight.url} alt="Aura" className="h-16 w-auto sm:h-20" />
-            <div className="hidden h-16 w-px bg-border sm:block" />
-            <img src={sloganWhite.url} alt="For humanity, to the stars." className="h-24 w-auto sm:h-32 md:h-40" />
-          </div>
-          <div className="grid grid-cols-2 gap-8 py-12 sm:grid-cols-3 lg:grid-cols-7">
-            {sitemap.map((col) => (
-              <div key={col.title}>
-                <p className="font-heading text-xs font-semibold uppercase tracking-widest text-foreground">{col.title}</p>
-                <ul className="mt-4 space-y-2.5">
-                  {col.items.map((it) => (
-                    <li key={it.label}>
-                      <a href={it.to ?? "#"} className="text-sm text-muted-foreground transition hover:text-foreground">
-                        {it.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="flex flex-col-reverse items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-3">
-              <SocialIcon label="LinkedIn"><LinkedinFilled className="h-4 w-4" /></SocialIcon>
-              <SocialIcon label="YouTube"><YoutubeFilled className="h-4 w-4" /></SocialIcon>
-              <SocialIcon label="X"><XIcon className="h-3.5 w-3.5" /></SocialIcon>
-              <SocialIcon label="Instagram"><Instagram className="h-4 w-4" /></SocialIcon>
-            </div>
-            <span className="text-xs text-muted-foreground">© {new Date().getFullYear()} Aura</span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
