@@ -4,8 +4,6 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
-import logoLight from "@/assets/aura-logo-light.png.asset.json";
-import sloganWhite from "@/assets/slogan-white.png.asset.json";
 import gradient1 from "@/assets/aura-gradient-1.png.asset.json";
 import gradient2 from "@/assets/aura-gradient-2.png.asset.json";
 
