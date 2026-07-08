@@ -262,30 +262,22 @@ function Home() {
       <SiteHeader />
 
       {/* Hero */}
-      <section id="top" className="relative overflow-hidden pt-32 pb-32 sm:pt-40 sm:pb-40">
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            backgroundImage: `url(${heroThinker.url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        {/* Readability overlay + fade into the next section */}
-        <div className="absolute inset-0 -z-10 bg-black/55" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-64 bg-gradient-to-b from-transparent to-background" />
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h1 className="mt-3 font-heading text-3xl font-medium text-white sm:text-4xl">
+      <section id="top" className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-24">
+        <img src={heroThinker.url} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/30" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
+        <div className="relative mx-auto max-w-3xl px-6 py-24 text-center text-white">
+          <h1 className="font-heading text-4xl font-medium sm:text-5xl">
             O futuro começa aqui
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
             Desenvolvendo tecnologia responsável para potencializar pessoas e instituições.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a href="#sobre" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-neutral-900 transition hover:bg-white/90">
               Conheça a Aura <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#rigs" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur transition hover:bg-white/20">
+            <a href="#rigs" className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10">
               Framework RIGS
             </a>
           </div>
