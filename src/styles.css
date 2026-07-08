@@ -5,7 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 html, body {
-  transition: background-color 600ms ease, color 600ms ease;
+  transition: background-color 700ms ease, color 700ms ease;
+}
+
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 700ms;
+  transition-timing-function: ease;
 }
 
 @theme inline {
