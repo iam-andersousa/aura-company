@@ -133,7 +133,7 @@ export const Route = createFileRoute("/mercados/$slug")({
 });
 
 function MercadoSlugPage() {
-  const d = Route.useLoaderData();
+  const d = Route.useLoaderData() as MarketData & { slug: string };
   useEffect(() => {
     const hero = document.getElementById("top");
     if (!hero) return;
