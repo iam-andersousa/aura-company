@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, ArrowLeft, Instagram } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 import logoLight from "@/assets/aura-logo-light.png.asset.json";
 import sloganWhite from "@/assets/slogan-white.png.asset.json";
